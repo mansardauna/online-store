@@ -7,6 +7,11 @@ import {
   newArrTwo,
   newArrThree,
   newArrFour,
+  book1,
+  phone,
+  shoe,
+  car2,
+  shoe2
 } from "../../../assets/images/index";
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
@@ -64,7 +69,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100002"
-            img={newArrTwo}
+            img={shoe2}
             productName="Smart Watch"
             price="250.00"
             color="Black"
@@ -75,7 +80,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100003"
-            img={newArrThree}
+            img={phone}
             productName="cloth Basket"
             price="80.00"
             color="Mixed"
@@ -86,7 +91,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100004"
-            img={newArrFour}
+            img={car2}
             productName="Funny toys for babies"
             price="60.00"
             color="Mixed"
@@ -97,7 +102,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100005"
-            img={newArrTwo}
+            img={book1}
             productName="Funny toys for babies"
             price="60.00"
             color="Mixed"

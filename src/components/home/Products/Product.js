@@ -52,6 +52,7 @@ const Product = (props) => {
                     quantity: 1,
                     image: props.img,
                     badge: props.badge,
+                    catergory: props.catergory,
                     price: props.price,
                     colors: props.color,
                   })

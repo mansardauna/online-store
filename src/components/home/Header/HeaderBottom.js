@@ -38,6 +38,8 @@ const HeaderBottom = () => {
     setFilteredProducts(filtered);
   }, [searchQuery]);
 
+
+
   return (
     <div className="w-full bg-[#F5F5F3] relative">
       <div className="max-w-container mx-auto">
