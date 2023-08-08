@@ -58,19 +58,15 @@ export const navBarList = [
   },
   {
     _id: 1004,
-    title: "Contact",
-    link: "contact",
+    title: "Cart",
+    link: "/cart",
   },
   {
     _id: 1005,
-    title: "Category",
+    title: "Store",
     link: "/journal",
   },
-  {
-    _id: 1006,
-    title: "Watch",
-    link: "/watchlist",
-  },
+
 ];
 // =================== NavBarList End here ======================
 // =================== Special Offer data Start here ============
