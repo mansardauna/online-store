@@ -28,6 +28,39 @@ const Product = (props) => {
       },
     });
   };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        _id: props._id,
+        name: props.productName,
+        quantity: 1,
+        image: props.img,
+        badge: props.badge,
+        category: props.category, // corrected typo: should be "category" not "catergory"
+        price: props.price,
+        colors: props.color,
+      })
+    );
+
+    window.alert(`${props.productName} has been added to the cart!`);
+  };
+
+  const handleAddToWatch = () => {
+    dispatch(
+      addToWatchlist({
+        _id: props._id,
+        name: props.productName,
+        quantity: 1,
+        image: props.img,
+        badge: props.badge,
+        category: props.category, // corrected typo: should be "category" not "catergory"
+        price: props.price,
+        colors: props.color,
+      })
+    );
+    window.alert(`${props.productName} has been added to the Watch List!`);
+  }
   return (
     <div className="w-full relative group">
       <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
@@ -46,20 +79,8 @@ const Product = (props) => {
               </span>
             </li>
             <li
-              onClick={() =>
-                dispatch(
-                  addToCart({
-                    _id: props._id,
-                    name: props.productName,
-                    quantity: 1,
-                    image: props.img,
-                    badge: props.badge,
-                    catergory: props.catergory,
-                    price: props.price,
-                    colors: props.color,
-                  })
-                )
-              }
+              onClick={handleAddToCart}
+
               className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
             >
               Add to Cart
@@ -77,19 +98,7 @@ const Product = (props) => {
               </span>
             </li>
             <li
-              onClick={() =>
-                dispatch(
-                  addToWatchlist({
-                    _id: props._id,
-                    name: props.productName,
-                    quantity: 1,
-                    image: props.img,
-                    badge: props.badge,
-                    catergory: props.catergory,
-                    price: props.price,
-                    colors: props.color,
-                  })
-                )}
+              onClick={handleAddToWatch}
               className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
               Add to Wish List
               <span>
