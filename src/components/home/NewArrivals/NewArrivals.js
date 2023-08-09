@@ -9,7 +9,7 @@ import {
   newArrFour,
   book1,
   phone,
-  shoe,
+  fashion15,
   car2,
   shoe2
 } from "../../../assets/images/index";
@@ -69,7 +69,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100002"
-            img={shoe2}
+            img={fashion15}
             productName="Smart Watch"
             price="250.00"
             color="Black"

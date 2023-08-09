@@ -6,6 +6,11 @@ import {
   spfTwo,
   spfThree,
   spfFour,
+  car,
+  fashion15,
+  fashion16,
+  elect5,
+  phone4,
 } from "../../../assets/images/index";
 
 const SpecialOffers = () => {
@@ -15,8 +20,8 @@ const SpecialOffers = () => {
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-4 gap-10">
         <Product
           _id="1101"
-          img={spfOne}
-          productName="Cap for Boys"
+          img={car}
+          productName="Sport car"
           price="35.00"
           color="Blank and White"
           badge={true}
@@ -24,8 +29,8 @@ const SpecialOffers = () => {
         />
         <Product
           _id="1102"
-          img={spfTwo}
-          productName="Tea Table"
+          img={fashion16}
+          productName="men dress"
           price="180.00"
           color="Gray"
           badge={true}
@@ -33,8 +38,8 @@ const SpecialOffers = () => {
         />
         <Product
           _id="1103"
-          img={spfThree}
-          productName="Headphones"
+          img={elect5}
+          productName="Smart TV"
           price="25.00"
           color="Mixed"
           badge={true}
@@ -42,8 +47,8 @@ const SpecialOffers = () => {
         />
         <Product
           _id="1104"
-          img={spfFour}
-          productName="Sun glasses"
+          img={phone4}
+          productName="Iphone"
           price="220.00"
           color="Black"
           badge={true}

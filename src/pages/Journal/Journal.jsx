@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
 import Product from '../../components/home/Products/Product';
+import NavTitle from '../../components/pageProps/shopPage/shopBy/NavTitle';
 import { paginationItems } from '../../constants';
-
+import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 
 const ProductList = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All'); // Initial category
-  const [filteredProducts, setFilteredProducts] = useState(paginationItems);
-
-  const handleCategoryChange = (category) => {
-    if (category === 'All') {
-      setFilteredProducts(paginationItems);
-    } else {
-      const filtered = paginationItems.filter(product => product.catergory === category);
-      setFilteredProducts(filtered);
-    }
-    setSelectedCategory(category);
-  };
+  const [data, setData] = useState(paginationItems)
+  const filterResult = (catItems) => {
+    const result = paginationItems.filter((curData) => {
+      return curData.catergory === catItems;
+    });
+    setData(result)
+  }
 
   return (
     <div className='p-3'>
-      <h2 className=' text-3xl ml-3 mb-2 w-fit uppercase '>categories</h2>
-      <div className="md:flex block">
-        <div className='grid w-60 grid-cols-3 md:grid-cols-1 h-fit md:w-1/4 mt-1'>
-          <button onClick={() => handleCategoryChange('All')} className="p-2  border">All</button>
-          <button onClick={() => handleCategoryChange('fashion')} className="p-2 border">Fashion</button>
-          <button onClick={() => handleCategoryChange('phone')} className="p-2 border">Phone</button>
-          <button onClick={() => handleCategoryChange('book')} className="p-2 border">Book</button>
-          <button onClick={() => handleCategoryChange('music')} className="p-2 border">Music</button>
-          <button onClick={() => handleCategoryChange('car')} className="p-2 border">Car</button>
+      {/* <Breadcrumbs /> */}
+      <div className=''>
+        <NavTitle title="Shop by Category" icons={false} />
 
-          <button onClick={() => handleCategoryChange('Electronic')} className="p-2 border">Electronics</button>
+      </div>
+      <div className="md:flex block">
+        <div className='grid w-60 grid-cols-3 md:grid-cols-1 h-fit md:w-1/4  cursor-pointer text-gray-500' >
+          <div onClick={() => setData(paginationItems)} className="p-3 text-lg  border-b">All</div>
+          <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b">Fashion</div>
+          <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b">Phone</div>
+          <div onClick={() => filterResult('book')} className="p-3 text-lg border-b">Book</div>
+          <div onClick={() => filterResult('music')} className="p-3 text-lg border-b">Music</div>
+          <div onClick={() => filterResult('car')} className="p-3 text-lg border-b">Car</div>
+
+          <div onClick={() => filterResult('Electronic')} className="p-3 text-lg border-b">Electronics</div>
           {/* Add more buttons for other categories */}
         </div>
         <div className="md:grid block grid-cols-3 gap-4 w-full">
-          {filteredProducts.map(product => (
-            <div key={product.id} className="shadow-xl p-2">
+          {data.map(product => (
+            <div className="shadow-xl p-2">
               <Product
                 _id={product._id}
                 img={product.img}
@@ -42,13 +42,13 @@ const ProductList = () => {
                 price={product.price}
                 category={product.catergory}
                 color={product.color}
-                badge={product.badge}
+                // badge={product.badge}
                 des={product.des}
               />
             </div>
           ))}
         </div></div>
-    </div>
+    </div >
   );
 };
 

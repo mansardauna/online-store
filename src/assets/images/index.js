@@ -12,46 +12,49 @@ import newArrOne from "./products/newArrival/newArrOne.webp";
 import newArrTwo from "./products/newArrival/newArrTwo.webp";
 import newArrThree from "./products/newArrival/newArrThree.webp";
 import newArrFour from "./products/newArrival/newArrFour.webp";
-import book1 from "./products/newArrival/book.jpeg"
-import book2 from "./products/newArrival/book2.jpeg"
-import book3 from "./products/newArrival/book3.jpeg"
-import book4 from "./products/newArrival/book4.jpeg"
-import car from "./products/newArrival/car.jpeg"
-import car2 from "./products/newArrival/car2.jpeg"
-import car3 from "./products/newArrival/car3.jpeg"
-import car5 from "./products/newArrival/car5.jpeg"
-import car6 from "./products/newArrival/car6.jpeg"
-import child from "./products/newArrival/child.jpeg"
-import child2 from "./products/newArrival/child2.jpeg"
-import child3 from "./products/newArrival/child3.jpeg"
+import book1 from "./products/newArrival/book11.jpg"
+import book2 from "./products/newArrival/book12.jpg"
+import book3 from "./products/newArrival/book13.jpg"
+import book4 from "./products/newArrival/book14.jpg"
+import car from "./products/newArrival/car11.jpg"
+import car2 from "./products/newArrival/car12.jpg"
+import car3 from "./products/newArrival/car13.jpg"
+import car5 from "./products/newArrival/car15.jpg"
+import car6 from "./products/newArrival/car14.jpg"
+
 import men1 from "./products/newArrival/men1.jpg"
 import men2 from "./products/newArrival/men2.jpeg"
-import men3 from "./products/newArrival/men3.jpeg"
-import music from "./products/newArrival/music.jpeg"
+import music from "./products/newArrival/music10.jpg"
 import music2 from "./products/newArrival/music2.jpeg"
-import music3 from "./products/newArrival/music3.jpeg"
+import music3 from "./products/newArrival/music13.jpg"
 import phone from "./products/newArrival/phone.jpeg"
-import phone2 from "./products/newArrival/phone2.jpeg"
+import phone2 from "./products/newArrival/phone12.jpg"
 import phone3 from "./products/newArrival/phone3.jpeg"
-import phone4 from "./products/newArrival/phone4.jpeg"
+import phone4 from "./products/newArrival/phone10.jpg"
 import phone5 from "./products/newArrival/phone5.jpeg"
 import phone6 from "./products/newArrival/phone6.jpeg"
-import shoe from "./products/newArrival/shoe.jpeg"
-import shoe2 from "./products/newArrival/shoe2.jpeg"
-import shoe3 from "./products/newArrival/shoe3.jpeg"
-import shoew from "./products/newArrival/shoew.jpeg"
-import shoew2 from "./products/newArrival/shoew2.jpeg"
-import shoew3 from "./products/newArrival/shoew3.jpeg"
-import women from "./products/newArrival/women.jpeg"
-import women2 from "./products/newArrival/women2.jpeg"
-import women3 from "./products/newArrival/women3.jpeg"
-import food1 from "./products/newArrival/food1.jpeg"
-import food2 from "./products/newArrival/food2.jpeg"
-import food3 from "./products/newArrival/food3.jpeg"
-import food4 from "./products/newArrival/food4.jpeg"
-import food5 from "./products/newArrival/food5.jpeg"
-import food6 from "./products/newArrival/food6.jpg"
 
+
+import fashion2 from "./products/newArrival/fashion2.jpg"
+import fashion3 from "./products/newArrival/fashion3.jpg"
+
+import fashion5 from "./products/newArrival/fashion5.jpg"
+
+import fashion6 from "./products/newArrival/fashion6.jpg"
+import fashion7 from "./products/newArrival/fashion7.jpg"
+import fashion8 from "./products/newArrival/fashion8.jpg"
+import fashion9 from "./products/newArrival/fashion9.jpg"
+
+import fashion15 from "./products/newArrival/fashion15.jpg"
+
+import fashion16 from "./products/newArrival/fashion16.jpg"
+
+import elect from "./products/newArrival/elect.jpg"
+import elect2 from "./products/newArrival/elect2.jpg"
+import elect4 from "./products/newArrival/elect4.jpg"
+import elect5 from "./products/newArrival/elect5.jpg"
+import elect6 from "./products/newArrival/elect6.jpg"
+import elect7 from "./products/newArrival/elect7.jpg"
 
 // Best Sellers
 import bestSellerOne from "./products/bestSeller/bestSellerOne.webp";
@@ -96,22 +99,14 @@ export {
   phone4,
   phone5,
   phone6,
-  shoe,
-  shoe2,
-  shoe3,
-  shoew,
-  shoew2,
-  shoew3,
-  women,
-  women2,
-  women3,
+  fashion15, fashion16, fashion2, fashion3, fashion5, fashion6, fashion7, fashion8, fashion9,
+  elect, elect2, elect4, elect5, elect6, elect7,
   men1,
-  men2, men3,
+  men2,
   music,
   music2,
   music3,
-  food1, food2, food3, food4, food5, food6,
-  car, car2, car3, car5, car6, child, child2, child3,
+  car, car2, car3, car5, car6,
 
   // Best Sellers
   bestSellerOne,

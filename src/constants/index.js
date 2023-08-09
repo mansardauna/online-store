@@ -3,10 +3,6 @@ import {
   spfTwo,
   spfThree,
   spfFour,
-  bestSellerOne,
-  bestSellerTwo,
-  bestSellerThree,
-  bestSellerFour,
   newArrOne,
   newArrTwo,
   newArrThree,
@@ -21,22 +17,14 @@ import {
   phone4,
   phone5,
   phone6,
-  shoe,
-  shoe2,
-  shoe3,
-  shoew,
-  shoew2,
-  shoew3,
-  women,
-  women2,
-  women3,
+  fashion15, fashion16, fashion2, fashion3, fashion5, fashion6, fashion7, fashion8, fashion9,
+  elect, elect2, elect4, elect5, elect6, elect7,
   men1,
-  men2, men3,
+  men2,
   music,
   music2,
   music3,
-  food1, food2, food3, food4, food5, food6,
-  car, car2, car3, car5, car6, child, child2, child3
+  car, car2, car3, car5, car6,
 } from "../assets/images/index";
 
 // =================== NavBarList Start here ====================
@@ -73,7 +61,7 @@ export const navBarList = [
 export const SplOfferData = [
   {
     _id: "201",
-    img: spfOne,
+    img: fashion15,
     productName: "Cap for Boys",
     price: "35.00",
     color: "Blank and White",
@@ -82,7 +70,7 @@ export const SplOfferData = [
   },
   {
     _id: "202",
-    img: newArrFour,
+    img: car,
     productName: "Tea Table",
     price: "180.00",
     color: "Gray",
@@ -91,7 +79,7 @@ export const SplOfferData = [
   },
   {
     _id: "203",
-    img: spfThree,
+    img: book2,
     productName: "Headphones",
     price: "25.00",
     color: "Mixed",
@@ -100,7 +88,7 @@ export const SplOfferData = [
   },
   {
     _id: "204",
-    img: spfFour,
+    img: elect4,
     productName: "Sun glasses",
     price: "220.00",
     color: "Black",
@@ -131,7 +119,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'book',
     price: 112,
-    img: book1
+    img: book4
   },
   {
     id: 2,
@@ -151,7 +139,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'music',
     price: 112,
-    img: music
+    img: music2
   },
   {
     id: 4,
@@ -161,7 +149,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'electronic',
     price: 134,
-    img: men2
+    img: elect
   },
   {
     id: 5,
@@ -171,17 +159,17 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'phone',
     price: 112,
-    img: phone
+    img: phone6
   },
   {
     id: 2,
     color: "Blank and White",
-    productName: "Food-item",
+    productName: "fashion",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    catergory: 'food',
+    catergory: 'fashion',
     price: 134,
-    img: food1
+    img: fashion15
   },
   {
     id: 6,
@@ -191,7 +179,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'car',
     price: 112,
-    img: car2
+    img: car5
   },
   {
     id: 2,
@@ -201,7 +189,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'fashion',
     price: 134,
-    img: shoe2
+    img: fashion15
   },
   {
     id: 6,
@@ -211,7 +199,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'music',
     price: 112,
-    img: music2
+    img: music3
   },
   {
     id: 7,
@@ -221,7 +209,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'Book2',
     price: 134,
-    img: book2
+    img: book3
   },
   {
     id: 8,
@@ -231,7 +219,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'phone',
     price: 112,
-    img: phone2
+    img: phone5
   },
   {
     id: 9,
@@ -241,7 +229,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     Catergory: 'fashion',
     price: 134,
-    img: child
+    img: fashion5
   },
   {
     id: 10,
@@ -251,17 +239,17 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'fashion',
     price: 112,
-    img: men3
+    img: fashion2
   },
   {
     id: 11,
     color: "Blank and White",
-    productName: "food stuff",
+    productName: "Tv",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    catergory: 'food',
+    catergory: 'Electronic',
     price: 134,
-    img: food2
+    img: elect4
   },
   {
     id: 12,
@@ -271,7 +259,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     Catergory: 'fashion',
     price: 112,
-    img: women
+    img: fashion7
   },
   {
     id: 13,
@@ -292,7 +280,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'book',
     price: 134,
-    img: book4
+    img: book2
   },
   {
     id: 6,
@@ -302,7 +290,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     Catergory: 'car',
     price: 112,
-    img: shoe2
+    img: fashion3
   },
   {
     id: 14,
@@ -312,7 +300,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'electronic',
     price: 112,
-    img: phone4
+    img: phone5
   },
   {
     id: 15,
@@ -332,27 +320,27 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'fashion',
     price: 112,
-    img: shoe3
+    img: fashion6
   },
   {
     id: 2,
     color: "Blank and White",
-    productName: "Shoe",
+    productName: "gadget",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    catergory: 'fashion',
+    catergory: 'electronic',
     price: 134,
-    img: shoew3
+    img: elect5
   },
   {
     id: 6,
     color: "Blank and White",
-    productName: "Food item",
+    productName: "Electronic",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    catergory: 'food',
+    catergory: 'Electonic',
     price: 112,
-    img: './food6.jpg'
+    img: elect7
   },
   {
     id: 17,
@@ -372,7 +360,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'phone',
     price: 112,
-    img: men2
+    img: fashion9
   },
   {
     id: 19,

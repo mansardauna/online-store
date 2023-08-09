@@ -111,7 +111,7 @@ const Footer = () => {
           </ul>
         </div>
         <Link to="/contact">
-          <div className=" w-80 bg-black p-3 text-white h-fit text-3xl font-bold text-center uppercase shadow-lg m-auto" >
+          <div className=" w-80 bg-black p-3 text-white h-fit text-3xl font-bold text-center uppercase shadow-lg m-auto top-6" >
             Contant US
           </div></Link>
       </div>

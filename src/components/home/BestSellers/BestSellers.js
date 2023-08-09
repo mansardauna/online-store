@@ -6,6 +6,9 @@ import {
   bestSellerTwo,
   bestSellerThree,
   bestSellerFour,
+  fashion9,
+  book4,
+  elect4,
 } from "../../../assets/images/index";
 
 const BestSellers = () => {
@@ -15,8 +18,8 @@ const BestSellers = () => {
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-4 gap-10">
         <Product
           _id="1011"
-          img={bestSellerOne}
-          productName="Flower Base"
+          img={fashion9}
+          productName="Fashion"
           price="35.00"
           color="Blank and White"
           badge={true}
@@ -24,8 +27,8 @@ const BestSellers = () => {
         />
         <Product
           _id="1012"
-          img={bestSellerTwo}
-          productName="New Backpack"
+          img={book4}
+          productName="New Book"
           price="180.00"
           color="Gray"
           badge={false}
@@ -33,7 +36,7 @@ const BestSellers = () => {
         />
         <Product
           _id="1013"
-          img={bestSellerThree}
+          img={elect4}
           productName="Household materials"
           price="25.00"
           color="Mixed"
