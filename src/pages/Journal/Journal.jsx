@@ -75,7 +75,7 @@ const ProductList = () => {
             {/* Add more buttons for other categories */}
           </div>
         </div>
-        <div className="md:grid block grid-cols-3 gap-4 w-full">
+        <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
           {data.map(product => (
             <div className="shadow-xl p-2">
               <Product
