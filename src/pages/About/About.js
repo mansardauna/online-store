@@ -10,20 +10,24 @@ const About = () => {
   }, [location]);
   return (
     <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="About" prevLocation={prevLocation} />
-      <div className="pb-10">
-        <h1 className="max-w-[600px] text-base text-lightText mb-2">
-          <span className="text-primeColor font-semibold text-lg">Digital Market</span>{" "}
-          is one of the world's leading ecommerce brands and is internationally
-          recognized for celebrating the essence of classic Worldwide cool
-          looking style.
-        </h1>
-        <Link to="/shop">
-          <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
-            Continue Shopping
-          </button>
-        </Link>
-      </div>
+      <Breadcrumbs title="Settings" prevLocation={prevLocation} />
+      <ul className="flex flex-col gap-2">
+        <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+          Profile
+        </li>
+        <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+          Orders
+        </li>
+        <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+          Addresses
+        </li>
+        <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+          Account Details
+        </li>
+        <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+          Payment Options
+        </li>
+      </ul>
     </div>
   );
 };

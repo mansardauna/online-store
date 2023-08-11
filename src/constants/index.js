@@ -36,24 +36,16 @@ export const navBarList = [
   },
   {
     _id: 1002,
-    title: "Shop",
-    link: "/shop",
+    title: "Feeds",
+    link: "/contact",
   },
   {
     _id: 1003,
-    title: "About",
+    title: "Settings",
     link: "/about",
   },
-  {
-    _id: 1004,
-    title: "Cart",
-    link: "/cart",
-  },
-  {
-    _id: 1005,
-    title: "Store",
-    link: "/journal",
-  },
+
+
 
 ];
 // =================== NavBarList End here ======================

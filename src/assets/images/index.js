@@ -1,8 +1,10 @@
 import logo from "./orebiLogo.png";
 import logoLight from "./logoLight.png";
-import bannerImgOne from "./banner/bannerImgOne.webp";
-import bannerImgTwo from "./banner/bannerImgTwo.webp";
-import bannerImgThree from "./banner/bannerImgThree.webp";
+import bannerImgOne from "./products/newArrival/phoneBanner1.jpg";
+import bannerImgTwo from "./products/newArrival/fashionBanner.jpg";
+import bannerImgThree from "./products/newArrival/carBanner4.jpg"
+
+
 import saleImgOne from "./sale/saleImgOne.webp";
 import saleImgTwo from "./sale/saleImgTwo.webp";
 import saleImgThree from "./sale/saleImgThree.webp";
