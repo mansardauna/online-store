@@ -62,10 +62,10 @@ const Product = (props) => {
     window.alert(`${props.productName} has been added to the Watch List!`);
   }
   return (
-    <div className="w-full relative group">
-      <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
+    <div className="md:w-full m-auto w-72 relative group">
+      <div className="max-w-80  max-h-80 relative overflow-y-hidden ">
         <div>
-          <Image className="w-full h-72" imgSrc={props.img} />
+          <Image className="w-full" imgSrc={props.img} />
         </div>
         <div className="absolute top-6 left-8">
           {props.badge && <Badge text="New" />}

@@ -27,7 +27,7 @@ const ProductList = () => {
 
       </div>
       <div className="md:flex block">
-        <div className='grid w-60 grid-cols-3 md:grid-cols-1 h-fit md:w-1/4  cursor-pointer text-gray-500 mr-7' >
+        <div className='grid w-60 grid-cols-2 md:grid-cols-1 h-fit md:w-1/4  cursor-pointer text-gray-500 mr-7' >
 
           <div onClick={() => setData(paginationItems)} className="p-3 text-lg flex items-center border-b">
             <BsCardList />
