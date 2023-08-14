@@ -9,6 +9,17 @@ import { FaCarSide } from 'react-icons/fa';
 import { GiAmpleDress, GiBookmarklet } from 'react-icons/gi';
 import { BiDesktop } from 'react-icons/bi';
 
+
+const ground = [
+  { play: 'All', icon: <BsCardList /> },
+  { play: 'fashion', icon: <GiAmpleDress /> },
+  { play: 'phone', icon: <BsPhone /> },
+  { play: 'book', icon: <GiBookmarklet /> },
+  { play: 'music', icon: <BsMusicNoteBeamed /> },
+  { play: 'car', icon: <FaCarSide /> },
+  { play: 'Electronic', icon: <BiDesktop /> },
+];
+
 const ProductList = () => {
   const [data, setData] = useState(paginationItems)
   const filterResult = (catItems) => {
@@ -20,61 +31,70 @@ const ProductList = () => {
 
   return (
     <div className='p-3'>
-      {/* <Breadcrumbs /> */}
-      <ProductBanner />
-      <div className='mt-5'>
-        <NavTitle title="Shop by Category" icons={false} />
+      <div className="flex w-full justify-between">
+        <div className='mt-5 w-1/5 items-center  justify-between flex mb-10'>
+          <div className='text-[#737373]'>Sort by category :</div>
+          <div className='w-fit'>
 
+            <select
+              value={data}
+              onChange={(e) => filterResult(e.target.value)}
+              className="w-16 md:w-20 border-[1px] border-gray-200 py-1 px-4 cursor-pointer text-primeColor text-base block dark:placeholder-gray-400 appearance-none focus-within:outline-none focus-visible:border-primeColor"
+
+            >
+              {ground.map(({ play, icon }) => (
+                <option key={play} value={play}>
+                  {icon}
+                  <span className='ml-3'>{play}</span>
+                </option>
+              ))}
+            </select>
+          </div >
+        </div >
+
+        <div className='mt-5 w-1/5 items-center  justify-between flex mb-10'>
+          <div className='text-[#737373]'>Sort by Brand :</div>
+          <div className='w-fit'>
+
+            <select
+              value={data}
+              onChange={(e) => filterResult(e.target.value)}
+              className="w-16 md:w-20 border-[1px] border-gray-200 py-1 px-4 cursor-pointer text-primeColor text-base block dark:placeholder-gray-400 appearance-none focus-within:outline-none focus-visible:border-primeColor"
+
+            >
+              {ground.map(({ play, icon }) => (
+                <option key={play} value={play}>
+                  {icon}
+                  <span className='ml-3'>{play}</span>
+                </option>
+              ))}
+            </select>
+          </div >
+        </div >
       </div>
+
       <div className="md:flex block">
-        <div className='grid w-60 grid-cols-2 md:grid-cols-1 h-fit md:w-1/4  cursor-pointer text-gray-500 mr-7' >
 
-          <div onClick={() => setData(paginationItems)} className="p-3 text-lg flex items-center border-b">
-            <BsCardList />
 
-            <div className="ml-3">
-              All
-            </div>
+        <div className='grid w-60 grid-cols-2 md:grid-cols-1 h-fit md:w-1/4  mt-20 cursor-pointer text-gray-500 mr-7 ' >
+
+
+          <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
+            New Arrival
           </div>
 
-          <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b flex items-center ">
-            <GiAmpleDress />
-            <div className="ml-3">
-              Fashion
-            </div>
-          </div>
+          <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b flex items-center hover:text-black ">
 
-          <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b flex items-center ">
-            <BsPhone />
+            Best Sells</div>
 
-            <div className="ml-3">
-              Phone</div>
-          </div>
 
-          <div onClick={() => filterResult('book')} className="p-3 text-lg border-b flex items-center ">
-            <GiBookmarklet />
-            <div className="ml-3">
-              Book</div>
-          </div>
+          <div onClick={() => filterResult('book')} className="p-3 text-lg border-b flex items-center 
+          hover:text-black">
+            Special Offers</div>
 
-          <div onClick={() => filterResult('music')} className="p-3 text-lg border-b flex items-center">
-            <BsMusicNoteBeamed />
-            <div className="ml-3">
-              Music</div>
-          </div>
 
-          <div onClick={() => filterResult('car')} className="p-3 text-lg border-b flex items-center">
-            <FaCarSide />
-            <div className="ml-3">Car</div>
-          </div>
-
-          <div onClick={() => filterResult('Electronic')} className="p-3 text-lg border-b flex items-center">
-            <BiDesktop />
-            <div className="ml-3">
-              Electronics</div>
-            {/* Add more buttons for other categories */}
-          </div>
         </div>
+
         <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
           {data.map(product => (
             <div className="shadow-xl p-2">
@@ -91,7 +111,7 @@ const ProductList = () => {
             </div>
           ))}
         </div></div>
-    </div >
+    </div>
   );
 };
 

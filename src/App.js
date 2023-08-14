@@ -6,10 +6,13 @@ import {
   Route,
   ScrollRestoration,
 } from "react-router-dom";
+import BestSellers from "./components/home/BestSellers/BestSellers";
 import Footer from "./components/home/Footer/Footer";
 import FooterBottom from "./components/home/Footer/FooterBottom";
 import Header from "./components/home/Header/Header";
 import HeaderBottom from "./components/home/Header/HeaderBottom";
+import NewArrivals from "./components/home/NewArrivals/NewArrivals";
+import SpecialOffers from "./components/home/SpecialOffers/SpecialOffers";
 import SpecialCase from "./components/SpecialCase/SpecialCase";
 import About from "./pages/About/About";
 import SignIn from "./pages/Account/SignIn";
@@ -58,6 +61,9 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/bestsell" element={<BestSellers />}></Route>
+      <Route path="/special" element={<SpecialOffers />}></Route>
+      <Route path="/new" element={<NewArrivals />}></Route>
     </Route>
   )
 );
