@@ -96,16 +96,16 @@ export const paginationItems = [
   {
     _id: 1001,
     img: spfOne,
-    catergory: 'men',
+    catergory: 'fashion',
     price: "35.00",
-    color: "Blank and White",
+    filter: "cap",
     productName: "Cap for Boys",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
     id: 1,
-    color: "Blank and White",
+    filter: "novel",
     productName: "book",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -115,17 +115,17 @@ export const paginationItems = [
   },
   {
     id: 2,
-    color: "Blank and White",
+    filter: "benz",
     productName: "Car",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    Catergory: 'car',
+    catergory: 'car',
     price: 134,
     img: car
   },
   {
     id: 3,
-    color: "Blank and White",
+    filter: "afro",
     productName: "Album",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -135,8 +135,8 @@ export const paginationItems = [
   },
   {
     id: 4,
-    color: "Blank and White",
-    productName: "Electronics",
+    filter: "television",
+    productName: "Electronic",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'electronic',
@@ -145,7 +145,7 @@ export const paginationItems = [
   },
   {
     id: 5,
-    color: "Blank and White",
+    filter: "vivo",
     productName: "Smart phone",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -155,17 +155,17 @@ export const paginationItems = [
   },
   {
     id: 2,
-    color: "Blank and White",
+    filter: "shoe",
     productName: "fashion",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'fashion',
     price: 134,
-    img: fashion15
+    img: fashion6
   },
   {
     id: 6,
-    color: "Blank and White",
+    filter: "toyota",
     productName: "Sport car",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -175,7 +175,7 @@ export const paginationItems = [
   },
   {
     id: 2,
-    color: "Blank and White",
+    filter: "shoe",
     productName: "shoe",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -185,7 +185,7 @@ export const paginationItems = [
   },
   {
     id: 6,
-    color: "Blank and White",
+    filter: "rap",
     productName: "Song",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -195,7 +195,7 @@ export const paginationItems = [
   },
   {
     id: 7,
-    color: "Blank and White",
+    filter: "article",
     productName: "Novel",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -205,7 +205,7 @@ export const paginationItems = [
   },
   {
     id: 8,
-    color: "Blank and White",
+    filter: "samsung",
     productName: "Smart phone",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -215,8 +215,8 @@ export const paginationItems = [
   },
   {
     id: 9,
-    color: "Blank and White",
-    productName: "Cloth for kid",
+    filter: "shoe",
+    productName: "Shoe for men",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     Catergory: 'fashion',
@@ -225,7 +225,7 @@ export const paginationItems = [
   },
   {
     id: 10,
-    color: "Blank and White",
+    filter: "shoe",
     productName: "Men wear",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -235,7 +235,7 @@ export const paginationItems = [
   },
   {
     id: 11,
-    color: "Blank and White",
+    filter: "Television",
     productName: "Tv",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -245,8 +245,8 @@ export const paginationItems = [
   },
   {
     id: 12,
-    color: "Blank and White",
-    productName: "Women dress",
+    filter: "dress",
+    productName: "Men dress",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     Catergory: 'fashion',
@@ -255,7 +255,7 @@ export const paginationItems = [
   },
   {
     id: 13,
-    color: "Blank and White",
+    filter: "iphone",
     productName: "smart Phone",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -266,7 +266,7 @@ export const paginationItems = [
 
   {
     id: 2,
-    color: "Blank and White",
+    filter: "journal",
     productName: "Book",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -276,18 +276,18 @@ export const paginationItems = [
   },
   {
     id: 6,
-    color: "Blank and White",
+    filter: "shoe",
     productName: "Shoe",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    Catergory: 'car',
+    Catergory: 'fashion',
     price: 112,
     img: fashion3
   },
   {
     id: 14,
-    color: "Blank and White",
-    productName: "Electronics",
+    filter: "speaker",
+    productName: "Electronic",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'electronic',
@@ -296,7 +296,7 @@ export const paginationItems = [
   },
   {
     id: 15,
-    color: "Blank and White",
+    filter: "trap",
     productName: "Song-Plus",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -306,7 +306,7 @@ export const paginationItems = [
   },
   {
     id: 16,
-    color: "Blank and White",
+    filter: "shoe",
     productName: "Neat shoe",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -316,27 +316,27 @@ export const paginationItems = [
   },
   {
     id: 2,
-    color: "Blank and White",
+    filter: "television",
     productName: "gadget",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    catergory: 'electronic',
+    catergory: 'Electronic',
     price: 134,
     img: elect5
   },
   {
     id: 6,
-    color: "Blank and White",
+    filter: "television",
     productName: "Electronic",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    catergory: 'Electonic',
+    catergory: 'Electronic',
     price: 112,
     img: elect7
   },
   {
     id: 17,
-    color: "Blank and White",
+    filter: "honda",
     productName: "Car_2",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -346,17 +346,17 @@ export const paginationItems = [
   },
   {
     id: 18,
-    color: "Blank and White",
-    productName: "Men cloth",
+    filter: "shoe",
+    productName: "slide",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    catergory: 'phone',
+    catergory: 'fashion',
     price: 112,
     img: fashion9
   },
   {
     id: 19,
-    color: "Blank and White",
+    filter: "journal",
     productName: "Books",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
