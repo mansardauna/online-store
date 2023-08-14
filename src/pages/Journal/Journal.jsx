@@ -31,9 +31,9 @@ const ProductList = () => {
 
   return (
     <div className='p-3'>
-      <div className="flex w-full justify-between">
-        <div className='mt-5 w-1/5 items-center  justify-between flex mb-10'>
-          <div className='text-[#737373]'>Sort by category :</div>
+      <div className="items-center flex w-full justify-between">
+        <div className='mt-5 w-1/2 md:w-1/5 items-center justify-between flex'>
+          <div className='text-[#737373]'> By category :</div>
           <div className='w-fit'>
 
             <select
@@ -52,8 +52,8 @@ const ProductList = () => {
           </div >
         </div >
 
-        <div className='mt-5 w-1/5 items-center  justify-between flex mb-10'>
-          <div className='text-[#737373]'>Sort by Brand :</div>
+        <div className='mt-5 w-1/2 md:w-1/5 items-center justify-between flex'>
+          <div className='text-[#737373]'> By Brand :</div>
           <div className='w-fit'>
 
             <select
@@ -76,7 +76,7 @@ const ProductList = () => {
       <div className="md:flex block">
 
 
-        <div className='grid w-60 grid-cols-2 md:grid-cols-1 h-fit md:w-1/4  mt-20 cursor-pointer text-gray-500 mr-7 ' >
+        <div className='grid w-80 grid-cols-2 md:grid-cols-1 h-fit md:w-1/4  mt-20 cursor-pointer text-gray-500 mr-7 ' >
 
 
           <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
