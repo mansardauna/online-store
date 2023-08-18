@@ -23,13 +23,14 @@ const ground = [
 const ProductList = () => {
   const [data, setData] = useState(paginationItems)
   const [filters, setFilters] = useState(paginationItems)
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const [selectOption, setSelectedOption] = useState("All")
   const filterResult = (catItems) => {
     const result = paginationItems.filter((curData) => {
       return curData.catergory === catItems;
     });
+
     setData(result)
     setSelectedOption(catItems)
   }
@@ -38,9 +39,9 @@ const ProductList = () => {
       return curData.filter === filterItems;
     });
     setFilters(Sort)
-    setToggle(!toggle); // Toggle the flag
 
-  }
+    setToggle(!toggle); // Toggle the flag
+  };
   return (
     <div className='p-3'>
       <div className="items-center flex w-full justify-between">
