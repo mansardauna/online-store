@@ -23,7 +23,7 @@ const ground = [
 const ProductList = () => {
   const [data, setData] = useState(paginationItems)
   const [filters, setFilters] = useState(paginationItems)
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
 
   const [selectOption, setSelectedOption] = useState("All")
   const filterResult = (catItems) => {
@@ -39,8 +39,8 @@ const ProductList = () => {
       return curData.filter === filterItems;
     });
     setFilters(Sort)
-
     setToggle(!toggle); // Toggle the flag
+
   };
   return (
     <div className='p-3'>
@@ -52,6 +52,7 @@ const ProductList = () => {
             <select
               value={selectOption}
               onChange={(e) => filterResult(e.target.value)}
+              onClick={setToggle}
               className="w-60 md:w-40 border-[1px] border-gray-200 py-1 px-4 cursor-pointer text-primeColor text-base block dark:placeholder-gray-400 appearance-none focus-within:outline-none"
 
             >
@@ -83,7 +84,7 @@ const ProductList = () => {
 
       </div>
 
-      <div className="md:flex block">
+      <div className="md:flex bloc">
 
         {selectOption === ("fashion") && (
           <div className='grid w-80 grid-cols-2 md:grid-cols-1 h-fit md:w-1/6  mt-20 cursor-pointer text-gray-500 mr-7 ' >
@@ -213,7 +214,7 @@ const ProductList = () => {
         )
         }
         <div>
-          {toggle || selectOption === ("All") ? (
+          {toggle || selectOption === "All" ? (
             <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
               {data.map(product => (
                 <div className="shadow-xl p-2" key={product._id}>
@@ -231,6 +232,7 @@ const ProductList = () => {
               ))}
             </div>
           ) : (
+
             <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
               {filters.map(product => (
                 <div className="shadow-xl p-2" key={product._id}>
