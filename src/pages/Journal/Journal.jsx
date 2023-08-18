@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Product from '../../components/home/Products/Product';
+import Product from '../../components/home/Products/Product'
 import NavTitle from '../../components/pageProps/shopPage/shopBy/NavTitle';
-import { paginationItems } from '../../constants';
+import { paginationItems } from '../../constants/index';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import ProductBanner from '../../components/pageProps/shopPage/ProductBanner';
 import { BsCardList, BsMusicNoteBeamed, BsPhone } from 'react-icons/bs';
@@ -31,8 +31,8 @@ const ProductList = () => {
     });
     setData(result)
     setSelectedOption(catItems)
-  }
 
+  }
   return (
     <div className='p-3'>
       <div className="items-center flex w-full justify-between">

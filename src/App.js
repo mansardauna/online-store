@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -27,21 +28,32 @@ import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 
+
+
 const Layout = () => {
+  const isLoggin = useSelector(state => state.auth.isLoggin)
   return (
-    <div>
-      <Header />
-      <HeaderBottom />
-      <SpecialCase />
-      <ScrollRestoration />
-      <Outlet />
-      <Footer />
-      <FooterBottom />
-    </div>
+    <>
+      {isLoggin && (
+
+        <div>
+          <Header />
+          <HeaderBottom />
+          <SpecialCase />
+          <ScrollRestoration />
+          <Outlet />
+          {/* <Footer /> */}
+          <FooterBottom />
+        </div>
+      )}
+      {!isLoggin && <SignIn />}
+    </>
   );
 };
 const router = createBrowserRouter(
   createRoutesFromElements(
+
+
     <Route>
       <Route path="/" element={<Layout />}>
         {/* ==================== Header Navlink Start here =================== */}
@@ -65,15 +77,21 @@ const router = createBrowserRouter(
       <Route path="/special" element={<SpecialOffers />}></Route>
       <Route path="/new" element={<NewArrivals />}></Route>
     </Route>
+
   )
 );
 
 function App() {
+
   return (
-    <div className="font-bodyFont">
-      <RouterProvider router={router} />
-    </div>
+    <>
+      <div className="font-bodyFont">
+        <RouterProvider router={router} />
+      </div>
+
+    </>
   );
 }
+
 
 export default App;

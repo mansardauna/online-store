@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { logoLight } from "../../assets/images";
+import { authAction } from "../../redux/authSlice";
 
 const SignIn = () => {
+  const dispatch = useDispatch()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(authAction.login())
+
+  }
   // ============= Initial State Start here =============
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,23 +32,24 @@ const SignIn = () => {
   };
   // ============= Event Handler End here ===============
   const handleSignUp = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    dispatch(authAction.login());
 
-    if (!email) {
-      setErrEmail("Enter your email");
-    }
+    // if (!email) {
+    //   setErrEmail("Enter your email");
+    // }
 
-    if (!password) {
-      setErrPassword("Create a password");
-    }
-    // ============== Getting the value ==============
-    if (email && password) {
-      setSuccessMsg(
-        `Hello dear, Thank you for your attempt. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
-      );
-      setEmail("");
-      setPassword("");
-    }
+    // if (!password) {
+    //   setErrPassword("Create a password");
+    // }
+    // // ============== Getting the value ==============
+    // if (email && password) {
+    //   setSuccessMsg(
+    //     `Hello dear, Thank you for your attempt. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
+    //   );
+    //   setEmail("");
+    //   setPassword("");
+
   };
   return (
     <div className="w-full h-screen flex items-center justify-center">
@@ -129,7 +137,7 @@ const SignIn = () => {
             </Link>
           </div>
         ) : (
-          <form className="w-full lgl:w-[450px] h-screen flex items-center justify-center">
+          <form onSubmit={handleSubmit} className="w-full lgl:w-[450px] h-screen flex items-center justify-center">
             <div className="px-6 py-4 w-full h-[90%] flex flex-col justify-center overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
               <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-3xl mdl:text-4xl mb-4">
                 Sign in
