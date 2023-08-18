@@ -23,6 +23,7 @@ const ground = [
 const ProductList = () => {
   const [data, setData] = useState(paginationItems)
   const [filters, setFilters] = useState(paginationItems)
+  const [toggle, setToggle] = useState(false);
 
   const [selectOption, setSelectedOption] = useState("All")
   const filterResult = (catItems) => {
@@ -31,6 +32,13 @@ const ProductList = () => {
     });
     setData(result)
     setSelectedOption(catItems)
+  }
+  const sortResult = (filterItems) => {
+    const Sort = paginationItems.filter((curData) => {
+      return curData.filter === filterItems;
+    });
+    setFilters(Sort)
+    setToggle(!toggle); // Toggle the flag
 
   }
   return (
@@ -56,7 +64,7 @@ const ProductList = () => {
           </div >
 
         </div >
-        <div>
+        {/* <div>
           {
             selectOption === ('fashion') && (
               <>
@@ -69,7 +77,7 @@ const ProductList = () => {
               </>
             )
           }
-        </div>
+        </div> */}
 
 
       </div>
@@ -80,16 +88,16 @@ const ProductList = () => {
           <div className='grid w-80 grid-cols-2 md:grid-cols-1 h-fit md:w-1/6  mt-20 cursor-pointer text-gray-500 mr-7 ' >
 
             <div className='w-fit m-auto text-xl'>Type</div>
-            <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
+            <div onClick={() => sortResult('cap')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
               Cap
             </div>
 
-            <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b flex items-center hover:text-black ">
+            <div onClick={() => sortResult('dress')} className="p-3 text-lg border-b flex items-center hover:text-black ">
 
               Dress</div>
 
 
-            <div onClick={() => filterResult('book')} className="p-3 text-lg border-b flex items-center 
+            <div onClick={() => sortResult('shoe')} className="p-3 text-lg border-b flex items-center 
           hover:text-black">
               Shoe</div>
 
@@ -101,16 +109,17 @@ const ProductList = () => {
           <div className='grid w-80 grid-cols-2 md:grid-cols-1 h-fit md:w-1/6  mt-20 cursor-pointer text-gray-500 mr-7 ' >
 
             <div className='w-fit m-auto text-xl'>By Brand</div>
-            <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
+
+            <div onClick={() => sortResult('apple')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
               Apple
             </div>
 
-            <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b flex items-center hover:text-black ">
+            <div onClick={() => sortResult('samsung')} className="p-3 text-lg border-b flex items-center hover:text-black ">
 
               Samsung</div>
 
 
-            <div onClick={() => filterResult('book')} className="p-3 text-lg border-b flex items-center 
+            <div onClick={() => sortResult('vivo')} className="p-3 text-lg border-b flex items-center 
           hover:text-black">
               Vivo</div>
 
@@ -122,16 +131,16 @@ const ProductList = () => {
           <div className='grid w-80 grid-cols-2 md:grid-cols-1 h-fit md:w-1/6  mt-20 cursor-pointer text-gray-500 mr-7 ' >
 
             <div className='w-fit m-auto text-xl'>Type</div>
-            <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
+            <div onClick={() => sortResult('novel')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
               Novel
             </div>
 
-            <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b flex items-center hover:text-black ">
+            <div onClick={() => sortResult('journal')} className="p-3 text-lg border-b flex items-center hover:text-black ">
 
               Journal</div>
 
 
-            <div onClick={() => filterResult('book')} className="p-3 text-lg border-b flex items-center 
+            <div onClick={() => sortResult('article')} className="p-3 text-lg border-b flex items-center 
           hover:text-black">
               Article</div>
 
@@ -143,16 +152,16 @@ const ProductList = () => {
           <div className='grid w-80 grid-cols-2 md:grid-cols-1 h-fit md:w-1/6  mt-20 cursor-pointer text-gray-500 mr-7 ' >
 
             <div className='w-fit m-auto text-xl'>Type</div>
-            <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
+            <div onClick={() => sortResult('rap')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
               Rap
             </div>
 
-            <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b flex items-center hover:text-black ">
+            <div onClick={() => sortResult('afro')} className="p-3 text-lg border-b flex items-center hover:text-black ">
 
               Afro-beat</div>
 
 
-            <div onClick={() => filterResult('book')} className="p-3 text-lg border-b flex items-center 
+            <div onClick={() => sortResult('trap')} className="p-3 text-lg border-b flex items-center 
           hover:text-black">
               Trap</div>
 
@@ -164,16 +173,16 @@ const ProductList = () => {
           <div className='grid w-80 grid-cols-2 md:grid-cols-1 h-fit md:w-1/6  mt-20 cursor-pointer text-gray-500 mr-7 ' >
 
             <div className='w-fit m-auto text-xl'>By Brand</div>
-            <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
+            <div onClick={() => sortResult('benz')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
               Mecedeze benz
             </div>
 
-            <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b flex items-center hover:text-black ">
+            <div onClick={() => sortResult('toyota')} className="p-3 text-lg border-b flex items-center hover:text-black ">
 
               Toyota</div>
 
 
-            <div onClick={() => filterResult('book')} className="p-3 text-lg border-b flex items-center 
+            <div onClick={() => sortResult('honda')} className="p-3 text-lg border-b flex items-center 
           hover:text-black">
               Honda</div>
 
@@ -185,16 +194,16 @@ const ProductList = () => {
           <div className='grid w-80 grid-cols-2 md:grid-cols-1 h-fit md:w-1/6  mt-20 cursor-pointer text-gray-500 mr-7 ' >
 
             <div className='w-fit m-auto text-xl'>By Brand</div>
-            <div onClick={() => filterResult('fashion')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
+            <div onClick={() => sortResult('television')} className="p-3 text-lg border-b border-t flex items-center hover:text-black">
               television
             </div>
 
-            <div onClick={() => filterResult('phone')} className="p-3 text-lg border-b flex items-center hover:text-black ">
+            <div onClick={() => sortResult('speaker')} className="p-3 text-lg border-b flex items-center hover:text-black ">
 
               Speaker</div>
 
 
-            <div onClick={() => filterResult('book')} className="p-3 text-lg border-b flex items-center 
+            <div onClick={() => sortResult('powerbank')} className="p-3 text-lg border-b flex items-center 
           hover:text-black">
               Power Bank</div>
 
@@ -202,24 +211,46 @@ const ProductList = () => {
           </div>
         )
         }
-
-        <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
-          {data.map(product => (
-            <div className="shadow-xl p-2">
-              <Product
-                _id={product._id}
-                img={product.img}
-                productName={product.productName}
-                price={product.price}
-                category={product.catergory}
-                color={product.color}
-                // badge={product.badge}
-                des={product.des}
-              />
+        <div>
+          {toggle || selectOption === ("All") ? (
+            <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
+              {data.map(product => (
+                <div className="shadow-xl p-2" key={product._id}>
+                  <Product
+                    _id={product._id}
+                    img={product.img}
+                    productName={product.productName}
+                    price={product.price}
+                    category={product.catergory}
+                    color={product.color}
+                    // badge={product.badge}
+                    des={product.des}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div></div>
-    </div >
+          ) : (
+            <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
+              {filters.map(product => (
+                <div className="shadow-xl p-2" key={product._id}>
+                  <Product
+                    _id={product._id}
+                    img={product.img}
+                    productName={product.productName}
+                    price={product.price}
+                    category={product.catergory}
+                    color={product.color}
+                    // badge={product.badge}
+                    des={product.des}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
   );
 };
 
