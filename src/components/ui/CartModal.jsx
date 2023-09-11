@@ -10,5 +10,4 @@ const CartModal = ({ isOpen, onClose,item,type }) => {
     </Modal>
   );
 };
-
 export default CartModal;

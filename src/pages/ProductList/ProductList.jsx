@@ -46,11 +46,11 @@ const ProductList = () => {
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className="p-3">
+    <div className="md:p-3 p-1">
       <Breadcrumbs title="Products" />
-      <div className="block md:flex p-2 md:p-5 w-full justify-between">
-        <div className="mt-5 md:w-1/3 justify-between flex w-full ">
-          <div className="justify-between flex w-full px-4 md:p-1 md:block">
+      <div className="flex p-1 md:p-5 w-full justify-between">
+        <div className="mt-5 md:w-1/3 justify-between relative flex w-full ">
+          <div className="sticky top-0 px-4 md:p-1 md:block">
             <Sort
               filterOption={filterOption}
               selectOption={selectOption}
@@ -58,7 +58,6 @@ const ProductList = () => {
               sortResult={sortResult}
             />
             <Color />
-
           </div>
         </div>
         <div className="md:flex block w-full">
@@ -94,7 +93,6 @@ const ProductList = () => {
                     />
                   </div>
                 ))}
-
               </div>
             )}
             <Pagination

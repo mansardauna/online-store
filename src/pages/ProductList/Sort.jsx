@@ -10,7 +10,8 @@ const Sort = ({ filterOption, selectOption, filterResult, sortResult }) => {
 
   
   return (
-    <div>   <div className="space-x-3">
+    <div className="md:relative "> 
+        <div className="space-x-3">
     <NavTitle title="Category" icons={true} />
     {filterOption.map(({ title, icon }) => (
       <motion.div

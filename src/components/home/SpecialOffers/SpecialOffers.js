@@ -63,7 +63,7 @@ const BestSellers = () => {
             productName={item.productName}
             price={item.price}
             color={item.color}
-            badge={true}
+            badge={false}
             des={item.des}
           />
         </div>

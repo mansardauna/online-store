@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { addToCart } from "../../../redux/orebiSlice";
 import Button from "../../ui/Button";
 import CartModal from "../../ui/CartModal";
@@ -51,13 +52,14 @@ const ProductInfo = ({ productInfo }) => {
         Add to Cart
       </Button>
       <CartModal isOpen={isModalOpen} onClose={closeModal} item={productInfo.productName} type="cart"/>
+      <Link to="/paymentgateway">
       <Button
       variant="primary"
-        onClick={handleAddToCart}
         className="w-full rounded border-primeColor py-4 bg-primeColor hover:bg-gray-600 duration-300 text-white text-lg font-titleFont"
       >
         By Now
       </Button>
+      </Link>
       <p className="font-normal text-sm">
         <span className="text-base font-medium"> Categories:</span> Spring
         collection, Streetwear, Women Tags: featured SKU: N/A

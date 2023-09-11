@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
+import Button from "../../components/ui/Button";
 
 const Payment = () => {
   return (
@@ -9,9 +10,10 @@ const Payment = () => {
       <div className="pb-10">
         <p>Payment gateway only applicable for Production build.</p>
         <Link to="/">
-          <button className="w-52 h-10 bg-primeColor text-white text-lg mt-4 hover:bg-black duration-300">
+          <Button variant="primary"
+          className="w-52 h-10 bg-primeColor text-white text-lg mt-4 hover:bg-black duration-300">
             Explore More
-          </button>
+          </Button>
         </Link>
       </div>
     </div>
