@@ -16,7 +16,7 @@ const Sort = ({ filterOption, selectOption, filterResult, sortResult }) => {
     {filterOption.map(({ title, icon }) => (
       <motion.div
         key={title}
-        className={`cursor-pointer p-2 hover:bg-gray-200 text-xs md:text-lg rounded-lg ${selectOption === title ? 'bg-gray-200' : ''
+        className={`cursor-pointer p-2 hover:bg-gray-200 text-sm md:text-lg rounded-lg ${selectOption === title ? 'bg-gray-200' : ''
           }`}
         onClick={() => filterResult(title)}
         whileHover={{ scale: 1.05 }}

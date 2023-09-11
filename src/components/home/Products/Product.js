@@ -87,7 +87,7 @@ const Product = (props) => {
     setIsWatchOpen(true);
   }
   return (
-    <div className="md:w-full m-auto w-56 relative group">
+    <div className="md:w-full m-auto w-64 relative group">
       <div className="max-w-80  max-h-80 relative overflow-y-hidden ">
         <div>
           <Image className="w-full h-56 md:h-64" imgSrc={props.img} />
