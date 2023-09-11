@@ -8,7 +8,6 @@ import {
   ScrollRestoration,
 } from "react-router-dom";
 import BestSellers from "./components/home/BestSellers/BestSellers";
-import Footer from "./components/home/Footer/Footer";
 import FooterBottom from "./components/home/Footer/FooterBottom";
 import Header from "./components/home/Header/Header";
 import HeaderBottom from "./components/home/Header/HeaderBottom";
@@ -16,17 +15,20 @@ import NewArrivals from "./components/home/NewArrivals/NewArrivals";
 import SpecialOffers from "./components/home/SpecialOffers/SpecialOffers";
 import SpecialCase from "./components/SpecialCase/SpecialCase";
 import About from "./pages/About/About";
-import SignIn from "./pages/Account/SignIn";
 import SignUp from "./pages/Account/SignUp";
 import Cart from "./pages/Cart/Cart";
 import Watch from "./pages/Cart/Watch";
+import Order from "./pages/Cart/Order";
 import Contact from "./pages/Contact/Contact";
+import SignIn from "./pages/Account/SignIn"
 import Home from "./pages/Home/Home";
-import Journal from "./pages/Journal/Journal";
 import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
+import ProductList from "./pages/ProductList/ProductList";
+import Toast from "./components/ui/ToastMessage";
+
 
 
 
@@ -42,11 +44,12 @@ const Layout = () => {
           <SpecialCase />
           <ScrollRestoration />
           <Outlet />
-          {/* <Footer /> */}
           <FooterBottom />
         </div>
       )}
       {!isLoggin && <SignIn />}
+      <Toast  position="top-right"
+          autoClose={3000} />
     </>
   );
 };
@@ -61,7 +64,7 @@ const router = createBrowserRouter(
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/journal" element={<Journal />}></Route>
+        <Route path="/filter" element={<ProductList />}></Route>
 
         <Route path="/watchlist" element={<Watch />}></Route >
 
@@ -69,6 +72,8 @@ const router = createBrowserRouter(
         < Route path="/offer" element={<Offer />}></Route>
         <Route path="/product/:_id" element={<ProductDetails />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/order" element={<Order />}></Route>
+
         <Route path="/paymentgateway" element={<Payment />}></Route>
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
@@ -87,8 +92,8 @@ function App() {
     <>
       <div className="font-bodyFont">
         <RouterProvider router={router} />
-      </div>
-
+        </div>
+      
     </>
   );
 }

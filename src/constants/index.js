@@ -1,3 +1,7 @@
+import { BiDesktop } from "react-icons/bi";
+import { BsCardList, BsMusicNoteBeamed, BsPhone } from "react-icons/bs";
+import { FaCarSide } from "react-icons/fa";
+import { GiAmpleDress, GiBookmarklet } from "react-icons/gi";
 import {
   spfOne,
   spfTwo,
@@ -40,6 +44,11 @@ export const navBarList = [
     link: "/contact",
   },
   {
+    _id: 1004,
+    title: "Products",
+    link: "/filter",
+  },
+  {
     _id: 1003,
     title: "Settings",
     link: "/about",
@@ -48,6 +57,49 @@ export const navBarList = [
 
 
 ];
+
+export const filterOption = [
+  { title: 'All', icon: <BsCardList /> },
+  { title: 'fashion', icon: <GiAmpleDress /> },
+  { title: 'phone', icon: <BsPhone /> },
+  { title: 'book', icon: <GiBookmarklet /> },
+  { title: 'music', icon: <BsMusicNoteBeamed /> },
+  { title: 'car', icon: <FaCarSide /> },
+  { title: 'Electronic', icon: <BiDesktop /> },
+];
+
+export const categoriesData = {
+  fashion: {
+    title: 'fashion',
+    label: 'Type',
+    items: ['cap', 'dress', 'shoe'],
+  },
+  phone: {
+    title: 'phone',
+    label: 'By Brand',
+    items: ['apple', 'samsung', 'vivo'],
+  },
+  book: {
+    title: 'book',
+    label: 'Type',
+    items: ['novel', 'journal', 'article'],
+  },
+  music: {
+    title: 'music',
+    label: 'Type',
+    items: ['rap', 'afro', 'trap'],
+  },
+  car: {
+    title: 'car',
+    label: 'By Brand',
+    items: ['benz', 'toyota', 'honda'],
+  },
+  Electronic: {
+    title: 'Electronic',
+    label: 'By Brand',
+    items: ['television', 'speaker', 'powerbank'],
+  },
+};
 // =================== NavBarList End here ======================
 // =================== Special Offer data Start here ============
 export const SplOfferData = [
@@ -67,6 +119,7 @@ export const SplOfferData = [
     price: "180.00",
     color: "Gray",
     badge: true,
+    type: "new",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
@@ -94,107 +147,117 @@ export const SplOfferData = [
 
 export const paginationItems = [
   {
-    _id: 1001,
+    _id: 1,
     img: spfOne,
     catergory: 'fashion',
     price: "35.00",
     filter: "cap",
     productName: "Cap for Boys",
     badge: true,
+    type: "new",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    id: 1,
+    id: 2,
     filter: "novel",
     productName: "book",
     badge: true,
+    type: "special",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'book',
     price: 112,
     img: book4
   },
   {
-    id: 2,
+    id: 3,
     filter: "benz",
     productName: "Car",
     badge: true,
+    type: "new",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'car',
     price: 134,
     img: car
   },
   {
-    id: 3,
+    id: 4,
     filter: "afro",
     productName: "Album",
     badge: true,
+    type: "best",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'music',
     price: 112,
     img: music2
   },
   {
-    id: 4,
+    id: 5,
     filter: "television",
     productName: "Electronic",
     badge: true,
+    type: "special",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'electronic',
     price: 134,
     img: elect
   },
   {
-    id: 5,
+    id: 6,
     filter: "vivo",
     productName: "Smart phone",
     badge: true,
+    type: "best",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'phone',
     price: 112,
     img: phone6
   },
   {
-    id: 2,
+    id: 7,
     filter: "shoe",
     productName: "fashion",
     badge: true,
+    type: "special",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'fashion',
     price: 134,
     img: fashion6
   },
   {
-    id: 6,
+    id: 8,
     filter: "toyota",
     productName: "Sport car",
     badge: true,
+    type: "new",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'car',
     price: 112,
     img: car5
   },
   {
-    id: 2,
+    id: 9,
     filter: "shoe",
     productName: "shoe",
     badge: true,
+    type: "best",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'fashion',
     price: 134,
     img: fashion15
   },
   {
-    id: 6,
+    id: 10,
     filter: "rap",
     productName: "Song",
     badge: true,
+    type: "special",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'music',
     price: 112,
     img: music3
   },
   {
-    id: 7,
+    id: 11,
     filter: "article",
     productName: "Novel",
     badge: true,
@@ -204,7 +267,7 @@ export const paginationItems = [
     img: book3
   },
   {
-    id: 8,
+    id: 12,
     filter: "samsung",
     productName: "Smart phone",
     badge: true,
@@ -214,7 +277,7 @@ export const paginationItems = [
     img: phone5
   },
   {
-    id: 9,
+    id: 13,
     filter: "shoe",
     productName: "Shoe for men",
     badge: true,
@@ -224,27 +287,29 @@ export const paginationItems = [
     img: fashion5
   },
   {
-    id: 10,
+    id: 14,
     filter: "shoe",
     productName: "Men wear",
     badge: true,
+    type: "new",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'fashion',
     price: 112,
     img: fashion2
   },
   {
-    id: 11,
+    id: 15,
     filter: "Television",
     productName: "Tv",
     badge: true,
+    type: "best",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     catergory: 'Electronic',
     price: 134,
     img: elect4
   },
   {
-    id: 12,
+    id: 16,
     filter: "dress",
     productName: "Men dress",
     badge: true,
@@ -254,7 +319,7 @@ export const paginationItems = [
     img: fashion7
   },
   {
-    id: 13,
+    id: 17,
     filter: "iphone",
     productName: "smart Phone",
     badge: true,
@@ -265,7 +330,7 @@ export const paginationItems = [
   },
 
   {
-    id: 2,
+    id: 18,
     filter: "journal",
     productName: "Book",
     badge: true,
@@ -275,7 +340,7 @@ export const paginationItems = [
     img: book2
   },
   {
-    id: 6,
+    id: 19,
     filter: "shoe",
     productName: "Shoe",
     badge: true,
@@ -285,7 +350,7 @@ export const paginationItems = [
     img: fashion3
   },
   {
-    id: 14,
+    id: 20,
     filter: "speaker",
     productName: "Electronic",
     badge: true,
@@ -295,7 +360,7 @@ export const paginationItems = [
     img: phone5
   },
   {
-    id: 15,
+    id: 21,
     filter: "trap",
     productName: "Song-Plus",
     badge: true,
@@ -305,7 +370,7 @@ export const paginationItems = [
     img: music3
   },
   {
-    id: 16,
+    id: 22,
     filter: "shoe",
     productName: "Neat shoe",
     badge: true,
@@ -315,7 +380,7 @@ export const paginationItems = [
     img: fashion6
   },
   {
-    id: 2,
+    id: 23,
     filter: "television",
     productName: "gadget",
     badge: true,
@@ -325,7 +390,7 @@ export const paginationItems = [
     img: elect5
   },
   {
-    id: 6,
+    id: 24,
     filter: "television",
     productName: "Electronic",
     badge: true,
@@ -335,7 +400,7 @@ export const paginationItems = [
     img: elect7
   },
   {
-    id: 17,
+    id: 25,
     filter: "honda",
     productName: "Car_2",
     badge: true,
@@ -345,7 +410,7 @@ export const paginationItems = [
     img: car6
   },
   {
-    id: 18,
+    id: 26,
     filter: "shoe",
     productName: "slide",
     badge: true,
@@ -355,7 +420,7 @@ export const paginationItems = [
     img: fashion9
   },
   {
-    id: 19,
+    id: 27,
     filter: "journal",
     productName: "Books",
     badge: true,

@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/orebiSlice";
+import Button from "../../ui/Button";
+import CartModal from "../../ui/CartModal";
+
 
 const ProductInfo = ({ productInfo }) => {
   const dispatch = useDispatch();
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleAddToCart = (props) => {
+ const handleAddToCart = () => {
     dispatch(
       addToCart({
         _id: productInfo.id,
@@ -16,9 +20,20 @@ const ProductInfo = ({ productInfo }) => {
         price: productInfo.price,
         colors: productInfo.color,
       })
-    )
-    window.alert(`${props.productName} has been added to the cart items!`);
-  }
+    );
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false); // Close the modal
+  };
+  useEffect(() => {
+    if (isModalOpen) {
+      const timeoutId = setTimeout(() => {
+        setModalOpen(false);
+      }, 2000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isModalOpen]);
   return (
     <div className="flex flex-col gap-5">
       <h2 className="text-4xl font-semibold">{productInfo.productName}</h2>
@@ -28,12 +43,21 @@ const ProductInfo = ({ productInfo }) => {
       <p className="font-medium text-lg">
         <span className="font-normal">Colors:</span> {productInfo.color}
       </p>
-      <button
+      <Button
+      variant="secondary"
         onClick={handleAddToCart}
-        className="w-full py-4 bg-primeColor hover:bg-black duration-300 text-white text-lg font-titleFont"
+        className="w-full py-4  hover:bg-gray-300 duration-300 rounded text-white text-lg font-titleFont"
       >
         Add to Cart
-      </button>
+      </Button>
+      <CartModal isOpen={isModalOpen} onClose={closeModal} item={productInfo.productName} type="cart"/>
+      <Button
+      variant="primary"
+        onClick={handleAddToCart}
+        className="w-full rounded border-primeColor py-4 bg-primeColor hover:bg-gray-600 duration-300 text-white text-lg font-titleFont"
+      >
+        By Now
+      </Button>
       <p className="font-normal text-sm">
         <span className="text-base font-medium"> Categories:</span> Spring
         collection, Streetwear, Women Tags: featured SKU: N/A

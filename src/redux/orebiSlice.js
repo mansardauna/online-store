@@ -4,12 +4,14 @@ const initialState = {
   userInfo: [],
   products: [],
   watchlist: [],
+  order: [],
 };
 
 export const orebiSlice = createSlice({
   name: "orebi",
   initialState,
   reducers: {
+    // cart slice
     addToCart: (state, action) => {
       const item = state.products.find(
         (item) => item._id === action.payload._id
@@ -46,6 +48,8 @@ export const orebiSlice = createSlice({
     resetCart: (state) => {
       state.products = [];
     },
+
+    // watchlist slice
     addToWatchlist: (state, action) => {
       const itemInWatchlist = state.watchlist.find(
         (item) => item._id === action.payload._id
@@ -60,6 +64,23 @@ export const orebiSlice = createSlice({
         (item) => item._id !== action.payload
       );
     },
+
+    //order slice
+    addOrder: (state, action) => {
+      const itemInWatchlist = state.order.find(
+        (item) => item._id === action.payload._id
+      );
+      if (!itemInWatchlist) {
+        state.order.push(action.payload);
+      }
+    },
+
+
+    removeOrder: (state, action) => {
+      state.order = state.order.filter(
+        (item) => item._id !== action.payload
+      );
+    },
   },
 })
 
@@ -69,6 +90,8 @@ export const {
   drecreaseQuantity,
   deleteItem,
   resetCart,
+  addOrder,
+  removeOrder,
   addToWatchlist,
   removeFromWatchlist,
 } = orebiSlice.actions;

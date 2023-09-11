@@ -1,62 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
-import {
-  spfOne,
-  spfTwo,
-  spfThree,
-  spfFour,
-  car,
-  fashion15,
-  fashion16,
-  elect5,
-  phone4,
-} from "../../../assets/images/index";
+import { paginationItems } from "../../../constants";
+import SamplePrevArrow from "../NewArrivals/SamplePrevArrow";
+import SampleNextArrow from "../NewArrivals/SampleNextArrow";
 
-const SpecialOffers = () => {
+const BestSellers = () => {
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    // Filter items by type and set filteredData
+    const result = paginationItems.filter((curData) => {
+      return curData.type === "special"; // Replace "Type1" with your actual type name
+    });
+    setFilteredData(result);
+  }, []);
+
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1025,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+    ],
+  };
   return (
-    <div className="w-full pb-20">
+    <div className="w-full pb-16">
       <Heading heading="Special Offers" />
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-4 gap-10">
-        <Product
-          _id="1101"
-          img={car}
-          productName="Sport car"
-          price="35.00"
-          color="Blank and White"
-          badge={true}
-          des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-        />
-        <Product
-          _id="1102"
-          img={fashion16}
-          productName="men dress"
-          price="180.00"
-          color="Gray"
-          badge={true}
-          des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-        />
-        <Product
-          _id="1103"
-          img={elect5}
-          productName="Smart TV"
-          price="25.00"
-          color="Mixed"
-          badge={true}
-          des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-        />
-        <Product
-          _id="1104"
-          img={phone4}
-          productName="Iphone"
-          price="220.00"
-          color="Black"
-          badge={true}
-          des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-        />
-      </div>
+      <Slider {...settings}>
+      {filteredData.map((item) => (
+          <div className="px-2" key={item.id}>
+          <Product
+            _id={item.id}
+            img={item.img}
+            productName={item.productName}
+            price={item.price}
+            color={item.color}
+            badge={true}
+            des={item.des}
+          />
+        </div>
+        ))}
+      </Slider>
     </div>
   );
 };
 
-export default SpecialOffers;
+export default BestSellers;

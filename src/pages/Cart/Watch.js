@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import { removeFromWatchlist } from "../../redux/orebiSlice";
-import { emptyCart } from "../../assets/images/index";
 import WatchItem from "./ItemWatch";
 
 const Watch = () => {
-  const dispatch = useDispatch();
   const watchlist = useSelector((state) => state.orebiReducer.watchlist);
   const [totalAmt, setTotalAmt] = useState("");
   const [shippingCharge, setShippingCharge] = useState("");
@@ -35,7 +32,7 @@ const Watch = () => {
       {watchlist.length > 0 ? (
         <div className="pb-20 ">
 
-          <div className="mt-5 grid grid-cols-3">
+          <div className="mt-5 grid md:grid-cols-3 grid-cols-1">
             {watchlist.map((item) => (
               <div key={item._id}>
                 <WatchItem item={item} />
@@ -62,7 +59,7 @@ const Watch = () => {
             <p className="text-sm text-center px-10 -mt-2">
               Your items will appear here once you click on watch-list
             </p>
-            <Link to="/journal">
+            <Link to="/filter">
               <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
                 Continue Shopping
               </button>
