@@ -6,6 +6,10 @@ const authSlice = createSlice({
   reducers: {
     login(state) {
       state.isLoggin = true
+      state.userProfile = {
+        name: "John Doe",
+        email: "johndoe@example.com",
+      }
     },
     logout(state) {
       state.isLoggin = false

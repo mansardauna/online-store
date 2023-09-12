@@ -28,6 +28,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import ProductList from "./pages/ProductList/ProductList";
 import Toast from "./components/ui/ToastMessage";
+import UserProfile from "./pages/About/UserProfile";
 
 
 
@@ -65,6 +66,7 @@ const router = createBrowserRouter(
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/filter" element={<ProductList />}></Route>
+        <Route path="/profile" element={<UserProfile />}></Route>
 
         <Route path="/watchlist" element={<Watch />}></Route >
 
