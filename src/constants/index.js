@@ -1,7 +1,9 @@
+import { AiFillContacts, AiFillHome } from "react-icons/ai";
 import { BiDesktop } from "react-icons/bi";
 import { BsCardList, BsMusicNoteBeamed, BsPhone } from "react-icons/bs";
 import { FaCarSide } from "react-icons/fa";
 import { GiAmpleDress, GiBookmarklet } from "react-icons/gi";
+import { MdProductionQuantityLimits, MdSettings } from "react-icons/md";
 import {
   spfOne,
   spfTwo,
@@ -37,21 +39,28 @@ export const navBarList = [
     _id: 1001,
     title: "Home",
     link: "/",
+    icon: <AiFillHome style={{ fontSize: '28px' }} />
   },
   {
     _id: 1002,
     title: "Feeds",
     link: "/contact",
+    icon:<AiFillContacts style={{ fontSize: '28px' }}/>
+
   },
   {
     _id: 1004,
     title: "Products",
     link: "/filter",
+    icon:<MdProductionQuantityLimits style={{ fontSize: '28px' }}/>
+
   },
   {
     _id: 1003,
     title: "Settings",
     link: "/about",
+    icon:<MdSettings style={{ fontSize: '28px' }}/>
+
   },
 
 
@@ -59,13 +68,13 @@ export const navBarList = [
 ];
 
 export const filterOption = [
-  { title: 'All', icon: <BsCardList /> },
-  { title: 'fashion', icon: <GiAmpleDress /> },
-  { title: 'phone', icon: <BsPhone /> },
-  { title: 'book', icon: <GiBookmarklet /> },
-  { title: 'music', icon: <BsMusicNoteBeamed /> },
-  { title: 'car', icon: <FaCarSide /> },
-  { title: 'Electronic', icon: <BiDesktop /> },
+  { title: 'All', icon: <BsCardList style={{ fontSize: '28px' }} /> },
+  { title: 'fashion', icon: <GiAmpleDress style={{ fontSize: '28px' }} /> },
+  { title: 'phone', icon: <BsPhone style={{ fontSize: '28px' }} /> },
+  { title: 'book', icon: <GiBookmarklet style={{ fontSize: '28px' }} /> },
+  { title: 'music', icon: <BsMusicNoteBeamed style={{ fontSize: '28px' }} /> },
+  { title: 'car', icon: <FaCarSide style={{ fontSize: '28px' }} /> },
+  { title: 'Electronic', icon: <BiDesktop style={{ fontSize: '28px' }} /> },
 ];
 
 export const categoriesData = {

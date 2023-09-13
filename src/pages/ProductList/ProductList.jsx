@@ -4,7 +4,6 @@ import { filterOption, paginationItems } from '../../constants/index';
 import Sort from './Sort';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import Pagination from '../../components/ui/Pagination';
-import Price from '../../components/pageProps/shopPage/shopBy/Price';
 import Color from '../../components/pageProps/shopPage/shopBy/Color';
 
 const ProductList = () => {

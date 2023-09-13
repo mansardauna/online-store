@@ -47,7 +47,7 @@ const ProductInfo = ({ productInfo }) => {
       <Button
       variant="secondary"
         onClick={handleAddToCart}
-        className="w-full py-4  hover:bg-gray-300 duration-300 rounded text-white text-lg font-titleFont"
+        className="w-full py-4  hover:bg-gray-300 duration-300 rounded text-lg font-titleFont"
       >
         Add to Cart
       </Button>

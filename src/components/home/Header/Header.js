@@ -7,9 +7,11 @@ import { logo, logoLight } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
 import { navBarList } from "../../../constants";
 import Flex from "../../designLayouts/Flex";
+import HeaderBottom from "./HeaderBottom";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(true);
+  
   const [sidenav, setSidenav] = useState(false);
   const [category, setCategory] = useState(false);
   const [brand, setBrand] = useState(false);
@@ -27,31 +29,31 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
+    <div className="w-full mt-5 z-50">
       <nav className="h-full px-4 max-w-container mx-auto relative">
-        <Flex className="flex items-center justify-between h-full">
-          <Link to="/">
-            <div>
-              <div className=" text-black font-bold uppercase text-2xl w-fit m-auto">Digital Market</div>
-            </div>
-          </Link>
+        <div className=" items-center justify-between h-full">
+          
+
           <div>
             {showMenu && (
               <motion.ul
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center w-auto z-50 p-0 gap-2"
+                className=" w-auto  flex flex-col z-50 p-0 gap-5"
               >
                 <>
-                  {navBarList.map(({ _id, title, link }) => (
+                  {navBarList.map(({ _id, title, link, icon }) => (
                     <NavLink
                       key={_id}
-                      className="flex font-normal hover:font-bold w-20 h-6 justify-center items-center px-12 text-base text-[#767676] hover:underline underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
+                      className=" font-normal hover:font-bold w-20 h-12 justify-center text-xl  items-center  text-[#767676] hover:underline underline-offset-[4px] decoration-[1px]  hover:text-[#262626] hoverEffect last:border-r-0"
                       to={link}
                       state={{ data: location.pathname.split("/")[1] }}
                     >
-                      <li>{title}</li>
+                      <li  className="flex gap-4 items-center">
+                        <span>{icon}</span>
+                        <span>{title}</span>
+                        </li>
                     </NavLink>
                   ))}
                 </>
@@ -146,7 +148,7 @@ const Header = () => {
               </div>
             )}
           </div>
-        </Flex>
+        </div>
       </nav>
     </div>
   );

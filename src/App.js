@@ -29,31 +29,36 @@ import Shop from "./pages/Shop/Shop";
 import ProductList from "./pages/ProductList/ProductList";
 import Toast from "./components/ui/ToastMessage";
 import UserProfile from "./pages/About/UserProfile";
-
+import Sidebar from "./components/ui/Sidebar";
 
 
 
 const Layout = () => {
-  const isLoggin = useSelector(state => state.auth.isLoggin)
+  const isLoggin = useSelector((state) => state.auth.isLoggin);
   return (
     <>
       {isLoggin && (
+        <div className="flex">
+          <div className="w-[20%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-300">
+    <Sidebar />
+            {/* Add your sidebar content here */}
+          </div>
 
-        <div>
-          <Header />
-          <HeaderBottom />
-          <SpecialCase />
-          <ScrollRestoration />
-          <Outlet />
-          <FooterBottom />
+          {/* Main Content */}
+          <div className="w-[80%] ml-[20%] p-4">
+            <HeaderBottom/>
+            <SpecialCase />
+            <ScrollRestoration />
+            <Outlet />
+          <FooterBottom/>
+          </div>
         </div>
       )}
       {!isLoggin && <SignIn />}
-      <Toast  position="top-right"
-          autoClose={3000} />
     </>
   );
 };
+
 const router = createBrowserRouter(
   createRoutesFromElements(
 
