@@ -4,7 +4,6 @@ import { categoriesData, filterOption, paginationItems } from '../../constants/i
 import Sort from './Sort';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import Pagination from '../../components/ui/Pagination';
-import Color from '../../components/pageProps/shopPage/shopBy/Color';
 
 const ProductList = () => {
   const [filteredData, setFilteredData] = useState(paginationItems);
@@ -45,27 +44,25 @@ const ProductList = () => {
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className="md:p-3 relative p-2 mb-4">
-      <Breadcrumbs title="Products" />
-      <div className="flex absolute z-10 top-0 px-4 md:p-1 gap-4 right-3">
-            <Sort
-              filterOption={filterOption}
-              selectOption={selectOption}
-              filterResult={filterResult}
-              sortResult={sortResult}
-              categoriesData={categoriesData}
-            />
-          </div>
-      <div className="p-1 relative md:p-5 w-full justify-between">
-        <div className="justify-between  w-full ">
-          
-        </div>
-        <div className="md:flex mt-10 block w-full">
+    <div className='md:p-3 relative p-2 mb-4'>
+      <Breadcrumbs title='Products' />
+      <div className='flex absolute z-10 top-0 px-4 md:p-1 gap-4 right-3'>
+        <Sort
+          filterOption={filterOption}
+          selectOption={selectOption}
+          filterResult={filterResult}
+          sortResult={sortResult}
+          categoriesData={categoriesData}
+        />
+      </div>
+      <div className='p-1 relative md:p-5 w-full justify-between'>
+        <div className='justify-between  w-full'></div>
+        <div className='md:flex mt-10 block w-full'>
           <div>
             {toggle || selectOption === 'All' ? (
-              <div className="md:grid block grid-cols-4 gap-4 w-fit m-auto">
+              <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
                 {currentItems.map((product) => (
-                  <div className="p-2" key={product._id}>
+                  <div className='p-2' key={product._id}>
                     <Product
                       _id={product._id}
                       img={product.img}
@@ -79,9 +76,9 @@ const ProductList = () => {
                 ))}
               </div>
             ) : (
-              <div className="md:grid block grid-cols-4 gap-4 w-fit m-auto">
+              <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
                 {filteredData.map((product) => (
-                  <div className="p-2" key={product._id}>
+                  <div className='p-2' key={product._id}>
                     <Product
                       _id={product._id}
                       img={product.img}

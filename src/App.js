@@ -30,6 +30,7 @@ import ProductList from "./pages/ProductList/ProductList";
 import Toast from "./components/ui/ToastMessage";
 import UserProfile from "./pages/About/UserProfile";
 import Sidebar from "./components/ui/Sidebar";
+import ComingSoon from "./pages/Coming/ComingSoon";
 
 
 
@@ -68,6 +69,7 @@ const router = createBrowserRouter(
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/coming" element={<ComingSoon />}></Route>
         <Route path="/filter" element={<ProductList />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
 

@@ -13,8 +13,8 @@ const Sidebar = () => {
     <div className='flex flex-col  h-[95%]'>
       <Link
         to="/">
-        <div className=" border-b border-gray-200 mb-5 flex justify-center h-24 items-center">
-          <div className=" text-black font-bold font-dancing  text-2xl w-fit m-auto">Digital Market</div>
+        <div className=" border-b border-gray-200 flex justify-center h-24 items-center">
+          <div className=" text-black font-bold font-dancing text-2xl w-fit m-auto">Digital Market</div>
         </div>
       </Link>
       <Header />

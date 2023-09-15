@@ -19,23 +19,21 @@ const aboutItems = [
   },
   {
     title: "Payment Method",
-    link: "/payment",
+    link: "/coming",
     icon: <BiMoney/> 
   },
   {
     title: "Address",
-    link: "/address",
+    link: "/coming",
     icon: <FaAddressBook/> 
   },
   {
     title: "Settings",
-    link: "/settings",
-    icon: <MdSettings/>
+    link: "/coming",    icon: <MdSettings/>
   },
   {
     title: "History",
-    link: "/history",
-    icon: <BiHistory/> 
+    link: "/coming",    icon: <BiHistory/> 
   },
 ];
 
