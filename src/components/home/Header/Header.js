@@ -46,12 +46,13 @@ const Header = () => {
                   {navBarList.map(({ _id, title, link, icon }) => (
                     <NavLink
                       key={_id}
-                      className=" font-normal hover:font-bold w-full h-12 justify-center text-xl  items-center  text-[#767676] hover:underline underline-offset-[4px] decoration-[1px]  hover:text-[#262626] hoverEffect last:border-r-0"
+                      className=" font-normal hover:font-bold w-full justify-center text-xl  items-center  text-[#767676]  hover:text-[#262626] hoverEffect cursor-pointer md:text-lg rounded-lg "
                       to={link}
                       state={{ data: location.pathname.split("/")[1] }}
+                  
                     >
                       <li  className="flex gap-4 w-full
-                      pb-3 border-b-2 border-b-gray-200 
+                       mb-2 p-2
                     items-center">
                         <span>{icon}</span>
                         <span>{title}</span>

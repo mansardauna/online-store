@@ -39,13 +39,12 @@ const Layout = () => {
     <>
       {isLoggin && (
         <div className="flex">
-          <div className="w-[20%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-300 md:block hidden">
+          <div className="w-[17%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-300 md:block hidden">
     <Sidebar />
         
           </div>
 
-          {/* Main Content */}
-          <div className="md:w-[80%] md:ml-[20%] w-full ml-0">
+          <div className="md:w-[83%] md:ml-[17%] w-full ml-0">
             <HeaderBottom/>
             <ScrollRestoration />
             <Outlet />
