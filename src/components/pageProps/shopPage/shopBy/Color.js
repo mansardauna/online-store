@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import NavTitle from "./NavTitle";
 
 const Color = () => {
-  const [showColors, setShowColors] = useState(true);
+  const [showColors, setShowColors] = useState(false);
   const colors = [
     {
       _id: 9001,
@@ -33,10 +33,10 @@ const Color = () => {
   ];
 
   return (
-    <div>
+    <div className="bg-white">
       <div
         onClick={() => setShowColors(!showColors)}
-        className="cursor-pointer"
+        className="cursor-pointer p-2 "
       >
         <NavTitle title="Colors" icons={true} />
       </div>

@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
 import { authAction } from "../../../redux/authSlice";
+import Header from "./Header";
 
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
@@ -45,17 +46,19 @@ const HeaderBottom = () => {
   }
 
   return (
-    <div className="w-full bg-[#F5F5F3] mb-4 sticky top-0 rounded-sm z-10 ">
+    <div className="w-full bg-[#F5F5F3] mb-4 z-50 sticky top-0 rounded-sm  ">
       <div className="max-w-container mx-auto">
+        <div className="md:hidden block">
+      <Header />
+      </div>
         <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full px-4 pb-4 lg:pb-0 h-full lg:h-24">
           <Link to='./filter'>
             <div
-              onClick={() => setShow(!show)}
-              ref={ref}
-              className="flex h-14 cursor-pointer items-center gap-2 text-primeColor"
+              
+              className="flex h-14  cursor-pointer items-center text-primeColor"
             >
-              <HiOutlineMenuAlt4 className="w-5 h-5" />
-              <p className="text-[14px] font-normal">Shop by</p>
+       <p className="mt-4 text-gray-700">Shop By</p>
+
               {/* 
             {show && (
               <motion.ul

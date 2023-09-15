@@ -90,7 +90,7 @@ const Product = (props) => {
     <div className="md:w-full m-auto w-64 relative group">
       <div className="max-w-80  max-h-80 relative overflow-y-hidden ">
         <div>
-          <Image className="w-full h-56 md:h-64" imgSrc={props.img} />
+          <Image className="w-full h-56 md:h-56" imgSrc={props.img} />
         </div>
         <div className="absolute top-6 left-8">
           {props.badge && <Badge text="New" />}
@@ -133,13 +133,13 @@ const Product = (props) => {
       </div>
       <div className="max-w-80 py-6 flex flex-col gap-1 border-[1px] border-t-0 px-4">
         <div className="flex items-center justify-between uppercase font-titleFont">
-          <h2 className="text-xl text-primeColor font-semi-bold">
+          <h2 className="text-sm text-primeColor font-bold">
             {props.productName}
           </h2>
           <p className="text-[#767676] text-[14px]">${props.price}</p>
         </div>
         <div className=" justify-between items-center mt-2 flex">
-          <p className="text-[#767676] text-[14px] capitalize">category: {props.category}</p>
+          <p className="text-[#767676] text-xs capitalize">category: {props.category}</p>
           <Button variant="primary"
           className="text-sm rounded font-semibold border-none" 
           onClick={handleProductDetails}>Buy</Button>

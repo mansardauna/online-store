@@ -2,10 +2,10 @@ import React from 'react'
 import { FaShoppingCart } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Sort from '../../pages/ProductList/Sort';
-import Flex from '../designLayouts/Flex';
-import FooterBottom from '../home/Footer/FooterBottom';
+
 import Header from '../home/Header/Header';
+import SpecialCase from '../SpecialCase/SpecialCase';
+import SideCart from './SideCart';
 
  const Sidebar=() => {
   const products = useSelector((state) => state.orebiReducer.products);
@@ -18,19 +18,10 @@ import Header from '../home/Header/Header';
             </div>
           </Link>
            <Header />
-           <div className="flex">
-            <div>
-           <Link to="/cart">
-              <div className="relative">
-                <FaShoppingCart />
-                <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
-                  {products.length > 0 ? products.length : 0}
-                </span>
-
-              </div>
-            </Link>
-              </div>
-              <div></div>
+           <div className="flex  w-11/12 mx-auto justify-between">
+         <SideCart />
+         
+            <SpecialCase />
             
            </div>
           

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Product from '../../components/home/Products/Product';
-import { filterOption, paginationItems } from '../../constants/index';
+import { categoriesData, filterOption, paginationItems } from '../../constants/index';
 import Sort from './Sort';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import Pagination from '../../components/ui/Pagination';
@@ -45,24 +45,25 @@ const ProductList = () => {
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className="md:p-3 p-1">
+    <div className="md:p-3 relative p-2 mb-4">
       <Breadcrumbs title="Products" />
-      <div className="flex p-1 md:p-5 w-full justify-between">
-        <div className="mt-5 md:w-1/3 justify-between relative flex w-full ">
-          <div className="sticky top-0 px-4 md:p-1 md:block">
+      <div className="flex absolute z-10 top-0 px-4 md:p-1 gap-4 right-3">
             <Sort
               filterOption={filterOption}
               selectOption={selectOption}
               filterResult={filterResult}
               sortResult={sortResult}
+              categoriesData={categoriesData}
             />
-            <Color />
           </div>
+      <div className="p-1 relative md:p-5 w-full justify-between">
+        <div className="justify-between  w-full ">
+          
         </div>
-        <div className="md:flex block w-full">
+        <div className="md:flex mt-10 block w-full">
           <div>
             {toggle || selectOption === 'All' ? (
-              <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
+              <div className="md:grid block grid-cols-4 gap-4 w-fit m-auto">
                 {currentItems.map((product) => (
                   <div className="p-2" key={product._id}>
                     <Product
@@ -78,7 +79,7 @@ const ProductList = () => {
                 ))}
               </div>
             ) : (
-              <div className="md:grid block grid-cols-3 gap-4 w-fit m-auto">
+              <div className="md:grid block grid-cols-4 gap-4 w-fit m-auto">
                 {filteredData.map((product) => (
                   <div className="p-2" key={product._id}>
                     <Product

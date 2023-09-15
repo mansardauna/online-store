@@ -46,11 +46,13 @@ const Header = () => {
                   {navBarList.map(({ _id, title, link, icon }) => (
                     <NavLink
                       key={_id}
-                      className=" font-normal hover:font-bold w-20 h-12 justify-center text-xl  items-center  text-[#767676] hover:underline underline-offset-[4px] decoration-[1px]  hover:text-[#262626] hoverEffect last:border-r-0"
+                      className=" font-normal hover:font-bold w-full h-12 justify-center text-xl  items-center  text-[#767676] hover:underline underline-offset-[4px] decoration-[1px]  hover:text-[#262626] hoverEffect last:border-r-0"
                       to={link}
                       state={{ data: location.pathname.split("/")[1] }}
                     >
-                      <li  className="flex gap-4 items-center">
+                      <li  className="flex gap-4 w-full
+                      pb-3 border-b-2 border-b-gray-200 
+                    items-center">
                         <span>{icon}</span>
                         <span>{title}</span>
                         </li>
@@ -61,7 +63,7 @@ const Header = () => {
             )}
             <HiMenuAlt2
               onClick={() => setSidenav(!sidenav)}
-              className="inline-block md:hidden cursor-pointer w-8 h-6 absolute top-6 right-4"
+              className=" md:hidden cursor-pointer left-0 absolute w-5 h-6 top-0"
             />
             {sidenav && (
               <div className="fixed top-0 left-0 w-full h-screen bg-black text-gray-200 bg-opacity-80 z-50">
