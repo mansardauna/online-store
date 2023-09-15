@@ -39,7 +39,7 @@ const Layout = () => {
     <>
       {isLoggin && (
         <div className="flex">
-          <div className="w-[17%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-300 md:block hidden">
+          <div className="w-[17%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-200 md:block hidden">
     <Sidebar />
         
           </div>

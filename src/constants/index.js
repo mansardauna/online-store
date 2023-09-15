@@ -1,9 +1,9 @@
 import { AiFillContacts, AiFillHome } from "react-icons/ai";
 import { BiDesktop } from "react-icons/bi";
-import { BsCardList, BsMusicNoteBeamed, BsPhone } from "react-icons/bs";
+import { BsBagFill, BsCardList, BsMusicNoteBeamed, BsPhone } from "react-icons/bs";
 import { FaCarSide } from "react-icons/fa";
 import { GiAmpleDress, GiBookmarklet } from "react-icons/gi";
-import { MdProductionQuantityLimits, MdSettings } from "react-icons/md";
+import { MdFeed, MdProductionQuantityLimits, MdSettings } from "react-icons/md";
 import {
   spfOne,
   spfTwo,
@@ -39,27 +39,27 @@ export const navBarList = [
     _id: 1001,
     title: "Home",
     link: "/",
-    icon: <AiFillHome style={{ fontSize: '28px' }} />
+    icon: <AiFillHome style={{ fontSize: '22px' }} />
   },
   {
     _id: 1002,
     title: "Feeds",
     link: "/contact",
-    icon:<AiFillContacts style={{ fontSize: '28px' }}/>
+    icon:<MdFeed style={{ fontSize: '22px' }}/>
 
   },
   {
     _id: 1004,
     title: "Products",
     link: "/filter",
-    icon:<MdProductionQuantityLimits style={{ fontSize: '28px' }}/>
+    icon:<BsBagFill style={{ fontSize: '22px' }}/>
 
   },
   {
     _id: 1003,
     title: "Settings",
     link: "/about",
-    icon:<MdSettings style={{ fontSize: '28px' }}/>
+    icon:<MdSettings style={{ fontSize: '22px' }}/>
 
   },
 

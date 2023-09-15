@@ -46,7 +46,7 @@ const HeaderBottom = () => {
   }
 
   return (
-    <div className="w-full bg-[#F5F5F3] mb-4 z-50 sticky top-0 rounded-sm  ">
+    <div className="w-full bg-[#F5F5F3] mb-4 z-50 border-b border-gray-200 sticky top-0 rounded-sm  ">
       <div className="max-w-container mx-auto">
         <div className="md:hidden block">
       <Header />

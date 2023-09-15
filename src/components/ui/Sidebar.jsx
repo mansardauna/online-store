@@ -10,15 +10,15 @@ import SideCart from './SideCart';
 const Sidebar = () => {
   const products = useSelector((state) => state.orebiReducer.products);
   return (
-    <div className='flex flex-col justify-between h-[95%]'>
+    <div className='flex flex-col  h-[95%]'>
       <Link
         to="/">
-        <div>
-          <div className=" text-black font-bold uppercase text-2xl mt-5 w-full m-auto">Digital Market</div>
+        <div className=" border-b border-gray-200 mb-5 flex justify-center h-24 items-center">
+          <div className=" text-black font-bold font-dancing  text-2xl w-fit m-auto">Digital Market</div>
         </div>
       </Link>
       <Header />
-      <div className="flex  w-11/12 mx-auto justify-between">
+      <div className="flex  w-11/12 mx-auto justify-between absolute bottom-5 left-2">
         <SideCart />
         <SpecialCase />
 
