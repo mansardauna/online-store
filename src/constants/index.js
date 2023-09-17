@@ -3,7 +3,7 @@ import { BiDesktop } from "react-icons/bi";
 import { BsBagFill, BsCardList, BsMusicNoteBeamed, BsPhone } from "react-icons/bs";
 import { FaCarSide } from "react-icons/fa";
 import { GiAmpleDress, GiBookmarklet } from "react-icons/gi";
-import { MdFeed, MdProductionQuantityLimits, MdSettings } from "react-icons/md";
+import { MdDashboard, MdFeed, MdProductionQuantityLimits, MdSettings } from "react-icons/md";
 import {
   spfOne,
   spfTwo,
@@ -42,10 +42,10 @@ export const navBarList = [
     icon: <AiFillHome style={{ fontSize: '22px' }} />
   },
   {
-    _id: 1002,
-    title: "Feeds",
-    link: "/contact",
-    icon:<MdFeed style={{ fontSize: '22px' }}/>
+    _id: 1003,
+    title: "Dashboard",
+    link: "/about",
+    icon:<MdDashboard style={{ fontSize: '22px' }}/>
 
   },
   {
@@ -55,11 +55,12 @@ export const navBarList = [
     icon:<BsBagFill style={{ fontSize: '22px' }}/>
 
   },
+ 
   {
-    _id: 1003,
-    title: "Settings",
-    link: "/about",
-    icon:<MdSettings style={{ fontSize: '22px' }}/>
+    _id: 1002,
+    title: "Feeds",
+    link: "/contact",
+    icon:<MdFeed style={{ fontSize: '22px' }}/>
 
   },
 

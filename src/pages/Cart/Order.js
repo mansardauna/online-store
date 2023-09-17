@@ -108,7 +108,7 @@ const Order = () => {
             <p className="text-sm text-center px-10 -mt-2">
               You can track down your ordered Item here, go place an order and the item will appear
             </p>
-            <Link to="/journal">
+            <Link to="/filter">
               <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
                 Continue Shopping
               </button>
