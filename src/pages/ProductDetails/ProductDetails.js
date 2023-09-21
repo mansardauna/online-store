@@ -70,8 +70,12 @@ const ProductDetails = () => {
             )}
 
             {/* Feedback section */}
-            <div className="mt-4">
-              <h2 className="text-xl font-semibold mb-2">Product Feedback</h2>
+           
+          </div>
+          
+        </div>
+        <div className="mt-4 w-1/2 m-auto mb-10">
+              <h2 className="text-xl font-semibold mb-2 text-center">Product Feedback</h2>
               <textarea
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
@@ -92,8 +96,6 @@ const ProductDetails = () => {
                 Submit Feedback
               </button>
             </div>
-          </div>
-        </div>
       </div>
     </div>
   );
