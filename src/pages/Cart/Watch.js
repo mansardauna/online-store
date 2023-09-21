@@ -59,7 +59,7 @@ const Watch = () => {
             <p className="text-sm text-center px-10 -mt-2">
               Your items will appear here once you click on watch-list
             </p>
-            <Link to="/filter">
+            <Link to="/products">
               <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
                 Continue Shopping
               </button>

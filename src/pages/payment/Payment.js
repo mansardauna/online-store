@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import Button from "../../components/ui/Button";
+import DownloadButton from "../../components/ui/DownloadButton";
 
 const Payment = () => {
   return (
@@ -15,6 +16,7 @@ const Payment = () => {
             Explore More
           </Button>
         </Link>
+        <DownloadButton />
       </div>
     </div>
   );

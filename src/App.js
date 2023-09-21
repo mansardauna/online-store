@@ -14,12 +14,11 @@ import HeaderBottom from "./components/home/Header/HeaderBottom";
 import NewArrivals from "./components/home/NewArrivals/NewArrivals";
 import SpecialOffers from "./components/home/SpecialOffers/SpecialOffers";
 import SpecialCase from "./components/SpecialCase/SpecialCase";
-import About from "./pages/About/About";
 import SignUp from "./pages/Account/SignUp";
 import Cart from "./pages/Cart/Cart";
 import Watch from "./pages/Cart/Watch";
 import Order from "./pages/Cart/Order";
-import Contact from "./pages/Contact/Contact";
+import Contact from "./pages/feed/feed";
 import SignIn from "./pages/Account/SignIn"
 import Home from "./pages/Home/Home";
 import Offer from "./pages/Offer/Offer";
@@ -28,9 +27,12 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import ProductList from "./pages/ProductList/ProductList";
 import Toast from "./components/ui/ToastMessage";
-import UserProfile from "./pages/About/UserProfile";
+
 import Sidebar from "./components/ui/Sidebar";
 import ComingSoon from "./pages/Coming/ComingSoon";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import UserProfile from "./pages/Dashboard/UserProfile";
+import Feed from "./pages/feed/feed";
 
 
 
@@ -67,10 +69,10 @@ const router = createBrowserRouter(
         {/* ==================== Header Navlink Start here =================== */}
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/feeds" element={<Feed />}></Route>
         <Route path="/coming" element={<ComingSoon />}></Route>
-        <Route path="/filter" element={<ProductList />}></Route>
+        <Route path="/products" element={<ProductList />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
 
         <Route path="/watchlist" element={<Watch />}></Route >

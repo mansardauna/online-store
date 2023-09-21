@@ -38,7 +38,7 @@ const aboutItems = [
   },
 ];
 
-const About = () => {
+const Dashboard = () => {
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
   useEffect(() => {
@@ -54,4 +54,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Dashboard;

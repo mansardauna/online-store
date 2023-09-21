@@ -10,6 +10,8 @@ const Order = () => {
   const dispatch = useDispatch();
   const orderlist = useSelector((state) => state.orebiReducer.order);
   const [totalAmt, setTotalAmt] = useState("");
+  const [showReceipt, setShowReceipt] = useState(false);
+
   const [shippingCharge, setShippingCharge] = useState("");
   useEffect(() => {
     let price = 0;
@@ -28,6 +30,30 @@ const Order = () => {
       setShippingCharge(20);
     }
   }, [totalAmt]);
+
+  const generateReceipt = () => {
+    // Create a string containing the HTML structure of the receipt
+    const receiptContent = `
+      <div>
+        <h1>Order Receipt</h1>
+        <p><strong>Order ID:</strong> ABC123</p>
+        <p><strong>Customer Name:</strong> John Doe</p>
+        <!-- Add more order details here -->
+      </div>
+    `;
+    
+    return receiptContent;
+  };
+
+  // Function to open the receipt
+  const openReceipt = () => {
+    const receiptContent = generateReceipt();
+    
+    // Open the receipt in a new window or modal
+    const receiptWindow = window.open("", "Receipt", "width=600,height=400");
+    receiptWindow.document.write(receiptContent);
+  };
+
   return (
     <div className="max-w-container mx-auto px-4">
     
@@ -90,6 +116,17 @@ const Order = () => {
               </div>
             </div>
           </div>
+          <div className="flex justify-end">
+          <button
+            onClick={() => {
+              setShowReceipt(true);
+              openReceipt();
+            }}
+            className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300"
+          >
+            View Receipt
+          </button>
+        </div>
         </div>
       ) : (
         <motion.div
@@ -108,7 +145,8 @@ const Order = () => {
             <p className="text-sm text-center px-10 -mt-2">
               You can track down your ordered Item here, go place an order and the item will appear
             </p>
-            <Link to="/filter">
+            
+            <Link to="/products">
               <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
                 Continue Shopping
               </button>

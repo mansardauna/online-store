@@ -9,7 +9,8 @@ const ProductList = () => {
   const [filteredData, setFilteredData] = useState(paginationItems);
   const [sortedData, setSortedData] = useState(paginationItems);
   const [toggle, setToggle] = useState(false);
-  const [selectOption, setSelectedOption] = useState('All');
+  const [selectOption, setSelectedOption] 
+  = useState('All');
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(12);
 
@@ -71,6 +72,7 @@ const ProductList = () => {
                       category={product.catergory}
                       color={product.color}
                       des={product.des}
+                      videoUrl={product.videoUrl}
                     />
                   </div>
                 ))}

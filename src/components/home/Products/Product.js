@@ -10,13 +10,18 @@ import { addToCart } from "../../../redux/orebiSlice";
 import { addToWatchlist } from "../../../redux/orebiSlice";
 import Button from "../../ui/Button";
 import CartModal from "../../ui/CartModal";
+import { BiPlay } from "react-icons/bi";
 
 
 const Product = (props) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [iswhatchOpen, setIsWatchOpen] = useState(false);
-  
+  const [isVideoPlaying, setVideoPlaying] = useState(false);
 
+  const handlePlayVideo = () => {
+    setVideoPlaying(true);
+  };
+  
   const dispatch = useDispatch();
   const _id = props.productName;
   const idString = (_id) => {
@@ -33,6 +38,7 @@ const Product = (props) => {
       },
     });
   };
+  const { videoUrl, videoThumbnail } = props;
 
   const handleAddToCart = () => {
 
@@ -89,9 +95,42 @@ const Product = (props) => {
   return (
     <div className="md:w-full m-auto w-64 relative group">
       <div className="max-w-80  max-h-80 relative overflow-y-hidden ">
-        <div>
-          <Image className="w-full h-56 md:h-56" imgSrc={props.img} />
-        </div>
+      <div>
+    {videoUrl ? (
+      <div>
+        {isVideoPlaying ? (
+          <video
+            width="100%"
+            height="auto"
+            controls
+            autoPlay
+            onClick={() => setVideoPlaying(false)} // Pause when clicked
+          >
+            <source src={videoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <div
+            onClick={handlePlayVideo} // Start playing when clicked
+            className="relative cursor-pointer"
+          >
+            <img
+              src={videoThumbnail || props.img}
+              alt={props.productName}
+              className="w-full h-56 md:h-56"
+            />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <button className="bg-opacity-80 bg-black text-white rounded-full p-2">
+               <BiPlay />
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    ) : (
+      <Image className="w-full h-56 md:h-56" imgSrc={props.img} />
+    )}
+  </div>
         <div className="absolute top-6 left-8">
           {props.badge && <Badge text="New" />}
         </div>

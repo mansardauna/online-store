@@ -75,6 +75,7 @@ const NewArrivals = () => {
             color={item.color}
             badge={true}
             des={item.des}
+            videoUrl={item.videoUrl}
           />
         </div>
         ))}

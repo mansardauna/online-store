@@ -44,14 +44,14 @@ export const navBarList = [
   {
     _id: 1003,
     title: "Dashboard",
-    link: "/about",
+    link: "/dashboard",
     icon:<MdDashboard style={{ fontSize: '22px' }}/>
 
   },
   {
     _id: 1004,
     title: "Products",
-    link: "/filter",
+    link: "/products",
     icon:<BsBagFill style={{ fontSize: '22px' }}/>
 
   },
@@ -59,7 +59,7 @@ export const navBarList = [
   {
     _id: 1002,
     title: "Feeds",
-    link: "/contact",
+    link: "/feeds",
     icon:<MdFeed style={{ fontSize: '22px' }}/>
 
   },
@@ -163,6 +163,7 @@ export const paginationItems = [
     price: "35.00",
     filter: "cap",
     productName: "Cap for Boys",
+    videoUrl:"https://twitter.com/Tspiceskitchen/status/1704908124820513150?t=OKgtTTudG1XLqEbiprmzjg&s=19",
     badge: true,
     type: "new",
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",

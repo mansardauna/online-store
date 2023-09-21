@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 
-const Contact = () => {
+const Feed = () => {
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
   useEffect(() => {
@@ -143,4 +143,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Feed;
