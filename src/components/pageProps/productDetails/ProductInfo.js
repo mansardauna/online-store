@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../../redux/orebiSlice";
+import { addOrder, addToCart } from "../../../redux/orebiSlice";
 import Button from "../../ui/Button";
 import CartModal from "../../ui/CartModal";
 
@@ -9,6 +9,8 @@ import CartModal from "../../ui/CartModal";
 const ProductInfo = ({ productInfo }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [order, setOrder] = useState([]); // Track the user's order
+
 
  const handleAddToCart = () => {
     dispatch(
@@ -35,6 +37,20 @@ const ProductInfo = ({ productInfo }) => {
       return () => clearTimeout(timeoutId);
     }
   }, [isModalOpen]);
+
+  const handleBuy = () => {
+    // Create a copy of the current order list and add the selected product
+    dispatch(addOrder(productInfo));
+
+    const updatedOrder = [...order, productInfo];
+
+    // Update the order state with the new list
+    setOrder(updatedOrder);
+
+    // Provide feedback to the user (optional)
+    alert('Product added to your order!');
+  };
+
   return (
     <div className="flex flex-col gap-5">
       <h2 className="text-4xl font-semibold">{productInfo.productName}</h2>
@@ -55,6 +71,7 @@ const ProductInfo = ({ productInfo }) => {
       <Link to="/paymentgateway">
       <Button
       variant="primary"
+      onClick={handleBuy}
         className="w-full rounded border-primeColor py-4 bg-primeColor hover:bg-gray-600 duration-300 text-white text-lg font-titleFont"
       >
         By Now

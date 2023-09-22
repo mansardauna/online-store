@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import ProductInfo from '../../components/pageProps/productDetails/ProductInfo';
 import ProductsOnSale from '../../components/pageProps/productDetails/ProductsOnSale';
-import JSZip from 'jszip';
 import ReactPlayer from 'react-player';
+import Button from '../../components/ui/Button';
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -12,7 +12,7 @@ const ProductDetails = () => {
   const [productInfo, setProductInfo] = useState([]);
   const [videoUrl, setVideoUrl] = useState('');
   const [feedback, setFeedback] = useState('');
-  const [image, setImage] = useState(null); // State variable to store the uploaded image
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     setProductInfo(location.state.item);
@@ -22,15 +22,12 @@ const ProductDetails = () => {
 
   // Function to handle the download button click event
   const handleDownload = async () => {
-    // ... your existing download logic ...
+  
   };
 
   // Function to handle user feedback submission
   const handleFeedbackSubmit = () => {
-    // Here, you can send the `feedback` and `image` data to your backend or perform any other actions.
-    // You may want to use an API call or a state management library like Redux to handle this.
-
-    // Clear the feedback input field and image after submission
+    
     setFeedback('');
     setImage(null);
   };
@@ -51,13 +48,20 @@ const ProductDetails = () => {
           <div className="h-full">
             <ProductsOnSale />
           </div>
-          <div className="h-full xl:col-span-2">
-            {videoUrl && (
+          <div className="h-60 m-auto xl:col-span-2">
+           
+            {videoUrl ? (
               <ReactPlayer
                 url={videoUrl}
                 controls
                 width="100%"
                 height="100%"
+              />
+            ) : (
+              <img
+                src={productInfo.img}
+                alt={productInfo.img}
+                className="w-full h-full object-cover"
               />
             )}
           </div>
@@ -83,18 +87,20 @@ const ProductDetails = () => {
                 rows="4"
                 className="w-full p-2 border border-gray-300 rounded"
               ></textarea>
+              <div className='flex md:flex-row flex-col justify-between'>
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageUpload}
-                className="mt-2"
+                className="mt-2 w-1/2 "
               />
-              <button
+              <Button variant="primary"
                 onClick={handleFeedbackSubmit}
-                className="mt-2 bg-primeColor text-white px-4 py-2 rounded hover:bg-black duration-300"
+                className="mt-2 bg-primeColor text-white rounded hover:bg-black duration-300"
               >
                 Submit Feedback
-              </button>
+              </Button>
+            </div>
             </div>
       </div>
     </div>

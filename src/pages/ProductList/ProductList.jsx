@@ -1,18 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import Product from '../../components/home/Products/Product';
-import { categoriesData, filterOption, paginationItems } from '../../constants/index';
 import Sort from './Sort';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import Pagination from '../../components/ui/Pagination';
 
+import { categoriesData, filterOption } from '../../constants';
+
 const ProductList = () => {
-  const [filteredData, setFilteredData] = useState(paginationItems);
-  const [sortedData, setSortedData] = useState(paginationItems);
+  const [filteredData, setFilteredData] = useState([]);
+  const [sortedData, setSortedData] = useState([]);
   const [toggle, setToggle] = useState(false);
-  const [selectOption, setSelectedOption] 
-  = useState('All');
+  const [selectOption, setSelectedOption] = useState('All');
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(12);
+
+  // Mock API endpoint
+  const mockApiUrl = "https://fakestoreapi.com/products"; // Replace with your mock API URL
+
+  useEffect(() => {
+    fetch(mockApiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setFilteredData(data);
+        setSortedData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data from the API:', error);
+      });
+  }, []);
 
   const filterResult = (catItems) => {
     setSelectedOption(catItems);
@@ -24,16 +39,11 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    const result = paginationItems.filter((curData) => {
-      return selectOption === 'All' || curData.catergory === selectOption;
+    const result = filteredData.filter((curData) => {
+      return selectOption === 'All' || curData.category === selectOption;
     });
-    setFilteredData(result);
-
-    const sorted = toggle
-      ? [...result].sort((a, b) => a.filter.localeCompare(b.filter))
-      : result;
-    setSortedData(sorted);
-  }, [selectOption, toggle]);
+    setSortedData(toggle ? [...result].sort((a, b) => a.filter.localeCompare(b.filter)) : result);
+  }, [selectOption, toggle, filteredData]);
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -57,7 +67,7 @@ const ProductList = () => {
         />
       </div>
       <div className='p-1 relative md:p-5 w-full justify-between'>
-        <div className='justify-between  w-full'></div>
+        <div className='justify-between w-full'></div>
         <div className='md:flex mt-10 block w-full'>
           <div>
             {toggle || selectOption === 'All' ? (
@@ -66,12 +76,12 @@ const ProductList = () => {
                   <div className='p-2' key={product._id}>
                     <Product
                       _id={product._id}
-                      img={product.img}
-                      productName={product.productName}
+                      img={product.image}
+                      productName={product.title}
                       price={product.price}
-                      category={product.catergory}
+                      category={product.category}
                       color={product.color}
-                      des={product.des}
+                      des={product.description}
                       videoUrl={product.videoUrl}
                     />
                   </div>
@@ -83,12 +93,12 @@ const ProductList = () => {
                   <div className='p-2' key={product._id}>
                     <Product
                       _id={product._id}
-                      img={product.img}
-                      productName={product.productName}
+                      img={product.image}
+                      productName={product.title}
                       price={product.price}
-                      category={product.catergory}
+                      category={product.category}
                       color={product.color}
-                      des={product.des}
+                      des={product.description}
                     />
                   </div>
                 ))}

@@ -84,7 +84,7 @@ const Order = () => {
 
             <p className="text-lg font-semibold">Update Order list</p>
           </div>
-          <div className="max-w-7xl gap-4 flex justify-end mt-4">
+          {/* <div className="max-w-7xl gap-4 flex justify-end mt-4">
             <div className="w-96 flex flex-col gap-4">
               <h1 className="text-2xl font-semibold text-right">Item totals</h1>
               <div>
@@ -115,7 +115,7 @@ const Order = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="flex justify-end">
           <button
             onClick={() => {

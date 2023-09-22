@@ -34,3 +34,10 @@ nav .active li {
   display: none;
 }
 /* ============= NavLink active End here ================ */
+/* Add this to your CSS or CSS module */
+.product-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* Adjust the max-width if needed */
+}

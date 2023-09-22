@@ -128,7 +128,7 @@ const Product = (props) => {
         )}
       </div>
     ) : (
-      <Image className="w-full h-56 md:h-56" imgSrc={props.img} />
+      <Image className="w-full h-52 md:h-52" imgSrc={props.img} />
     )}
   </div>
         <div className="absolute top-6 left-8">
@@ -172,7 +172,7 @@ const Product = (props) => {
       </div>
       <div className="max-w-80 py-6 flex flex-col gap-1 border-[1px] border-t-0 px-4">
         <div className="flex items-center justify-between uppercase font-titleFont">
-          <h2 className="text-sm text-primeColor font-bold">
+          <h2 className="text-sm text-primeColor product-name font-bold">
             {props.productName}
           </h2>
           <p className="text-[#767676] text-[14px]">${props.price}</p>
