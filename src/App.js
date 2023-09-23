@@ -33,6 +33,7 @@ import ComingSoon from "./pages/Coming/ComingSoon";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import UserProfile from "./pages/Dashboard/UserProfile";
 import Feed from "./pages/feed/feed";
+import MobileNav from "./components/home/Header/MobileNav";
 
 
 
@@ -53,7 +54,7 @@ const Layout = () => {
             <ScrollRestoration />
             <Outlet />
           <FooterBottom/>
-          <Header />
+        <MobileNav />
           </div>
         </div>
       )}
