@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
 import { authAction } from "../../../redux/authSlice";
 import Header from "./Header";
+import { useTranslation } from "react-i18next";
 
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
@@ -28,6 +29,8 @@ const HeaderBottom = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [showSearchBar, setShowSearchBar] = useState(false);
+
+const {t} =useTranslation(["layout"])
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -50,7 +53,7 @@ const HeaderBottom = () => {
       <div className="max-w-container mx-auto">
         <div className="md:hidden block">
      
-        <div className=" text-black font-bold font-dancing text-2xl w-full text-center bg-hite p-2 m-auto">Digital Market</div>
+        <div className=" text-black font-bold font-dancing text-2xl w-full text-center bg-hite p-2 m-auto">     {t("digital", { ns: "layout" })}</div>
         
 
       </div>
@@ -60,7 +63,7 @@ const HeaderBottom = () => {
               
               className=" h-14  cursor-pointer md:block hidden items-center text-primeColor"
             >
-       <p className="mt-4 text-gray-700">Shop By</p>
+       <p className="mt-4 text-gray-700">     {t("shop by", { ns: "layout" })}</p>
             </div>
           </Link>
           <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
@@ -69,7 +72,7 @@ const HeaderBottom = () => {
               type="text"
               onChange={handleSearch}
               value={searchQuery}
-              placeholder="Search your products here"
+              placeholder=     {t("search", { ns: "layout" })}
             />
             <FaSearch className="w-5 h-5" />
             {searchQuery && (
@@ -129,19 +132,18 @@ const HeaderBottom = () => {
               >
                 <Link to="">
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    Profile
+                  {t("profile", { ns: "layout" })}
                   </li>
                 </Link>
                 <Link onClick={() => setShowUser(false)} to="/signup">
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    Sign Up
-                  </li>
+                  {t("signUp", { ns: "layout" })}                  </li>
                 </Link>
                 <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                  Profile
+                {t("profile", { ns: "layout" })}
                 </li>
                 <li onClick={handleLogout} className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                  logout
+                {t("logout", { ns: "layout" })}
                 </li>
               </motion.ul>
             )}

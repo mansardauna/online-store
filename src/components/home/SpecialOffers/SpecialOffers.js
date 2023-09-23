@@ -5,10 +5,11 @@ import Product from "../Products/Product";
 import { paginationItems } from "../../../constants";
 import SamplePrevArrow from "../NewArrivals/SamplePrevArrow";
 import SampleNextArrow from "../NewArrivals/SampleNextArrow";
+import { useTranslation } from "react-i18next";
 
 const BestSellers = () => {
   const [filteredData, setFilteredData] = useState([]);
-
+ const { t }= useTranslation(['layout'])
   useEffect(() => {
     // Filter items by type and set filteredData
     const result = paginationItems.filter((curData) => {
@@ -53,7 +54,7 @@ const BestSellers = () => {
   };
   return (
     <div className="w-full pb-16">
-      <Heading heading="Special Offers" />
+      <Heading heading={t("specialOff", { ns: "layout" })} />
       <Slider {...settings}>
       {filteredData.map((item) => (
           <div className="px-2" key={item.id}>

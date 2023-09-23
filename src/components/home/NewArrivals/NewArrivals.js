@@ -16,6 +16,7 @@ import {
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
 import { paginationItems } from "../../../constants";
+import { useTranslation } from "react-i18next";
 const NewArrivals = () => {
   const [filteredData, setFilteredData] = useState([]);
 
@@ -26,6 +27,8 @@ const NewArrivals = () => {
     });
     setFilteredData(result);
   }, []);
+
+  const { t } = useTranslation(["layout"])
 
   const settings = {
     infinite: true,
@@ -63,7 +66,7 @@ const NewArrivals = () => {
   };
   return (
     <div className="w-full pb-16">
-      <Heading heading="New Arrivals" />
+      <Heading heading=     {t("newArr", { ns: "layout" })} />
       <Slider {...settings}>
       {filteredData.map((item) => (
           <div className="px-2" key={item.id}>

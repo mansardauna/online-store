@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import { logo, logoLight } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
 import { navBarList } from "../../../constants";
-import Flex from "../../designLayouts/Flex";
-import HeaderBottom from "./HeaderBottom";
+import { useTranslation } from "react-i18next";
+
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(true);
@@ -16,6 +16,8 @@ const Header = () => {
   const [category, setCategory] = useState(false);
   const [brand, setBrand] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation(["layout"]); 
+
   useEffect(() => {
     let ResponsiveMenu = () => {
       if (window.innerWidth < 667) {
@@ -55,7 +57,8 @@ const Header = () => {
                        mb-2 p-2
                     items-center">
                         <span>{icon}</span>
-                        <span>{title}</span>
+                        <span>{t(`${title}`, { ns: "layout" })}</span>
+
                         </li>
                     </NavLink>
                   ))}

@@ -1,4 +1,6 @@
+import { useTranslation } from "react-i18next";
 import { AiFillContacts, AiFillHome } from "react-icons/ai";
+
 import { BiDesktop } from "react-icons/bi";
 import { BsBagFill, BsCardList, BsMusicNoteBeamed, BsPhone } from "react-icons/bs";
 import { FaCarSide } from "react-icons/fa";
@@ -34,39 +36,37 @@ import {
 } from "../assets/images/index";
 
 // =================== NavBarList Start here ====================
+
 export const navBarList = [
   {
     _id: 1001,
-    title: "Home",
-    link: "/",
-    icon: <AiFillHome style={{ fontSize: '22px' }} />
+    title: 'Home',
+    link: '/',
+    icon: <AiFillHome style={{ fontSize: '22px' }} />,
   },
   {
     _id: 1003,
-    title: "Dashboard",
-    link: "/dashboard",
-    icon:<MdDashboard style={{ fontSize: '22px' }}/>
-
+    title: 'Dashboard',
+    link: '/dashboard',
+    icon: <MdDashboard style={{ fontSize: '22px' }} />,
   },
   {
     _id: 1004,
-    title: "Products",
-    link: "/products",
-    icon:<BsBagFill style={{ fontSize: '22px' }}/>
-
+    title: 'Products',
+    link: '/products',
+    icon: <BsBagFill style={{ fontSize: '22px' }} />,
   },
- 
   {
     _id: 1002,
     title: "Feeds",
-    link: "/feeds",
-    icon:<MdFeed style={{ fontSize: '22px' }}/>
-
-  },
-
-
-
+    link: '/feeds',
+    icon: <MdFeed style={{ fontSize: '22px' }} />,
+  } 
 ];
+
+
+
+
 
 export const filterOption = [
   { title: 'All', icon: <BsCardList style={{ fontSize: '28px' }} /> },

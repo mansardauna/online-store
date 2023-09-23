@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, startTransition } from 'react';
 import Product from '../../components/home/Products/Product';
 import Sort from './Sort';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import Pagination from '../../components/ui/Pagination';
 
 import { categoriesData, filterOption } from '../../constants';
+
+// Create a loading component to display while data is loading
+function Loading() {
+  return <div>Loading...</div>;
+}
 
 const ProductList = () => {
   const [filteredData, setFilteredData] = useState([]);
@@ -18,20 +23,27 @@ const ProductList = () => {
   const mockApiUrl = "https://fakestoreapi.com/products"; // Replace with your mock API URL
 
   useEffect(() => {
-    fetch(mockApiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setFilteredData(data);
-        setSortedData(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data from the API:', error);
+    const fetchData = async () => {
+      await startTransition(() => {
+        fetch(mockApiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            setFilteredData(data);
+            setSortedData(data);
+          })
+          .catch((error) => {
+            console.error('Error fetching data from the API:', error);
+          });
       });
+    };
+
+    fetchData();
   }, []);
 
   const filterResult = (catItems) => {
     setSelectedOption(catItems);
   };
+
 
   const sortResult = (filterItems) => {
     setSelectedOption('All');
@@ -70,40 +82,43 @@ const ProductList = () => {
         <div className='justify-between w-full'></div>
         <div className='md:flex mt-10 block w-full'>
           <div>
-            {toggle || selectOption === 'All' ? (
-              <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
-                {currentItems.map((product) => (
-                  <div className='p-2' key={product._id}>
-                    <Product
-                      _id={product._id}
-                      img={product.image}
-                      productName={product.title}
-                      price={product.price}
-                      category={product.category}
-                      color={product.color}
-                      des={product.description}
-                      videoUrl={product.videoUrl}
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
-                {filteredData.map((product) => (
-                  <div className='p-2' key={product._id}>
-                    <Product
-                      _id={product._id}
-                      img={product.image}
-                      productName={product.title}
-                      price={product.price}
-                      category={product.category}
-                      color={product.color}
-                      des={product.description}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+            
+            <Suspense fallback={<Loading />}>
+              {toggle || selectOption === 'All' ? (
+                <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
+                  {currentItems.map((product) => (
+                    <div className='p-2' key={product._id}>
+                      <Product
+                        _id={product._id}
+                        img={product.image}
+                        productName={product.title}
+                        price={product.price}
+                        category={product.category}
+                        color={product.color}
+                        des={product.description}
+                        videoUrl={product.videoUrl}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
+                  {filteredData.map((product) => (
+                    <div className='p-2' key={product._id}>
+                      <Product
+                        _id={product._id}
+                        img={product.image}
+                        productName={product.title}
+                        price={product.price}
+                        category={product.category}
+                        color={product.color}
+                        des={product.description}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Suspense>
             <Pagination
               pageCount={Math.ceil(filteredData.length / itemsPerPage)}
               currentPage={currentPage}
