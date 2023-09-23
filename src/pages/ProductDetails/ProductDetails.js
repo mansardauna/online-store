@@ -5,6 +5,8 @@ import ProductInfo from '../../components/pageProps/productDetails/ProductInfo';
 import ProductsOnSale from '../../components/pageProps/productDetails/ProductsOnSale';
 import ReactPlayer from 'react-player';
 import Button from '../../components/ui/Button';
+import { useTranslation } from 'react-i18next';
+import JSZip from 'jszip';
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -21,13 +23,34 @@ const ProductDetails = () => {
   }, [location, productInfo]);
 
   // Function to handle the download button click event
-  const handleDownload = async () => {
+    // Function to handle the download button click event
+    const handleDownload = async () => {
+      const zip = new JSZip();
   
-  };
+      // Fetch the product image
+      const response = await fetch(productInfo.img);
+      const imageBlob = await response.blob();
+  
+      // Add the product image to the ZIP file
+      zip.file('product_image.png', imageBlob);
+  
+      // Generate the ZIP file
+      const content = await zip.generateAsync({ type: 'blob' });
+  
+      // Create a download link
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(content);
+      a.download = 'product_image.zip';
+      a.style.display = 'none';
+  
+      // Trigger the download
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    };
 
   // Function to handle user feedback submission
   const handleFeedbackSubmit = () => {
-    
     setFeedback('');
     setImage(null);
   };
@@ -37,6 +60,7 @@ const ProductDetails = () => {
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
   };
+  const {t} = useTranslation(["layout"])
 
   return (
     <div className="w-full mx-auto border-b-[1px] border-b-gray-300">
@@ -49,14 +73,8 @@ const ProductDetails = () => {
             <ProductsOnSale />
           </div>
           <div className="h-60 m-auto xl:col-span-2">
-           
             {videoUrl ? (
-              <ReactPlayer
-                url={videoUrl}
-                controls
-                width="100%"
-                height="100%"
-              />
+              <ReactPlayer url={videoUrl} controls width="100%" height="100%" />
             ) : (
               <img
                 src={productInfo.img}
@@ -68,17 +86,16 @@ const ProductDetails = () => {
           <div className="h-full w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center">
             <ProductInfo productInfo={productInfo} />
             {videoUrl ? (
-              <button onClick={handleDownload}>Download Video</button>
+              <button onClick={handleDownload}>{t("downloadVideo")}</button>
             ) : (
-              <button onClick={handleDownload}>Download Product Image</button>
+              <button onClick={handleDownload}>{t("downloadImage")}</button>
             )}
 
-            {/* Feedback section */}
-           
-          </div>
           
+          </div>
         </div>
-        <div className="mt-4 w-1/2 m-auto mb-10">
+          {/* Feedback section */}
+          <div className="mt-4 w-1/2 m-auto mb-10">
               <h2 className="text-xl font-semibold mb-2 text-center">Product Feedback</h2>
               <textarea
                 value={feedback}
@@ -88,19 +105,20 @@ const ProductDetails = () => {
                 className="w-full p-2 border border-gray-300 rounded"
               ></textarea>
               <div className='flex md:flex-row flex-col justify-between'>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="mt-2 w-1/2 "
-              />
-              <Button variant="primary"
-                onClick={handleFeedbackSubmit}
-                className="mt-2 bg-primeColor text-white rounded hover:bg-black duration-300"
-              >
-                Submit Feedback
-              </Button>
-            </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="mt-2 w-1/2 "
+                />
+                <Button
+                  variant="primary"
+                  onClick={handleFeedbackSubmit}
+                  className="mt-2 bg-primeColor text-white rounded hover:bg-black duration-300"
+                >
+                  {t("submit")}
+                </Button>
+              </div>
             </div>
       </div>
     </div>

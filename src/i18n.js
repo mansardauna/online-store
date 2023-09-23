@@ -3,20 +3,20 @@ import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 
 i18n
-  .use(Backend) // Load translations using the HTTP backend
-  .use(initReactI18next) // Initialize react-i18next
+  .use(Backend)
+  .use(initReactI18next) 
   .init({
-    lng: 'en', // Set the default language
-    fallbackLng: 'en', // Fallback language
+    lng: 'en', 
+    fallbackLng: 'en',
     backend: {
       loadPath: '/Translation/{{lng}}/layout.json',
 
     },
     interpolation: {
-      escapeValue: false, // React already escapes values, so no need to escape again
+      escapeValue: false, 
     },
     react: {
-      useSuspense: false, // Disable suspense mode (use only if you encounter issues)
+      useSuspense: false,
     },
   });
 

@@ -9,16 +9,13 @@ import {
 } from "react-router-dom";
 import BestSellers from "./components/home/BestSellers/BestSellers";
 import FooterBottom from "./components/home/Footer/FooterBottom";
-import Header from "./components/home/Header/Header";
 import HeaderBottom from "./components/home/Header/HeaderBottom";
 import NewArrivals from "./components/home/NewArrivals/NewArrivals";
 import SpecialOffers from "./components/home/SpecialOffers/SpecialOffers";
-import SpecialCase from "./components/SpecialCase/SpecialCase";
 import SignUp from "./pages/Account/SignUp";
 import Cart from "./pages/Cart/Cart";
 import Watch from "./pages/Cart/Watch";
 import Order from "./pages/Cart/Order";
-import Contact from "./pages/feed/feed";
 import SignIn from "./pages/Account/SignIn"
 import Home from "./pages/Home/Home";
 import Offer from "./pages/Offer/Offer";
@@ -26,8 +23,6 @@ import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import ProductList from "./pages/ProductList/ProductList";
-import Toast from "./components/ui/ToastMessage";
-
 import Sidebar from "./components/ui/Sidebar";
 import ComingSoon from "./pages/Coming/ComingSoon";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -44,17 +39,15 @@ const Layout = () => {
       {isLoggin && (
         <div className="flex">
           <div className="w-[17%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-200 md:block hidden ">
-    <Sidebar />
- 
+            <Sidebar />
           </div>
-        
+
           <div className="md:w-[83%] md:ml-[17%] w-full ml-0">
-          
-            <HeaderBottom/>
+            <HeaderBottom />
             <ScrollRestoration />
             <Outlet />
-          <FooterBottom/>
-        <MobileNav />
+            <FooterBottom />
+            <MobileNav />
           </div>
         </div>
       )}
@@ -104,8 +97,8 @@ function App() {
     <>
       <div className="font-bodyFont">
         <RouterProvider router={router} />
-        </div>
-      
+      </div>
+
     </>
   );
 }

@@ -1,18 +1,18 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import BrowserHistory from "./BrowserHistory";
 import ItemCard from "./OrderCard";
 import PaymentMethod from "./PaymentMethod";
 import Settings from "./Settings";
 import UserCard from "./UserCard";
 
 const UserProfile = () => {
-  // Use useSelector to access userProfile from the Redux store
+  const {t} = useTranslation (["layout"])
   const userProfile = useSelector((state) => state.auth.userProfile);
 
   if (!userProfile) {
     // Handle case when userProfile is not available (e.g., user is not logged in)
-    return <div>User is not logged in.</div>;
+    return <div>{t("userNot" ,{ns:"layout"})}</div>;
   }
 
   return (

@@ -1,9 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { BiEdit, BiLogOut } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const UserCard = () => {
+  const { t } = useTranslation(["layout"]);
+
   const userProfile = useSelector((state) => state.auth.userProfile);
 
   if (!userProfile) {
@@ -27,21 +30,20 @@ const UserCard = () => {
         <div> {userProfile.email}</div>
       </div>
       <div className="flex gap-7">
-      <Link to="/signin">
-     <div className='flex items-center text-sm rounded-md px-4 cursor-pointer hover:bg-gray-800 bg-black p-1 text-white gap-2'>
-     <BiLogOut/>
-     <div>Logout</div>
-     </div>
-     </Link>
-     <Link to="/coming">
-     <div className='flex items-center  text-sm rounded-md px-4 cursor-pointer shadow-md p-1  gap-2'>
-     <BiEdit/>
-     <div>Edit profile</div>
-     </div>
-     </Link>
+        <Link to="/signin">
+          <div className='flex items-center text-sm rounded-md px-4 cursor-pointer hover:bg-gray-800 bg-black p-1 text-white gap-2'>
+            <BiLogOut />
+            <div> {t("logout", { ns: "layout" })}</div>
+          </div>
+        </Link>
+        <Link to="/coming">
+          <div className='flex items-center  text-sm rounded-md px-4 cursor-pointer shadow-md p-1  gap-2'>
+            <BiEdit />
+            <div> {t("edit", { ns: "layout" })}</div>     </div>
+        </Link>
 
       </div>
-      
+
     </div>
   );
 };

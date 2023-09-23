@@ -16,7 +16,19 @@
   "order": "order",
   "profile":"Profile",
   "signUp":"Sign Up",
-  "logout":"Logout"
+  "logout":"Logout",
+  "lorem": "Lorem ipsum dolor sit amet consectetur adipisicing elit Repellat cupiditate modi amet Facilis aperiam quaerat",
+  "ShopNow": "Shop Now",
+  "edit":"Edit Profile",
+  "payMethod": "Payment Method",
+  "settings": "Settings",
+  "userNot":"User is not logged in.",
+  "coming": "Coming Soon !",
+  "pageSoon": "This page will be active soon",
+  "Continue": " Continue Shopping",
+  "downloadVideo" : "Download Video",
+  "downloadImage" : "Download Image",
+  "feedback": "Product Feedback",
+  "submit": "Submit"
   
-
 }

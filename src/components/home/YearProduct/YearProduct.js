@@ -20,8 +20,7 @@ const YearProduct = () => {
           {t("productYear", { ns: "layout" })}
           </h1>
           <p className="text-base font-normal text-primeColor max-w-[600px] mr-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
-            cupiditate modi amet! Facilis, aperiam quaerat.
+          {t("lorem", { ns: "layout" })}
           </p>
           <ShopNow />
         </div>

@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
+import { FaSearch, FaUser, FaCaretDown, FaLanguage } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
 import { authAction } from "../../../redux/authSlice";
-import Header from "./Header";
 import { useTranslation } from "react-i18next";
+
 
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
   const [show, setShow] = useState(false);
+  const [showLang, setShowLang] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const ref = useRef();
@@ -30,7 +30,10 @@ const HeaderBottom = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [showSearchBar, setShowSearchBar] = useState(false);
 
-const {t} =useTranslation(["layout"])
+  const { t, i18n } = useTranslation('layout');
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language); 
+  };
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -128,7 +131,7 @@ const {t} =useTranslation(["layout"])
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="absolute top-6 left-0 z-50 bg-primeColor w-44 text-[#767676] h-auto p-4 pb-6"
+                className="absolute top-6 left-0 z-50 bg-primeColor w-32 text-[#767676] h-auto p-4 pb-6"
               >
                 <Link to="">
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
@@ -147,14 +150,44 @@ const {t} =useTranslation(["layout"])
                 </li>
               </motion.ul>
             )}
-            <Link to="/cart">
-              <div className="relative">
-                <FaShoppingCart />
-                <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
-                  {products.length > 0 ? products.length : 0}
-                </span>
-              </div>
-            </Link>
+     
+          <div onClick={() => setShowLang(!showLang)} className="flex text-2xl">
+          <FaLanguage />
+             
+            </div>
+            {showLang && (
+              <motion.ul
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="absolute top-6 left-0 z-50 bg-primeColor w-32 text-[#767676] h-auto p-4 pb-6"
+              >
+              
+                  <li 
+                  onClick={() => changeLanguage("en")}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  {t("English", { ns: "layout" })}
+                  </li>
+            
+              
+                  <li 
+                  onClick={() => changeLanguage("es")}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  {t("Spanish", { ns: "layout" })}
+                  </li>
+            
+                  <li 
+                  onClick={() => changeLanguage("ar")}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  {t("Arabic", { ns: "layout" })}
+                  </li>
+                  <li 
+                  onClick={() => changeLanguage("fr")}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  {t("French", { ns: "layout" })}
+                  </li>
+              </motion.ul>
+            )}
           </div>
         </Flex>
       </div>
