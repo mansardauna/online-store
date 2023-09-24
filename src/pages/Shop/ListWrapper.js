@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import Product from "../../home/Products/Product";
-import { paginationItems } from "../../../constants";
+import { paginationItems } from "../../constants";
+
+import ListView from "./ListView";
 
 const items = paginationItems;
 function Items({ currentItems }) {
@@ -9,8 +10,8 @@ function Items({ currentItems }) {
     <>
       {currentItems &&
         currentItems.map((item) => (
-          <div key={item._id} className="w-full">
-            <Product
+          <div key={item._id} className="w-full mt-5 md:mt-0 ">
+            <ListView
               _id={item._id}
               img={item.img}
               productName={item.productName}
@@ -26,7 +27,7 @@ function Items({ currentItems }) {
   );
 }
 
-const Pagination = ({ itemsPerPage }) => {
+const ListWrapper = ({ itemsPerPage }) => {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
@@ -52,10 +53,10 @@ const Pagination = ({ itemsPerPage }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mdl:gap-4 lg:gap-10">
+      <div className="grid grid-cols-1  mdl:gap-4 lg:gap-10">
         <Items currentItems={currentItems} />
       </div>
-      <div className="flex flex-col mdl:flex-row justify-center mdl:justify-between items-center">
+      <div className="flex flex-col justify-center mdl:justify-between items-center">
         <ReactPaginate
           nextLabel=""
           onPageChange={handlePageClick}
@@ -78,4 +79,4 @@ const Pagination = ({ itemsPerPage }) => {
   );
 };
 
-export default Pagination;
+export default ListWrapper;

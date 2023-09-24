@@ -2,9 +2,11 @@ import React, { useState, useEffect, Suspense, startTransition } from 'react';
 import Product from '../../components/home/Products/Product';
 import Sort from './Sort';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
-import Pagination from '../../components/ui/Pagination';
 
 import { categoriesData, filterOption } from '../../constants';
+import ProductBanner from '../../components/pageProps/shopPage/ProductBanner';
+import ListWrapper from '../Shop/ListWrapper';
+import Pagination from '../../components/pageProps/shopPage/Pagination';
 
 // Create a loading component to display while data is loading
 function Loading() {
@@ -17,8 +19,9 @@ const ProductList = () => {
   const [toggle, setToggle] = useState(false);
   const [selectOption, setSelectedOption] = useState('All');
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage] = useState(12);
-
+  const [itemsPerPage, setItemsPerPage] = useState(12);
+  const [viewMode, setViewMode] = useState("grid");
+  
   // Mock API endpoint
   const mockApiUrl = "https://fakestoreapi.com/products"; // Replace with your mock API URL
 
@@ -57,19 +60,16 @@ const ProductList = () => {
     setSortedData(toggle ? [...result].sort((a, b) => a.filter.localeCompare(b.filter)) : result);
   }, [selectOption, toggle, filteredData]);
 
-  const handlePageClick = (data) => {
-    const selectedPage = data.selected;
-    setCurrentPage(selectedPage);
-  };
-
-  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
-
+  
   return (
     <div className='md:p-3 relative p-2 mb-4'>
       <Breadcrumbs title='Products' />
-      <div className='flex absolute z-10 top-0 px-4 md:p-1 gap-4 right-3'>
+      <div className='flex md:w-10/12 w-6/12 z-10 md:p-1 gap-4'>
+      <ProductBanner
+            itemsPerPage={itemsPerPage}
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+          />
         <Sort
           filterOption={filterOption}
           selectOption={selectOption}
@@ -83,47 +83,41 @@ const ProductList = () => {
         <div className='md:flex mt-10 block w-full'>
           <div>
             
-            <Suspense fallback={<Loading />}>
+          
+          <Suspense fallback={<Loading />}>
               {toggle || selectOption === 'All' ? (
-                <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
-                  {currentItems.map((product) => (
-                    <div className='p-2' key={product._id}>
-                      <Product
-                        _id={product._id}
-                        img={product.image}
-                        productName={product.title}
-                        price={product.price}
-                        category={product.category}
-                        color={product.color}
-                        des={product.description}
-                        videoUrl={product.videoUrl}
-                      />
+                <div>
+                    <div className='p-2'>
+                      {viewMode === "grid" ? (
+                        <div className=''>
+             <Pagination itemsPerPage={itemsPerPage}/>
+                        </div>
+                      ) : (
+                        <ListWrapper itemsPerPage={itemsPerPage}/>
+                      )}
                     </div>
-                  ))}
+                  
                 </div>
               ) : (
-                <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
-                  {filteredData.map((product) => (
-                    <div className='p-2' key={product._id}>
-                      <Product
-                        _id={product._id}
-                        img={product.image}
-                        productName={product.title}
-                        price={product.price}
-                        category={product.category}
-                        color={product.color}
-                        des={product.description}
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
+                <div className='p-2'>
+                {filteredData.length > 0 ? (
+                  <div className='p-2'>
+                    {viewMode === "grid" ? (
+                      <div className="">
+                        <Pagination itemsPerPage={itemsPerPage}/>
+                      </div>
+                    ) : (
+                      <ListWrapper itemsPerPage={itemsPerPage} />
+                    )}
+                  </div>
+                ) : (
+                  <div>No data available.</div>
+                )}
+              </div>
+            )}
+
             </Suspense>
-            <Pagination
-              pageCount={Math.ceil(filteredData.length / itemsPerPage)}
-              currentPage={currentPage}
-              onPageChange={handlePageClick}
-            />
+           
           </div>
         </div>
       </div>
