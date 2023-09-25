@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 
-const Pagination = ({ pageCount, currentPage, onPageChange }) => {
+const PaginationComponent = ({ pageCount, currentPage, onPageChange }) => {
   return (
     <div className="mt-4">
       <ReactPaginate
@@ -19,4 +19,4 @@ const Pagination = ({ pageCount, currentPage, onPageChange }) => {
   );
 };
 
-export default Pagination;
+export default PaginationComponent;
