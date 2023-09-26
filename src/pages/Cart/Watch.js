@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import WatchItem from "./ItemWatch";
+import { useTranslation } from "react-i18next";
 
 const Watch = () => {
+  const { t } = useTranslation(["layout"])
   const watchlist = useSelector((state) => state.orebiReducer.watchlist);
   const [totalAmt, setTotalAmt] = useState("");
   const [shippingCharge, setShippingCharge] = useState("");
@@ -27,12 +29,12 @@ const Watch = () => {
     }
   }, [totalAmt]);
   return (
-    <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="Watch-List" />
+    <div className="max-w-9/12 m-auto p-2">
+      <Breadcrumbs title={t("wishList")} />
       {watchlist.length > 0 ? (
-        <div className="pb-20 ">
+        <div className=" ">
 
-          <div className="mt-5 grid md:grid-cols-3 grid-cols-1">
+          <div className="m-auto w-11/12 grid md:grid-cols-3 grid-cols-1 gap-4">
             {watchlist.map((item) => (
               <div key={item._id}>
                 <WatchItem item={item} />
@@ -54,14 +56,15 @@ const Watch = () => {
           </div>
           <div className="max-w-[500px] p-4 py-8 bg-white flex gap-4 flex-col items-center rounded-md shadow-lg">
             <h1 className="font-titleFont text-xl font-bold uppercase">
-              Your Watch list is Empty
+            {t("emptyCart")}
             </h1>
             <p className="text-sm text-center px-10 -mt-2">
-              Your items will appear here once you click on watch-list
+            {t("track")}
+
             </p>
             <Link to="/products">
               <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
-                Continue Shopping
+              {t("Continue")}
               </button>
             </Link>
           </div>

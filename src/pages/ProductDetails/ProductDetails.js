@@ -22,19 +22,17 @@ const ProductDetails = () => {
     setVideoUrl(location.state.item.videoUrl);
   }, [location, productInfo]);
 
-  // Function to handle the download button click event
-    // Function to handle the download button click event
+ 
     const handleDownload = async () => {
       const zip = new JSZip();
   
-      // Fetch the product image
+
       const response = await fetch(productInfo.img);
       const imageBlob = await response.blob();
   
-      // Add the product image to the ZIP file
+
       zip.file('product_image.png', imageBlob);
   
-      // Generate the ZIP file
       const content = await zip.generateAsync({ type: 'blob' });
   
       // Create a download link
@@ -43,19 +41,16 @@ const ProductDetails = () => {
       a.download = 'product_image.zip';
       a.style.display = 'none';
   
-      // Trigger the download
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
     };
 
-  // Function to handle user feedback submission
   const handleFeedbackSubmit = () => {
     setFeedback('');
     setImage(null);
   };
 
-  // Function to handle image upload
   const handleImageUpload = (e) => {
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
@@ -66,7 +61,7 @@ const ProductDetails = () => {
     <div className="w-full mx-auto border-b-[1px] border-b-gray-300">
       <div className="max-w-container mx-auto px-4">
         <div className="xl:-mt-10 -mt-7">
-          <Breadcrumbs title="" prevLocation={prevLocation} />
+          <Breadcrumbs title={t("productDetails")} prevLocation={prevLocation} />
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
           <div className="h-full">
@@ -96,11 +91,11 @@ const ProductDetails = () => {
         </div>
           {/* Feedback section */}
           <div className="mt-4 w-1/2 m-auto mb-10">
-              <h2 className="text-xl font-semibold mb-2 text-center">Product Feedback</h2>
+              <h2 className="text-xl font-semibold mb-2 text-center">      {t("productFeed")}</h2>
               <textarea
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                placeholder="Write your feedback here..."
+                placeholder=   {t("writeFeed")}
                 rows="4"
                 className="w-full p-2 border border-gray-300 rounded"
               ></textarea>

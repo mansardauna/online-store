@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import { resetCart } from "../../redux/orebiSlice";
 import ItemOrder from "./itemOrder";
+import { useTranslation } from "react-i18next";
 
 const Order = () => {
+  const { t } = useTranslation (["layout"])
   const dispatch = useDispatch();
-  const orderlist = useSelector((state) => state.orebiReducer.order);
+  const orderlist = useSelector((state) => state.orebiReducer.orders);
   const [totalAmt, setTotalAmt] = useState("");
   const [showReceipt, setShowReceipt] = useState(false);
 
@@ -60,10 +60,10 @@ const Order = () => {
       {orderlist.length > 0 ? (
         <div className="pb-20">
           <div className="w-full h-20 bg-[#F5F7F7] text-primeColor hidden lgl:grid grid-cols-5 place-content-center px-6 text-lg font-titleFont font-semibold">
-            <h2 className="col-span-2">Product</h2>
-            <h2>Price</h2>
-            <h2>Quantity</h2>
-            <h2>Sub Total</h2>
+            <h2 className="col-span-2">{t("Products")}</h2>
+            <h2>{t("price")}</h2>
+            <h2>{t("quantity")}</h2>
+            <h2>{t("Grand")}</h2>
           </div>
           <div className="mt-5">
             {orderlist.map((item) => (
@@ -73,50 +73,8 @@ const Order = () => {
             ))}
           </div>
 
-          <button
-            onClick={() => dispatch(resetCart())}
-            className="py-2 px-10 bg-red-500 text-white font-semibold uppercase mb-4 hover:bg-red-700 duration-300"
-          >
-            Reset Order
-          </button>
-
-          <div className="flex flex-col mdl:flex-row justify-between border py-4 px-4 items-center gap-2 mdl:gap-0">
-
-            <p className="text-lg font-semibold">Update Order list</p>
-          </div>
-          {/* <div className="max-w-7xl gap-4 flex justify-end mt-4">
-            <div className="w-96 flex flex-col gap-4">
-              <h1 className="text-2xl font-semibold text-right">Item totals</h1>
-              <div>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  Subtotal
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    ${totalAmt}
-                  </span>
-                </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  Shipping Charge
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    ${shippingCharge}
-                  </span>
-                </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
-                  Total
-                  <span className="font-bold tracking-wide text-lg font-titleFont">
-                    ${totalAmt + shippingCharge}
-                  </span>
-                </p>
-              </div>
-              <div className="flex justify-end">
-                <Link to="/paymentgateway">
-                  <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
-                    Proceed to Checkout
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div> */}
-          <div className="flex justify-end">
+         
+          <div className="flex justify-center">
           <button
             onClick={() => {
               setShowReceipt(true);
@@ -124,7 +82,7 @@ const Order = () => {
             }}
             className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300"
           >
-            View Receipt
+            {t("reciept")}
           </button>
         </div>
         </div>
@@ -140,15 +98,15 @@ const Order = () => {
           </div>
           <div className="max-w-[500px] p-4 py-8 bg-white flex gap-4 flex-col items-center rounded-md shadow-lg">
             <h1 className="font-titleFont text-xl font-bold uppercase">
-              You have 0 order
+            {t("zeroOrder")}
             </h1>
             <p className="text-sm text-center px-10 -mt-2">
-              You can track down your ordered Item here, go place an order and the item will appear
+              {t("track")}
             </p>
             
             <Link to="/products">
               <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
-                Continue Shopping
+               {t("Continue")}
               </button>
             </Link>
           </div>

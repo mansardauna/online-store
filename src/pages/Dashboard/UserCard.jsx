@@ -22,7 +22,7 @@ const UserCard = () => {
 
   return (
     <div className='h-80 bg-white rounded-md p-2 shadow-lg flex gap-5 flex-col items-center text-center'>
-      <div className='w-16 h-16 rounded-full bg-blue-500 text-white flex items-center justify-center mt-5 text-2xl font-bold'>
+      <div className='w-32 h-32 rounded-full bg-blue-500 text-white flex items-center justify-center mt-5 text-4xl font-bold'>
         {getInitials(userProfile.name)}
       </div>
       <div className="my-3">

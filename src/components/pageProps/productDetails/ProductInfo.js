@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addOrder, addToCart } from "../../../redux/orebiSlice";
@@ -7,6 +8,7 @@ import CartModal from "../../ui/CartModal";
 
 
 const ProductInfo = ({ productInfo }) => {
+  const { t } = useTranslation (["layout"])
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [order, setOrder] = useState([]); // Track the user's order
@@ -22,6 +24,7 @@ const ProductInfo = ({ productInfo }) => {
         badge: productInfo.badge,
         price: productInfo.price,
         colors: productInfo.color,
+        category: productInfo.category
       })
     );
     setModalOpen(true);
@@ -39,15 +42,12 @@ const ProductInfo = ({ productInfo }) => {
   }, [isModalOpen]);
 
   const handleBuy = () => {
-    // Create a copy of the current order list and add the selected product
     dispatch(addOrder(productInfo));
 
     const updatedOrder = [...order, productInfo];
 
-    // Update the order state with the new list
     setOrder(updatedOrder);
 
-    // Provide feedback to the user (optional)
     alert('Product added to your order!');
   };
 
@@ -56,7 +56,7 @@ const ProductInfo = ({ productInfo }) => {
       <h2 className="text-4xl font-semibold">{productInfo.productName}</h2>
       <p className="text-xl font-semibold">${productInfo.price}</p>
       <p className="text-base text-gray-600">{productInfo.des}</p>
-      <p className="text-sm">Be the first to leave a review.</p>
+      
       <p className="font-medium text-lg">
         <span className="font-normal">Colors:</span> {productInfo.color}
       </p>
@@ -65,7 +65,7 @@ const ProductInfo = ({ productInfo }) => {
         onClick={handleAddToCart}
         className="w-full py-4  hover:bg-gray-300 duration-300 rounded text-lg font-titleFont"
       >
-        Add to Cart
+        {t("addCart")}
       </Button>
       <CartModal isOpen={isModalOpen} onClose={closeModal} item={productInfo.productName} type="cart"/>
       <Link to="/paymentgateway">
@@ -74,13 +74,10 @@ const ProductInfo = ({ productInfo }) => {
       onClick={handleBuy}
         className="w-full rounded border-primeColor py-4 bg-primeColor hover:bg-gray-600 duration-300 text-white text-lg font-titleFont"
       >
-        By Now
+       {t("buyNow")}
+
       </Button>
       </Link>
-      <p className="font-normal text-sm">
-        <span className="text-base font-medium"> Categories:</span> Spring
-        collection, Streetwear, Women Tags: featured SKU: N/A
-      </p>
     </div>
   );
 };

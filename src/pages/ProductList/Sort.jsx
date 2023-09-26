@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import NavTitle from '../../components/pageProps/shopPage/shopBy/NavTitle';
+import { useTranslation } from 'react-i18next';
 
 const Sort = ({ filterOption, selectOption, filterResult, sortResult, categoriesData }) => {
   const [showSortingOptions, setShowSortingOptions] = useState(false);
-
-  const handleFilterChange = (event) => {
-    const selectedOption = event.target.value;
-    selectOption === selectedOption ? setShowSortingOptions(!showSortingOptions) : setShowSortingOptions(true);
-  };
-
+const { t } = useTranslation(["layout"])
   return (
     <div className="md:relative cursor-pointer bg-white p-2">
       <div className="space-x-3">
@@ -20,7 +15,7 @@ const Sort = ({ filterOption, selectOption, filterResult, sortResult, categories
         >
           {filterOption.map(({ title }) => (
             <option key={title} value={title}>
-              {title}
+             {t(`${title}`, {ns: "layout"})}
             </option>
           ))}
         </select>

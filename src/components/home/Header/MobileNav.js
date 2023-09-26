@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { MdClose } from "react-icons/md";
-import { HiMenuAlt2 } from "react-icons/hi";
+import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { logo, logoLight } from "../../../assets/images";
-import Image from "../../designLayouts/Image";
 import { navBarList } from "../../../constants";
-import Flex from "../../designLayouts/Flex";
-import HeaderBottom from "./HeaderBottom";
 
 const MobileNav = () => {
   const [showMenu, setShowMenu] = useState(true);

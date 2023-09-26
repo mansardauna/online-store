@@ -10,13 +10,14 @@ import { useTranslation } from "react-i18next";
 
 
 const Header = () => {
+  const { t } = useTranslation(["layout"]); 
+
   const [showMenu, setShowMenu] = useState(true);
   
   const [sidenav, setSidenav] = useState(false);
   const [category, setCategory] = useState(false);
   const [brand, setBrand] = useState(false);
   const location = useLocation();
-  const { t } = useTranslation(["layout"]); 
 
   useEffect(() => {
     let ResponsiveMenu = () => {
@@ -37,14 +38,13 @@ const Header = () => {
           
 
           <div>
-            {showMenu && (
+           
               <motion.ul
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 className=" w-auto  flex flex-col z-50 p-0 gap-5"
               >
-                <>
                   {navBarList.map(({ _id, title, link, icon }) => (
                     <NavLink
                       key={_id}
@@ -53,18 +53,18 @@ const Header = () => {
                       state={{ data: location.pathname.split("/")[1] }}
                   
                     >
-                      <li  className="flex gap-4 w-full
+                      <div  className="flex gap-4 w-full
                        mb-2 p-2
                     items-center">
                         <span>{icon}</span>
-                        <span>{t(`${title}`, { ns: "layout" })}</span>
+                        <span>{t(`${title}`, {ns : "layout"})}</span>
 
-                        </li>
+                        </div>
                     </NavLink>
                   ))}
-                </>
+                
               </motion.ul>
-            )}
+            
            
               <div className="md:hidden block fixed bottom-0 left-0 w-full h-10 p-2  bg-[#F5F5F3] border-t border-gray-200 z-50">
                 <motion.div

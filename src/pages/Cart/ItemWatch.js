@@ -1,34 +1,54 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import {
   removeFromWatchlist,
 } from "../../redux/orebiSlice";
 
 const WatchItem = ({ item }) => {
+  const { t } = useTranslation (["layout"])
   const dispatch = useDispatch();
+  const _id = item.productName;
+  const idString = (_id) => {
+    return String(_id).toLowerCase().split(" ").join("");
+  };
+  const rootId = idString(_id);
+
+  const navigate = useNavigate();
+  const productItem = item;
+
+  const handleProductDetails = () => {
+    navigate(`/product/${rootId}`, {
+      state: {
+        item: productItem,
+      },
+    });
+  };
 
   return (
-    <div className=" w-96 mb-4 border  p-2">
-      <div className="m-auto flex w-fit">
-      <img className="w-40 h-40" src={item.image} alt="productImage" />
-      <div className="flex flex-col justify-between items-center ml-4">
-      <h1 className="font-titleFont uppercase font-semibold text-lg text-center">{item.name}</h1>
+    <div className=" rounded-md border p-2">
+      <div className="m-auto flex flex-col gap-3 w-fit">
+      <img className="w-52 h-40" src={item.image} alt="productImage" />
+      <div className="flex flex-col justify-between items-center">
+      <h1 className="font-titleFont uppercase font-semibold text-xl text-center">{t(`${item.name}`)}</h1>
    
-        <div className="flex text-sm font-thin">
-          ${item.price}
+        <div className="flex text-gray-400 text-lg font-thin">
+        {t(`$${item.price}`)}
         </div>
-        <div className=" flex gap-1 text-lg">
-        <Button
-      variant="primary"
-      className=" text-xs "
-      >
-        By Now
-      </Button>
+        <div className=" flex gap-5 mt-4 text-lg">
         <Button variant="primary" onClick={() => dispatch(removeFromWatchlist(item._id))}
           className=" w-fit p-2 border-none bg-red-500 rounded-md text-xs font-bold text-white cursor-pointer ">
-          Remove
+          {t("remove")}
         </Button>
+        <Button
+        onClick={handleProductDetails}
+      variant="primary"
+      className=" rounded-md shadow-md font-semibold text-xs "
+      >
+        {t("buyNow")}
+      </Button>
       </div>
       </div>
       </div>

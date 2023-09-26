@@ -4,8 +4,11 @@ import Sort from './Sort';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import { useEffect, useState } from 'react';
 import PaginationComponent from '../../components/ui/PaginationComponent';
+import { useTranslation } from 'react-i18next';
 
 const ProductList = () => {
+  const { t } = useTranslation(["layout"])
+
   const [filteredData, setFilteredData] = useState(paginationItems);
   const [sortedData, setSortedData] = useState(paginationItems);
   const [toggle, setToggle] = useState(false);
@@ -43,10 +46,9 @@ const ProductList = () => {
   const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
-
   return (
     <div className='md:p-3 relative p-2 mb-4'>
-      <Breadcrumbs title='Products' />
+      <Breadcrumbs title={t("product")} />
       <div className=' z-10 top-0 px-4 md:p-1 gap-4'>
         <Sort
           filterOption={filterOption}
@@ -65,7 +67,7 @@ const ProductList = () => {
                 {currentItems.map((product) => (
                   <div className='p-2' key={product._id}>
                     <Product
-                      _id={product._id}
+                      _id={product.id}
                       img={product.img}
                       productName={product.productName}
                       price={product.price}
@@ -82,7 +84,7 @@ const ProductList = () => {
                 {filteredData.map((product) => (
                   <div className='p-2' key={product._id}>
                     <Product
-                      _id={product._id}
+                      _id={product.id}
                       img={product.img}
                       productName={product.productName}
                       price={product.price}
