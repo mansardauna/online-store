@@ -91,7 +91,7 @@ const OrderHistory = () => {
                   className="float-right"
                   onClick={() => openModal(index)} // Pass the item index
                 >
-                  {t("viewReciept")}
+                  {t("viewReceipt")}
                 </Button>
               </div>
             ))}

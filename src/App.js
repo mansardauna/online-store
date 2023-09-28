@@ -29,6 +29,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import UserProfile from "./pages/Dashboard/UserProfile";
 import Feed from "./pages/feed/feed";
 import MobileNav from "./components/home/Header/MobileNav";
+import SpecialCase from "./components/SpecialCase/SpecialCase";
+import SideCart from "./components/ui/SideCart";
 
 
 
@@ -45,6 +47,11 @@ const Layout = () => {
           <div className="md:w-[83%] md:ml-[17%] w-full ml-0">
             <HeaderBottom />
             <ScrollRestoration />
+            <div className="absolute z-10 right-0 bottom-40">
+            <SpecialCase />
+            <SideCart />
+
+            </div>
             <Outlet />
             <FooterBottom />
             <MobileNav />

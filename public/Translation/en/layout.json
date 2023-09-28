@@ -63,5 +63,7 @@
   "wishList" : "Wish List",
   "new": "New",
 
-  "viewReciept": "View Reciept"
+  "viewReceipt": "View Receipt",
+  "Total" : "Total",
+  "buyAll" : "Buy All"
 }
