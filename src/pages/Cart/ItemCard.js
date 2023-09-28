@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ImCross } from "react-icons/im";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/ui/Button";
 import {
   deleteItem,
   decreaseQuantity,
@@ -8,9 +11,27 @@ import {
 } from "../../redux/orebiSlice";
 
 const ItemCard = ({ item }) => {
+  const {t } = useTranslation(["layout"])
+  const _id = item.productName;
+  const idString = (_id) => {
+    return String(_id).toLowerCase().split(" ").join("");
+  };
+  const rootId = idString(_id);
+
+  const navigate = useNavigate();
+  const productItem = item;
+
+  const handleProductDetails = () => {
+    navigate(`/product/${rootId}`, {
+      state: {
+        item: productItem,
+      },
+    });
+  };
+
   const dispatch = useDispatch();
   return (
-    <div className="w-full grid grid-cols-5 mb-4 border py-2">
+    <div className="w-full grid grid-cols-5 mb-4 relative border py-2">
       <div className="flex col-span-5 mdl:col-span-2 items-center gap-4 ml-4">
         <ImCross
           onClick={() => dispatch(deleteItem(item._id))}
@@ -23,25 +44,15 @@ const ItemCard = ({ item }) => {
         <div className="flex w-1/3 items-center text-lg font-semibold">
           ${item.price}
         </div>
-        <div className="w-1/3 flex items-center gap-6 text-lg">
-        <span
-            onClick={() => dispatch(decreaseQuantity({ _id: item._id }))}
-            className="w-6 h-6 bg-gray-100 text-2xl flex items-center justify-center hover:bg-gray-300 cursor-pointer duration-300 border-[1px] border-gray-300 hover:border-gray-300"
-          >
-            -
-          </span>
+        <div className="w-1/4 items-center gap-6 text-lg">
           <p>{item.quantity}</p>
-          <span
-            onClick={() => dispatch(increaseQuantity({ _id: item._id }))}
-            className="w-6 h-6 bg-gray-100 text-2xl flex items-center justify-center hover:bg-gray-300 cursor-pointer duration-300 border-[1px] border-gray-300 hover:border-gray-300"
-          >
-            +
-          </span>
         </div>
         <div className="w-1/3 flex items-center font-titleFont font-bold text-lg">
           <p>${item.quantity * item.price}</p>
         </div>
-      </div>
+        </div>
+        <Button variant={"primary"}
+        className="w-16 font-semibold rounded-md float-right shadow-md md:absolute right-5 top-14 text-xs h-8" onClick={handleProductDetails}>{t("buy")}</Button>
     </div>
   );
 };

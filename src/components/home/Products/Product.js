@@ -103,7 +103,7 @@ const Product = (props) => {
         {isVideoPlaying ? (
           <video
             width="100%"
-            height="auto"
+            height="80%"
             controls
             autoPlay
             onClick={() => setVideoPlaying(false)} 
@@ -119,7 +119,7 @@ const Product = (props) => {
             <img
               src={videoThumbnail || props.img}
               alt={props.productName}
-              className="w-full h-56 md:h-56"
+              className="w-full h-52 md:h-52"
             />
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <button className="bg-opacity-80 bg-black text-white rounded-full p-2">

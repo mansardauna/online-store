@@ -67,7 +67,7 @@ const ProductDetails = () => {
           <div className="h-full">
             <ProductsOnSale />
           </div>
-          <div className="h-60 m-auto xl:col-span-2">
+          <div className="h-80 m-auto xl:col-span-2">
             {videoUrl ? (
               <ReactPlayer url={videoUrl} controls width="100%" height="100%" />
             ) : (

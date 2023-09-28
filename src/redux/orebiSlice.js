@@ -75,9 +75,9 @@ export const orebiSlice = createSlice({
       );
 
       if (itemIndex !== -1) {
-        state.orders[itemIndex].quantity += action.payload.quantity;
+        state.orders[itemIndex].quantity += 1; // Set quantity to 1 when adding an existing item
       } else {
-        state.orders.push(action.payload);
+        state.orders.push({ ...action.payload, quantity: 1 }); // Set quantity to 1 for a new item
       }
     },
     removeOrder: (state, action) => {

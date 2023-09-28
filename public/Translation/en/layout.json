@@ -61,5 +61,7 @@
   "writeFeed" : "Write your feedback here...",
   "productDetails" : "Product Details",
   "wishList" : "Wish List",
-  "new": "New"
+  "new": "New",
+
+  "viewReciept": "View Reciept"
 }

@@ -77,6 +77,7 @@ const NewArrivals = () => {
             price={item.price}
             color={item.color}
             badge={true}
+            category={item.category}
             des={item.des}
             videoUrl={item.videoUrl}
           />

@@ -11,6 +11,7 @@ const ProductInfo = ({ productInfo }) => {
   const { t } = useTranslation (["layout"])
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
+  
   const [order, setOrder] = useState([]); // Track the user's order
 
 
@@ -42,13 +43,14 @@ const ProductInfo = ({ productInfo }) => {
   }, [isModalOpen]);
 
   const handleBuy = () => {
-    dispatch(addOrder(productInfo));
+    dispatch(addOrder(productInfo)
+    );
+    setModalOpen(true);
 
     const updatedOrder = [...order, productInfo];
+   setOrder(updatedOrder);
 
-    setOrder(updatedOrder);
-
-    alert('Product added to your order!');
+   
   };
 
   return (
@@ -68,16 +70,15 @@ const ProductInfo = ({ productInfo }) => {
         {t("addCart")}
       </Button>
       <CartModal isOpen={isModalOpen} onClose={closeModal} item={productInfo.productName} type="cart"/>
-      <Link to="/paymentgateway">
+      <Link to="/Order">
       <Button
       variant="primary"
       onClick={handleBuy}
         className="w-full rounded border-primeColor py-4 bg-primeColor hover:bg-gray-600 duration-300 text-white text-lg font-titleFont"
       >
        {t("buyNow")}
-
       </Button>
-      </Link>
+     </Link>
     </div>
   );
 };
