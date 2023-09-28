@@ -16,7 +16,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="flex-col md:flex-row flex  gap-5 m-auto md:w-11/12">
+    <div className="flex-col md:flex-row flex  gap-5 m-auto md:w-full">
       <div className="md:w-2/3 w-full rounded-md bg-[#F5F5F3] border border-gray-200  p-4 ">
         <div>
           <ItemCard />
