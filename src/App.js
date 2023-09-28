@@ -47,7 +47,7 @@ const Layout = () => {
           <div className="md:w-[83%] md:ml-[17%] w-full ml-0">
             <HeaderBottom />
             <ScrollRestoration />
-            <div className="absolute z-10 md:hidden right-0 bottom-40">
+            <div className=" fixed z-10 md:hidden right-0 bottom-40">
             <SpecialCase />
             <SideCart />
 
