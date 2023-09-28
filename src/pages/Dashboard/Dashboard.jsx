@@ -12,7 +12,7 @@ const Dashboard = () => {
   }, [location]);
 
   return (
-    <div className="max-w-container mx-auto px-4">
+    <div className="max-w-container mx-auto px-4 mb-4">
       <div>
        <UserProfile />
       </div>
