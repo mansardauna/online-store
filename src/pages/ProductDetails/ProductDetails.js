@@ -67,12 +67,13 @@ const ProductDetails = () => {
           <Breadcrumbs title={t('productDetails')} prevLocation={prevLocation} />
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
-          <div className="h-full">
+          {/* <div className="h-full">
             <ProductsOnSale />
-          </div>
-          <div className="h-80 m-auto xl:col-span-2">
+          </div> */}
+          <div className="h-80 md:h-96 md:w-[100%] m-auto xl:col-span-2">
             {videoUrl ? (
-              <ReactPlayer url={videoUrl} controls width="100%" height="100%" />
+              <ReactPlayer url={videoUrl} controls width="100%" height="100%"
+              className="" />
             ) : (
               <img
                 src={productInfo.img}
@@ -94,7 +95,7 @@ const ProductDetails = () => {
         {submittedFeedback && (
             <div className="mt-4 w-full border border-gray-200 rounded-md p-2">
               <Userfeed />
-              <span className=" bg-gray-200 ml-[7%] lg:ml-[5%] px-4 mb-5 p-2 rounded-lg">{submittedFeedback}</span>
+              <span className=" bg-gray-100 ml-[7%] lg:ml-[5%] px-4 mb-5 p-2 rounded-lg">{submittedFeedback}</span>
             </div>
           )}
         <div className="mt-4 w-9/12 lg:w-1/2 m-auto mb-10">
