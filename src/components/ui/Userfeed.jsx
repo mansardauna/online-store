@@ -20,14 +20,14 @@ const Userfeed = () => {
   };
 
   return (
-    <div className='flex gap-4'>
-      <div className='w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-4xl font-bold'>
+    <div className='flex gap-4 items-center'>
+      <div className='w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-bold'>
         {getInitials(userProfile.name)}
       </div>
       <div>
       <div className="my-3">
-        <div>{userProfile.name}</div>
-        <div> {userProfile.email}</div>
+        <div className=' font-semibold'>{userProfile.name}</div>
+        <div className='text-gray-300'> {userProfile.email}</div>
       </div>
       </div>
     </div>
