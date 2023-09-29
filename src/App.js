@@ -40,11 +40,11 @@ const Layout = () => {
     <>
       {isLoggin && (
         <div className="flex">
-          <div className="w-[17%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-200 md:block hidden ">
+          <div className="xl:w-[17%] md:w-[22%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-200 md:block hidden ">
             <Sidebar />
           </div>
 
-          <div className="md:w-[83%] md:ml-[17%] w-full ml-0">
+          <div className="xl:w-[83%] md:w-[78%] md:ml-[22%] xl:ml-[17%] w-full ml-0">
             <HeaderBottom />
             <ScrollRestoration />
             <div className=" fixed z-10 md:hidden right-0 bottom-40">

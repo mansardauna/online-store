@@ -8,12 +8,10 @@ import { paginationItems } from "../../../constants";
 import { authAction } from "../../../redux/authSlice";
 import { useTranslation } from "react-i18next";
 
-
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
   const [show, setShow] = useState(false);
-  const [showLang, setShowLang] = useState(false);
-  const [showUser, setShowUser] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(null); // Control both user and language dropdowns
   const navigate = useNavigate();
   const ref = useRef();
   useEffect(() => {
@@ -26,13 +24,22 @@ const HeaderBottom = () => {
     });
   }, [show, ref]);
 
+    // Define the toggleDropdown function
+    const toggleDropdown = (dropdown) => {
+      if (showDropdown === dropdown) {
+        setShowDropdown(null);
+      } else {
+        setShowDropdown(dropdown);
+      }
+    };
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   const { t, i18n } = useTranslation('layout');
   const changeLanguage = (language) => {
-    i18n.changeLanguage(language); 
+    i18n.changeLanguage(language);
   };
 
   const handleSearch = (e) => {
@@ -52,21 +59,19 @@ const HeaderBottom = () => {
   }
 
   return (
-    <div className="w-full bg-[#F5F5F3] mb-4 z-50 border-b border-gray-200 sticky top-0 rounded-sm  ">
+    <div className="w-full bg-[#F5F5F3] mb-4 z-50 border-b border-gray-200 sticky top-0 rounded-sm p-1 xl:pt-1 md:pt-7 ">
       <div className="max-w-container mx-auto">
         <div className="md:hidden block">
-     
-        <div className=" text-black font-bold font-dancing text-2xl w-full text-center bg-hite p-2 m-auto">     {t("digital", { ns: "layout" })}</div>
-        
-
-      </div>
+          <div className=" text-black font-bold font-dancing text-2xl w-full text-center bg-hite p-2 m-auto">
+            {t("digital", { ns: "layout" })}
+          </div>
+        </div>
         <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full px-4 pb-4 lg:pb-0 h-full lg:h-24">
           <Link to='./filter'>
             <div
-              
-              className=" h-14  cursor-pointer md:block hidden items-center text-primeColor"
+              className=" h-14  cursor-pointer xl:block hidden items-center text-primeColor"
             >
-       <p className="mt-4 text-gray-700">     {t("shop by", { ns: "layout" })}</p>
+              <p className="mt-4 text-gray-700">{t("shop by", { ns: "layout" })}</p>
             </div>
           </Link>
           <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
@@ -75,7 +80,7 @@ const HeaderBottom = () => {
               type="text"
               onChange={handleSearch}
               value={searchQuery}
-              placeholder=     {t("search", { ns: "layout" })}
+              placeholder={t("search", { ns: "layout" })}
             />
             <FaSearch className="w-5 h-5" />
             {searchQuery && (
@@ -122,70 +127,87 @@ const HeaderBottom = () => {
             )}
           </div>
           <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer relative">
-            <div onClick={() => setShowUser(!showUser)} className="flex">
+            <div onClick={() => toggleDropdown("user")} className="flex">
               <FaUser />
               <FaCaretDown />
             </div>
-            {showUser && (
+            {showDropdown === "user" && (
               <motion.ul
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 className="absolute top-6 left-0 z-50 bg-primeColor w-32 text-[#767676] h-auto p-4 pb-6"
               >
-                <Link to="">
+                <Link to="" onClick={() => toggleDropdown(null)}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                  {t("profile", { ns: "layout" })}
+                    {t("profile", { ns: "layout" })}
                   </li>
                 </Link>
-                <Link onClick={() => setShowUser(false)} to="/signup">
+                <Link onClick={() => toggleDropdown(null)} to="/signup">
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                  {t("signUp", { ns: "layout" })}                  </li>
+                    {t("signUp", { ns: "layout" })}
+                  </li>
                 </Link>
                 <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                {t("profile", { ns: "layout" })}
+                  {t("profile", { ns: "layout" })}
                 </li>
-                <li onClick={handleLogout} className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                {t("logout", { ns: "layout" })}
+                <li
+                  onClick={(e) => {
+                    toggleDropdown(null);
+                    handleLogout(e);
+                  }}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer"
+                >
+                  {t("logout", { ns: "layout" })}
                 </li>
               </motion.ul>
             )}
-     
-          <div onClick={() => setShowLang(!showLang)} className="flex text-2xl">
-          <FaLanguage />
-             
+            <div onClick={() => toggleDropdown("lang")} className="flex text-2xl">
+              <FaLanguage />
             </div>
-            {showLang && (
+            {showDropdown === "lang" && (
               <motion.ul
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 className="absolute top-6 left-0 z-50 bg-primeColor w-32 text-[#767676] h-auto p-4 pb-6"
               >
-              
-                  <li 
-                  onClick={() => changeLanguage("en")}
-                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                <li
+                  onClick={() => {
+                    changeLanguage("en");
+                    toggleDropdown(null);
+                  }}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer"
+                >
                   {t("English", { ns: "layout" })}
-                  </li>
-            
-              
-                  <li 
-                  onClick={() => changeLanguage("es")}
-                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                </li>
+                <li
+                  onClick={() => {
+                    changeLanguage("es");
+                    toggleDropdown(null);
+                  }}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer"
+                >
                   {t("Spanish", { ns: "layout" })}
-                  </li>
-            
-                  <li 
-                  onClick={() => changeLanguage("ar")}
-                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                </li>
+                <li
+                  onClick={() => {
+                    changeLanguage("ar");
+                    toggleDropdown(null);
+                  }}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer"
+                >
                   {t("Arabic", { ns: "layout" })}
-                  </li>
-                  <li 
-                  onClick={() => changeLanguage("fr")}
-                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                </li>
+                <li
+                  onClick={() => {
+                    changeLanguage("fr");
+                    toggleDropdown(null);
+                  }}
+                  className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer"
+                >
                   {t("French", { ns: "layout" })}
-                  </li>
+                </li>
               </motion.ul>
             )}
           </div>

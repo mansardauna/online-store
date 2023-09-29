@@ -7,6 +7,8 @@ import ReactPlayer from 'react-player';
 import Button from '../../components/ui/Button';
 import { useTranslation } from 'react-i18next';
 import JSZip from 'jszip';
+import { useSelector } from 'react-redux';
+import Userfeed from '../../components/ui/Userfeed';
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -15,6 +17,7 @@ const ProductDetails = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const [feedback, setFeedback] = useState('');
   const [image, setImage] = useState(null);
+  const [submittedFeedback, setSubmittedFeedback] = useState(''); // Track submitted feedback
 
   useEffect(() => {
     setProductInfo(location.state.item);
@@ -22,31 +25,33 @@ const ProductDetails = () => {
     setVideoUrl(location.state.item.videoUrl);
   }, [location, productInfo]);
 
- 
-    const handleDownload = async () => {
-      const zip = new JSZip();
-  
+  const userProfile = useSelector((state) => state.auth.userProfile);
 
-      const response = await fetch(productInfo.img);
-      const imageBlob = await response.blob();
-  
+  const handleDownload = async () => {
+    const zip = new JSZip();
 
-      zip.file('product_image.png', imageBlob);
-  
-      const content = await zip.generateAsync({ type: 'blob' });
-  
-      // Create a download link
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(content);
-      a.download = 'product_image.zip';
-      a.style.display = 'none';
-  
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    };
+    const response = await fetch(productInfo.img);
+    const imageBlob = await response.blob();
+
+    zip.file('product_image.png', imageBlob);
+
+    const content = await zip.generateAsync({ type: 'blob' });
+
+    // Create a download link
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(content);
+    a.download = 'product_image.zip';
+    a.style.display = 'none';
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
   const handleFeedbackSubmit = () => {
+    // Update the submitted feedback
+    setSubmittedFeedback(feedback);
+    // Clear the feedback input
     setFeedback('');
     setImage(null);
   };
@@ -55,13 +60,14 @@ const ProductDetails = () => {
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
   };
-  const {t} = useTranslation(["layout"])
+
+  const { t } = useTranslation(['layout']);
 
   return (
     <div className="w-full mx-auto border-b-[1px] border-b-gray-300">
       <div className="max-w-container mx-auto px-4">
         <div className="xl:-mt-10 -mt-7">
-          <Breadcrumbs title={t("productDetails")} prevLocation={prevLocation} />
+          <Breadcrumbs title={t('productDetails')} prevLocation={prevLocation} />
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
           <div className="h-full">
@@ -81,40 +87,46 @@ const ProductDetails = () => {
           <div className="h-full w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center">
             <ProductInfo productInfo={productInfo} />
             {videoUrl ? (
-              <button onClick={handleDownload}>{t("downloadVideo")}</button>
+              <button onClick={handleDownload}>{t('downloadVideo')}</button>
             ) : (
-              <button onClick={handleDownload}>{t("downloadImage")}</button>
+              <button onClick={handleDownload}>{t('downloadImage')}</button>
             )}
-
-          
           </div>
         </div>
-          {/* Feedback section */}
-          <div className="mt-4 w-1/2 m-auto mb-10">
-              <h2 className="text-xl font-semibold mb-2 text-center">      {t("productFeed")}</h2>
-              <textarea
-                value={feedback}
-                onChange={(e) => setFeedback(e.target.value)}
-                placeholder=   {t("writeFeed")}
-                rows="4"
-                className="w-full p-2 border border-gray-300 rounded"
-              ></textarea>
-              <div className='flex md:flex-row flex-col justify-between'>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="mt-2 w-1/2 "
-                />
-                <Button
-                  variant="primary"
-                  onClick={handleFeedbackSubmit}
-                  className="mt-2 bg-primeColor text-white rounded hover:bg-black duration-300"
-                >
-                  {t("submit")}
-                </Button>
-              </div>
+        {/* Feedback section */}
+        {submittedFeedback && (
+            <div className="mt-4">
+              <Userfeed />
+              <p>{submittedFeedback}</p>
             </div>
+          )}
+        <div className="mt-4 w-1/2 m-auto mb-10">
+          <h2 className="text-xl font-semibold mb-2 text-center">{t('productFeed')}</h2>
+          <textarea
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            placeholder={t('writeFeed')}
+            rows="4"
+            className="w-full p-2 border border-gray-300 rounded"
+          ></textarea>
+          <div className="flex md:flex-row flex-col justify-between">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="mt-2 w-1/2"
+            />
+            <Button
+              variant="primary"
+              onClick={handleFeedbackSubmit}
+              className="mt-2 bg-primeColor text-white rounded hover:bg-black duration-300"
+            >
+              {t('submit')}
+            </Button>
+          </div>
+          {/* Display submitted feedback */}
+         
+        </div>
       </div>
     </div>
   );

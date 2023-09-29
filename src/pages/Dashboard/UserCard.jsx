@@ -13,7 +13,6 @@ const UserCard = () => {
     return <div>User is not logged in.</div>;
   }
 
-  // Function to get the first letter of the username
   const getInitials = (name) => {
     const words = name.split(' ');
     const initials = words.map((word) => word[0]);
@@ -21,7 +20,7 @@ const UserCard = () => {
   };
 
   return (
-    <div className='h-80 bg-white rounded-md p-2 shadow-lg flex gap-5 flex-col items-center text-center'>
+    <div className='h-80 bg-white rounded-md p-2 shadow-lg md:w-9/12 md:m-auto xl:w-full xl:m-0 flex gap-5 flex-col items-center text-center'>
       <div className='w-32 h-32 rounded-full bg-blue-500 text-white flex items-center justify-center mt-5 text-4xl font-bold'>
         {getInitials(userProfile.name)}
       </div>

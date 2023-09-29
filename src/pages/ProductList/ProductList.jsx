@@ -59,11 +59,10 @@ const ProductList = () => {
         />
       </div>
       <div className='p-1 relative md:p-5 w-full justify-between'>
-        <div className='justify-between  w-full'></div>
         <div className='md:flex mt-10 block w-full'>
           <div>
             {selectOption === 'All' ? (
-              <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
+              <div className='md:grid block xl:grid-cols-4 md:grid-cols-2 gap-4 w-fit m-auto'>
                 {currentItems.map((product) => (
                   <div className='p-2' key={product._id}>
                     <Product
@@ -80,7 +79,7 @@ const ProductList = () => {
                 ))}
               </div>
             ) : (
-              <div className='md:grid block grid-cols-4 gap-4 w-fit m-auto'>
+              <div className='md:grid block xl:grid-cols-4 md:grid-cols-2 gap-4 w-fit m-auto'>
                 {filteredData.map((product) => (
                   <div className='p-2' key={product._id}>
                     <Product

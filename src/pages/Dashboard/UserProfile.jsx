@@ -17,7 +17,7 @@ const UserProfile = () => {
 
   return (
     <>  
-      <div className="flex-col hidden md:flex-row  md:flex  gap-5 m-auto md:w-full">
+      <div className="flex-col hidden md:flex-row  xl:flex  gap-5 m-auto md:w-full">
       <div className="md:w-2/3 w-full rounded-md bg-[#F5F5F3] border border-gray-200  p-4 ">
         <div>
           <ItemCard />
@@ -31,12 +31,12 @@ const UserProfile = () => {
       </div>
     </div>
 {/* mobile */}
-      <div className="flex-col md:hidden flex  gap-5 m-auto md:w-full">
+      <div className="flex-col xl:hidden flex  gap-5 m-auto md:w-full">
         <div className="flex flex-col gap-5 bg-[#F5F5F3] border border-gray-200  p-4 rounded-md">
           <UserCard />
           <Settings />
         </div>
-        <div className="md:w-2/3 w-full rounded-md bg-[#F5F5F3] border border-gray-200  p-4 ">
+        <div className="xl:w-2/3 w-full rounded-md bg-[#F5F5F3] border border-gray-200  p-4 ">
           <div>
             <ItemCard />
           </div>
