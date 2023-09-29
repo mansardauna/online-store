@@ -100,21 +100,40 @@ const Banner = () => {
     ],
   };
   return (
-    <div className="w-full bg-white">
+    <div className="w-full xl:grid grid-cols-2 gap-4 bg-white">
       <Slider {...settings}>
         <Link to="/offer">
           <div>
-            <Image imgSrc={bannerImgOne} className="w-screen h-60 md:h-96" />
+            <Image imgSrc={bannerImgOne} className="w-screen h-60 md:h-80" />
           </div>
         </Link>
         <Link to="/offer">
           <div>
-            <Image imgSrc={bannerImgTwo} className="w-screen h-60 md:h-96" />
+            <Image imgSrc={bannerImgThree} className="w-screen h-60 md:h-80" />
           </div>
         </Link>
         <Link to="/offer">
           <div>
-            <Image imgSrc={bannerImgThree} className="w-screen h-60 md:h-96" />
+            <Image imgSrc={bannerImgTwo} className="w-screen h-60 md:h-80" />
+          </div>
+        </Link>
+      </Slider>
+
+
+      <Slider {...settings} className="hidden xl:block">
+        <Link to="/offer">
+          <div>
+            <Image imgSrc={bannerImgThree} className="w-screen h-60 md:h-80" />
+          </div>
+        </Link>
+        <Link to="/offer">
+          <div>
+            <Image imgSrc={bannerImgTwo} className="w-screen h-60 md:h-80" />
+          </div>
+        </Link>
+        <Link to="/offer">
+          <div>
+            <Image imgSrc={bannerImgOne} className="w-screen h-60 md:h-80" />
           </div>
         </Link>
       </Slider>

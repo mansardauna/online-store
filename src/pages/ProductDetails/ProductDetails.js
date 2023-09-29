@@ -25,7 +25,6 @@ const ProductDetails = () => {
     setVideoUrl(location.state.item.videoUrl);
   }, [location, productInfo]);
 
-  const userProfile = useSelector((state) => state.auth.userProfile);
 
   const handleDownload = async () => {
     const zip = new JSZip();
@@ -49,9 +48,7 @@ const ProductDetails = () => {
   };
 
   const handleFeedbackSubmit = () => {
-    // Update the submitted feedback
     setSubmittedFeedback(feedback);
-    // Clear the feedback input
     setFeedback('');
     setImage(null);
   };
@@ -95,18 +92,18 @@ const ProductDetails = () => {
         </div>
         {/* Feedback section */}
         {submittedFeedback && (
-            <div className="mt-4">
+            <div className="mt-4 w-full border border-gray-200 rounded-md p-2">
               <Userfeed />
-              <p>{submittedFeedback}</p>
+              <span className=" bg-gray-200 ml-[7%] lg:ml-[5%] px-4 mb-5 p-2 rounded-lg">{submittedFeedback}</span>
             </div>
           )}
-        <div className="mt-4 w-1/2 m-auto mb-10">
+        <div className="mt-4 w-9/12 lg:w-1/2 m-auto mb-10">
           <h2 className="text-xl font-semibold mb-2 text-center">{t('productFeed')}</h2>
           <textarea
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
             placeholder={t('writeFeed')}
-            rows="4"
+            rows="2"
             className="w-full p-2 border border-gray-300 rounded"
           ></textarea>
           <div className="flex md:flex-row flex-col justify-between">

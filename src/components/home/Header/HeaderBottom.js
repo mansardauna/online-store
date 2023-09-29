@@ -66,8 +66,8 @@ const HeaderBottom = () => {
             {t("digital", { ns: "layout" })}
           </div>
         </div>
-        <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full px-4 pb-4 lg:pb-0 h-full lg:h-24">
-          <Link to='./filter'>
+        <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between m-auto w-11/12 px-4 pb-4 lg:pb-0 h-full lg:h-24">
+          <Link to='./products'>
             <div
               className=" h-14  cursor-pointer xl:block hidden items-center text-primeColor"
             >

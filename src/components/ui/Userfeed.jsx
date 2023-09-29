@@ -1,11 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { BiEdit, BiLogOut } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 const Userfeed = () => {
-  const { t } = useTranslation(["layout"]);
 
   const userProfile = useSelector((state) => state.auth.userProfile);
 
