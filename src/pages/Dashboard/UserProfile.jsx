@@ -1,13 +1,19 @@
+import { Elements } from "@stripe/react-stripe-js";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import ItemCard from "./OrderCard";
+import { loadStripe } from "@stripe/stripe-js"; // Import 'load
 import PaymentMethod from "./PaymentMethod";
 import Settings from "./Settings";
 import UserCard from "./UserCard";
+import PaymentHistory from "../payment/PaymentHistory";
 
 const UserProfile = () => {
   const { t } = useTranslation(["layout"])
+
+  const stripePromise = loadStripe("your_stripe_publishable_key");
+
   const userProfile = useSelector((state) => state.auth.userProfile);
 
   if (!userProfile) {
@@ -22,7 +28,7 @@ const UserProfile = () => {
         <div>
           <ItemCard />
         </div>
-        <PaymentMethod />
+        <PaymentHistory />
 
       </div>
       <div className="flex flex-col gap-5 bg-[#F5F5F3] border border-gray-200  p-4 rounded-md">
@@ -40,7 +46,10 @@ const UserProfile = () => {
           <div>
             <ItemCard />
           </div>
-          <PaymentMethod />
+          <Elements stripe={stripePromise}>
+        <PaymentMethod userProfile={userProfile} />
+      </Elements>
+
 
         </div>
       </div>

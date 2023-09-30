@@ -6,17 +6,19 @@ import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import { resetOrders } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import Button from "../../components/ui/Button";
+import { loadStripe } from "@stripe/stripe-js";
 import { useTranslation } from "react-i18next";
 import ItemOrder from "./itemOrder";
-import Receipt from "./Receipt"; // Import the Receipt component
-
+import Receipt from "./Receipt";
+import PaymentMethod from "../Dashboard/PaymentMethod";
+import { Elements } from "@stripe/react-stripe-js";
 
 const Order = () => {
   const { t } = useTranslation(["layout"]);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.orebiReducer.orders);
-  const [isReceiptVisible, setIsReceiptVisible] = useState(false); // State to toggle receipt visibility
-
+  const [isReceiptVisible, setIsReceiptVisible] = useState(false);
+  const stripePromise = loadStripe("your_stripe_publishable_key");
 
   useEffect(() => {
     let price = 0;
@@ -24,13 +26,12 @@ const Order = () => {
       price += item.price * item.quantity;
       return price;
     });
-    setTotalAmt(price.toFixed(2)); // Set totalAmt here
+    setTotalAmt(price.toFixed(2));
   }, [products]);
 
-  const [totalAmt, setTotalAmt] = useState(""); // Initialize totalAmt here
-
+  const [totalAmt, setTotalAmt] = useState("");
   useEffect(() => {
-    let shippingCharge = 0; // Initialize shippingCharge here based on totalAmt
+    let shippingCharge = 0;
     if (parseFloat(totalAmt) <= 200) {
       shippingCharge = 30;
     } else if (parseFloat(totalAmt) <= 400) {
@@ -42,8 +43,17 @@ const Order = () => {
   }, [totalAmt]);
 
   const [shippingCharge, setShippingCharge] = useState("");
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
+  const [itemTitle, setItemTitle] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
 
-  const user = { name: "John Doe", email: "john@example.com" }; // Replace with user data
+  const handleProceed = () => {
+    setShowPaymentForm(true);
+    setItemTitle("Product Title");
+    setItemPrice(100);
+  };
+
+  const user = { name: "John Doe", email: "john@example.com" };
 
   return (
     <div className="max-w-container mx-auto px-4">
@@ -69,39 +79,48 @@ const Order = () => {
           >
             {t("DeleteAll")}
           </button>
-          
-          <div className="max-w-7xl gap-4 flex justify-end mt-4">
-            <div className="w-96 flex flex-col gap-4">
-              <h1 className="text-2xl font-semibold ">{t("Total")}</h1>
-              <div>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  {t("Grand")}
-                  <span className="font-semibold tracking-widefont-titleFont">
-                    {t(`$${totalAmt}`)}
-                  </span>
-                </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  {t("ShippingFee")}
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    ${shippingCharge}
-                  </span>
-                </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
-                  {t("Total")}
-                  <span className="font-bold tracking-wide text-lg font-titleFont">
-                    {(parseFloat(totalAmt) + parseFloat(shippingCharge)).toFixed(2)}
-                  </span>
-                </p>
-              </div>
-              <div className="flex justify-end">
-                <Link to="/paymentgateway">
-                  <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
+          {!showPaymentForm ? (
+            <div className="max-w-7xl gap-4 flex justify-end mt-4">
+              <div className="w-96 flex flex-col gap-4">
+                <h1 className="text-2xl font-semibold ">{t("Total")}</h1>
+                <div>
+                  <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
+                    {t("Grand")}
+                    <span className="font-semibold tracking-widefont-titleFont">
+                      {t(`$${totalAmt}`)}
+                    </span>
+                  </p>
+                  <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
+                    {t("ShippingFee")}
+                    <span className="font-semibold tracking-wide font-titleFont">
+                      ${shippingCharge}
+                    </span>
+                  </p>
+                  <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
+                    {t("Total")}
+                    <span className="font-bold tracking-wide text-lg font-titleFont">
+                      {(parseFloat(totalAmt) + parseFloat(shippingCharge)).toFixed(
+                        2
+                      )}
+                    </span>
+                  </p>
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300"
+                    onClick={handleProceed}
+                  >
                     {t("proceed")}
                   </button>
-                </Link>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <Elements stripe={stripePromise}>
+              <PaymentMethod itemTitle={itemTitle} itemPrice={itemPrice} 
+              shippingCharge={shippingCharge}/>
+            </Elements>
+          )}
         </div>
       ) : (
         <motion.div

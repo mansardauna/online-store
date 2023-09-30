@@ -80,7 +80,7 @@ const router = createBrowserRouter(
 
         <Route path="/watchlist" element={<Watch />}></Route >
 
-        {/* ==================== Header Navlink End here ===================== */}
+       
         < Route path="/offer" element={<Offer />}></Route>
         <Route path="/product/:_id" element={<ProductDetails />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
@@ -105,7 +105,6 @@ function App() {
       <div className="font-bodyFont">
         <RouterProvider router={router} />
       </div>
-
     </>
   );
 }
