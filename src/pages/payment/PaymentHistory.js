@@ -26,7 +26,7 @@ const PaymentHistory = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-4">{t('Payment History')}</h2>
+      <h2 className="text-2xl font-semibold w-fit m-auto uppercase mb-4">{t('Payment History')}</h2>
       {loading && <p>{t('Loading...')}</p>}
       {error && <p>{t('Error fetching payment history.')}</p>}
       {!loading && !error && paymentHistory.length === 0 ? (

@@ -46,9 +46,8 @@ const UserProfile = () => {
           <div>
             <ItemCard />
           </div>
-          <Elements stripe={stripePromise}>
-        <PaymentMethod userProfile={userProfile} />
-      </Elements>
+          <PaymentHistory />
+
 
 
         </div>
