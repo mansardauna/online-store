@@ -135,7 +135,7 @@ const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt }) => {
             type="submit"
             onClick={handlePayment}
             disabled={!stripe}
-            className="mt-2 w-20 bg-blue-500 text-white rounded px-4  py-2"
+            className="mt-2 w-40 bg-blue-500 text-white rounded px-4  py-2"
           >
             Pay ${(parseFloat(totalAmt) + parseFloat(shippingCharge)).toFixed(2)}
           </Button>

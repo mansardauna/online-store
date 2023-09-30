@@ -118,7 +118,8 @@ const Order = () => {
           ) : (
             <Elements stripe={stripePromise}>
               <PaymentMethod itemTitle={itemTitle} itemPrice={itemPrice} 
-              shippingCharge={shippingCharge}/>
+              shippingCharge={shippingCharge}
+              totalAmt={totalAmt}/>
             </Elements>
           )}
         </div>
