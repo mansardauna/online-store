@@ -47,9 +47,6 @@ const UserProfile = () => {
             <ItemCard />
           </div>
           <PaymentHistory />
-
-
-
         </div>
       </div>
     </>

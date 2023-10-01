@@ -11,9 +11,9 @@ const PaymentHistory = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch payment history data from your backend API
+    // Fetch payment history data from your mock API running on port 3001
     axios
-      .get('/api/payment/history') // Adjust the API endpoint as needed
+      .get('http://localhost:3001/api/payment/history') 
       .then((response) => {
         setPaymentHistory(response.data);
         setLoading(false);
@@ -42,10 +42,10 @@ const PaymentHistory = () => {
           </thead>
           <tbody>
             {paymentHistory.map((payment) => (
-              <tr key={payment.id}>
-                <td>{payment.date}</td>
-                <td>${payment.amount.toFixed(2)}</td>
-                <td>{payment.description}</td>
+              <tr key={payment.id} className="p-2 border">
+                <td className='p-2  m-auto border text-center'>{payment.date}</td>
+                <td className='border text-center'>${payment.amount.toFixed(2)}</td>
+                <td className='text-center'>{payment.description}</td>
               </tr>
             ))}
           </tbody>
