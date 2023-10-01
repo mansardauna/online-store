@@ -7,14 +7,23 @@ import { resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
 import Button from "../../components/ui/Button";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { useTranslation } from "react-i18next";
+import PaymentMethod from "../Dashboard/PaymentMethod";
+
+const stripePromise = loadStripe("your_stripe_publishable_key");
 
 const Cart = () => {
-  const { t } = useTranslation(["layout"])
+  const { t } = useTranslation(["layout"]);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.orebiReducer.products);
   const [totalAmt, setTotalAmt] = useState("");
-  const [shippingCharge, setShippingCharge] = useState("");
+  const [shippingCharge, setShippingCharge] = useState(""); 
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
+  const [itemTitle, setItemTitle] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
+
   useEffect(() => {
     let price = 0;
     products.map((item) => {
@@ -23,6 +32,7 @@ const Cart = () => {
     });
     setTotalAmt(price);
   }, [products]);
+
   useEffect(() => {
     if (totalAmt <= 200) {
       setShippingCharge(30);
@@ -32,8 +42,21 @@ const Cart = () => {
       setShippingCharge(20);
     }
   }, [totalAmt]);
+
+  const handleProceed = () => {
+    // Set the itemTitle and itemPrice based on your cart items
+    // You can customize this based on your needs
+    const itemTitle = "Your Cart Items"; // Replace with a meaningful title
+    const itemPrice = totalAmt;
+
+    // Show the payment form
+    setShowPaymentForm(true);
+    setItemTitle(itemTitle);
+    setItemPrice(itemPrice);
+  };
+
   return (
-    <div className="max-w-container mx-auto px-4">
+    <div className="max-w-container mx-auto px-3 h-full">
       <Breadcrumbs title="Cart" />
       {products.length > 0 ? (
         <div className="pb-20">
@@ -57,18 +80,28 @@ const Cart = () => {
           >
             {t("DeleteAll")}
           </button>
-
-          <div className="max-w-7xl gap-4 flex justify-end mt-4">
-            <div className="w-96 flex flex-col gap-4">
-              <h1 className="text-2xl font-semibold text-right">{t("CartTotal")}</h1>
+              <div className="">
+          {showPaymentForm ? (
+            <Elements stripe={stripePromise}>
+              <PaymentMethod
+                itemTitle={itemTitle}
+                itemPrice={itemPrice}
+                shippingCharge={shippingCharge}
+                totalAmt={totalAmt} context='cartItem'
+              />
+            </Elements>
+          ) : (
+            <div className="w-96 flex flex-col float-right gap-4">
+              <h1 className="text-2xl font-semibold ">{t("Total")}</h1>
               <div>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   {t("Grand")}
                   <span className="font-semibold tracking-widefont-titleFont">
-                    {t(`$${totalAmt}`)}                  </span>
+                    {t(`$${totalAmt}`)}
+                  </span>
                 </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                {t("ShippingFee")}
+                  {t("ShippingFee")}
                   <span className="font-semibold tracking-wide font-titleFont">
                     ${shippingCharge}
                   </span>
@@ -76,18 +109,21 @@ const Cart = () => {
                 <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
                   {t("Total")}
                   <span className="font-bold tracking-wide text-lg font-titleFont">
-                    ${totalAmt + shippingCharge}
+                    {(parseFloat(totalAmt) + parseFloat(shippingCharge)).toFixed(2)}
                   </span>
                 </p>
               </div>
               <div className="flex justify-end">
-                <Link to="/paymentgateway">
-                  <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
-                  {t("buyAll")}                  </button>
-                </Link>
+                <button
+                  className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300"
+                  onClick={handleProceed}
+                >
+                  {t("buyAll")}
+                </button>
               </div>
             </div>
-          </div>
+          )}
+        </div>
         </div>
       ) : (
         <motion.div
@@ -105,14 +141,14 @@ const Cart = () => {
           </div>
           <div className="max-w-[500px] p-4 py-8 bg-white flex gap-4 flex-col items-center rounded-md shadow-lg">
             <h1 className="font-titleFont text-xl font-bold uppercase">
-            {t("emptyCart")}
+              {t("emptyCart")}
             </h1>
-            <p className="text-sm text-center px-10 -mt-2">
-            {t("track")}
-            </p>
+            <p className="text-sm text-center px-10 -mt-2">{t("track")}</p>
             <Link to="/products">
               <Button
-                variant="primary" className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
+                variant="primary"
+                className="bg-primeColor rounded-md cursor-pointer hover-bg-black active-bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover-text-white duration-300"
+              >
                 {t("Continue")}
               </Button>
             </Link>

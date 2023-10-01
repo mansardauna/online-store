@@ -119,7 +119,8 @@ const Order = () => {
             <Elements stripe={stripePromise}>
               <PaymentMethod itemTitle={itemTitle} itemPrice={itemPrice} 
               shippingCharge={shippingCharge}
-              totalAmt={totalAmt}/>
+              totalAmt={totalAmt}
+              context='orderItem'/>
             </Elements>
           )}
         </div>

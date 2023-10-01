@@ -3,27 +3,28 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/ui/Button';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { resetCart, resetOrders } from '../../redux/orebiSlice';
 
-const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt }) => {
+const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
   const [paymentComplete, setPaymentComplete] = useState(false);
   const { t } = useTranslation(["layout"]);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
       return;
     }
 
     const cardElement = elements.getElement(CardElement);
 
     try {
-      // You can replace this with your own logic to handle the payment, e.g., charging the card.
-      await makePayment(); // Replace this with your payment logic.
+      await makePayment(); 
       setPaymentComplete(true);
       setPaymentError(null);
     } catch (error) {
@@ -33,9 +34,9 @@ const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt }) => {
     }
   };
 
-  // Replace this function with your own payment logic.
+
   const makePayment = async () => {
-    // Simulate a successful payment. You can replace this with actual payment processing.
+    
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
@@ -44,16 +45,16 @@ const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt }) => {
   };
 
   const handlePayment = () => {
-    // Make a POST request to your API endpoint to process the payment
+  
     axios
       .post('http://localhost:3001/api/payment/history', {
-        amount: parseFloat(totalAmt), // Send the total payment amount
-        description: 'Payment for order', // Customize the description as needed
+        amount: parseFloat(totalAmt), 
+        description: 'Payment for order',
       })
       .then((response) => {
         setPaymentComplete(true);
         setPaymentError(null);
-        // You can update the payment history here by fetching it again from the API
+       
       })
       .catch((error) => {
         setPaymentComplete(false);
@@ -61,10 +62,22 @@ const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt }) => {
       });
   };
 
+  const handlePaymentSuccess = () => {
+   
+    if (context === 'cartItem') {
+      dispatch(resetCart());
+    } else if (context === 'orderItem') {
+      dispatch(resetOrders());
+    }
+  };
+
   return (
     <div>
       {paymentComplete ? (
-        <p>Payment successful!</p>
+       <div className='w-fit m-auto flex flex-col items-center gap-3'>
+         <p className=' text-green-700'>Payment successful!</p>
+         <Button variant={"primary"} onClick={handlePaymentSuccess}className="rounded-md w-20">{t("Ok")}</Button>
+       </div>
       ) : (
         <div className='border p-5 mt-5 md:w-1/2 m-auto rounded-md'>
           <div>
