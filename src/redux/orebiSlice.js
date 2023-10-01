@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userInfo: [],
   products: [], // Store the products in the cart
-  watchlist: [], // Store the products in the watchlist
-  orders: [], // Store the ordered products
+  watchlist: [], 
+  orders: [], 
+  orderHistory: [],
+
 };
 
 export const orebiSlice = createSlice({
@@ -51,12 +52,6 @@ export const orebiSlice = createSlice({
     resetCart: (state) => {
       state.products = [];
     },
-    moveItemsToOrder: (state, action) => {
-      const { items } = action.payload;
-      // Remove items from the cart (products)
-      state.products = state.products.filter((item) => !items.includes(item));
-    },
-    
 
     // Watchlist slice
     addToWatchlist: (state, action) => {
@@ -76,15 +71,16 @@ export const orebiSlice = createSlice({
     },
     // Orders slice (plural)
     addOrder: (state, action) => {
-      const { _id, name, price } = action.payload;
-      const existingOrder = state.orders[0];
-      
+      const { _id, img, productName, price } = action.payload;
+      const existingOrder = state.orders[0]
+    
       if (existingOrder) {
-        existingOrder.quantity++; // Increase the quantity
+        existingOrder.quantity += 1;
       } else {
-        state.orders.push({ _id, name, price, quantity: 1 }); // Add the product to the order
+        state.orders.push({ _id, productName,img, price, quantity: 1 });
       }
     },
+    
     removeOrder: (state, action) => {
       state.orders = state.orders.filter(
         (item) => item._id !== action.payload
@@ -114,7 +110,26 @@ export const orebiSlice = createSlice({
     resetOrders: (state) => {
       state.orders = [];
     },
+  
+
+  addToOrderHistory: (state, action) => {
+    const itemIndex = state.orderHistory.findIndex(
+      (item) => item._id === action.payload._id
+    );
+
+    if (itemIndex !== -1) {
+    
+      state.orderHistory[itemIndex].quantity += 1
+    } else {
+      state.orderHistory.push({...action.payload, quantity: 1 });
+  }
+},
+  removeOrderHistory: (state, action) => {
+    state.orderHistory = state.orderHistory.filter(
+      (item) => item._id !== action.payload
+    );
   },
+}
 });
 
 export const {
@@ -131,7 +146,8 @@ export const {
   decreaseOrderQuantity,
   resetOrders,
   deleteOrder,
-  moveItemsToOrder,
+  removeOrderHistory,
+  addToOrderHistory
 } = orebiSlice.actions;
 
 export default orebiSlice.reducer;

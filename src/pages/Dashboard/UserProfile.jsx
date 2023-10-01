@@ -23,7 +23,7 @@ const UserProfile = () => {
 
   return (
     <>  
-      <div className="flex-col hidden md:flex-row  xl:flex  gap-5 m-auto md:w-full">
+      <div className="flex-col hidden md:flex-row mb-5 xl:flex  gap-5 m-auto md:w-full">
       <div className="md:w-2/3 w-full rounded-md bg-[#F5F5F3] border border-gray-200  p-4 ">
         <div>
           <ItemCard />
@@ -31,7 +31,7 @@ const UserProfile = () => {
         <PaymentHistory />
 
       </div>
-      <div className="flex flex-col gap-5 bg-[#F5F5F3] border border-gray-200  p-4 rounded-md">
+      <div className="flex fixed right-10 flex-col gap-5 bg-[#F5F5F3] border border-gray-200  p-4 rounded-md">
         <UserCard />
         <Settings />
       </div>

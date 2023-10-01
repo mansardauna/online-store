@@ -7,11 +7,12 @@ import { useTranslation } from "react-i18next";
 import Button from "../../components/ui/Button";
 import ReceiptModal from "./ReceiptModal";
 import Receipt from "./Receipt";
+import HistoryItem from "./HistoryItem";
 
 const OrderHistory = () => {
   const { t } = useTranslation(["layout"]);
   const dispatch = useDispatch();
-  const orderList = useSelector((state) => state.orebiReducer.orders);
+  const orderList = useSelector((state) => state.orebiReducer.orderHistory);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -85,7 +86,7 @@ const OrderHistory = () => {
           <div className="mt-5">
             {orderList.map((item, index) => (
               <div key={item._id}>
-                <ItemOrder item={item} />
+                <HistoryItem item={item} />
                 <Button
                   variant={"primary"}
                   className="float-right"

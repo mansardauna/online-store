@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addOrder, addToCart } from "../../../redux/orebiSlice";
+import { addOrder, addToCart, addToOrderHistory } from "../../../redux/orebiSlice";
 import Button from "../../ui/Button";
 import CartModal from "../../ui/CartModal";
 
@@ -44,6 +44,8 @@ const ProductInfo = ({ productInfo }) => {
 
   const handleBuy = () => {
     dispatch(addOrder(productInfo)
+    );
+    dispatch(addToOrderHistory(productInfo)
     );
     setModalOpen(true);
 
