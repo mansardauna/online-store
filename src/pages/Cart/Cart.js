@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import { addToOrderHistory, resetCart } from "../../redux/orebiSlice";
+import { addOrder, addToOrderHistory, resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import Button from "../../components/ui/Button";
 import { Elements } from "@stripe/react-stripe-js";
@@ -48,12 +48,12 @@ const Cart = () => {
     const itemTitle = "Your Cart Items";
     const itemPrice = totalAmt;
 
-    // Show the payment form
     setShowPaymentForm(true);
     setItemTitle(itemTitle);
     setItemPrice(itemPrice);
 
-    dispatch(addToOrderHistory());
+    dispatch(addToOrderHistory([products]));
+    dispatch(addOrder(products));
 
   };
 
@@ -116,12 +116,13 @@ const Cart = () => {
                 </p>
               </div>
               <div className="flex justify-end">
-                <button
+                <Button
+                variant={"primary"}
                   className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300"
                   onClick={handleProceed}
                 >
                   {t("buyAll")}
-                </button>
+                </Button>
               </div>
             </div>
           )}

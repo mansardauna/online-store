@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ImCross } from "react-icons/im";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 import {
+  addOrder,
+  addToOrderHistory,
   deleteItem,
 } from "../../redux/orebiSlice";
 
 const ItemCard = ({ item }) => {
   const {t } = useTranslation(["layout"])
+  const [order, setOrder] = useState([]); // Track the user's order
   const _id = item.productName;
   const idString = (_id) => {
     return String(_id).toLowerCase().split(" ").join("");
@@ -27,6 +30,18 @@ const ItemCard = ({ item }) => {
     });
   };
 
+  const handleBuy = () => {
+    dispatch(addOrder(item)
+    );
+    dispatch(addToOrderHistory(item)
+    );
+    
+
+    const updatedOrder = [...order];
+   setOrder(updatedOrder);
+
+   
+  };
   const dispatch = useDispatch();
   return (
     <div className="w-full grid xl:grid-cols-5 md:grid-cols-3 mb-4 relative border gap-2 p-2">
@@ -49,8 +64,11 @@ const ItemCard = ({ item }) => {
           <p>${item.quantity * item.price}</p>
         </div>
         </div>
+        <Link to="/order">
         <Button variant={"primary"}
-        className="w-16 font-semibold rounded-md float-right shadow-md md:absolute right-5 top-14 text-xs h-8" onClick={handleProductDetails}>{t("buy")}</Button>
+        onClick={handleBuy}
+        className="w-16 font-semibold rounded-md float-right shadow-md md:absolute right-5 top-14 text-xs h-8">{t("buy")}</Button>
+        </Link>
     </div>
   );
 };
