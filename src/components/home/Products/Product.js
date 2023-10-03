@@ -47,9 +47,9 @@ const Product = (props) => {
     dispatch(
       addToCart({
         _id: props._id,
-        name: props.productName,
+        productName: props.productName,
         quantity: 1,
-        image: props.img,
+        img: props.img,
         badge: props.badge,
         category: props.category, 
         price: props.price,
@@ -83,12 +83,13 @@ const Product = (props) => {
     dispatch(
       addToWatchlist({
         _id: props._id,
-        name: props.productName,
+        productName: props.productName,
         quantity: 1,
-        image: props.img,
+        img: props.img,
         badge: props.badge,
         category: props.category,
         price: props.price,
+        des:props.des,
         colors: props.color,
       })
     );

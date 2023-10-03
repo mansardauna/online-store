@@ -30,9 +30,9 @@ const WatchItem = ({ item }) => {
   return (
     <div className=" rounded-md border p-2">
       <div className="m-auto flex flex-col gap-3 w-fit">
-      <img className="w-52 h-40" src={item.image} alt="productImage" />
+      <img className="w-52 h-40" src={item.img} alt="productImage" />
       <div className="flex flex-col justify-between items-center">
-      <h1 className="font-titleFont uppercase font-semibold text-xl text-center">{t(`${item.name}`)}</h1>
+      <h1 className="font-titleFont uppercase font-semibold text-xl text-center">{t(`${item.productName}`)}</h1>
    
         <div className="flex text-gray-400 text-lg font-thin">
         {t(`$${item.price}`)}

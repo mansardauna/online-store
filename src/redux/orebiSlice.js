@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  products: [], // Store the products in the cart
+  products: [],
   watchlist: [], 
   orders: [], 
   orderHistory: [],
@@ -12,17 +12,15 @@ export const orebiSlice = createSlice({
   name: "orebi",
   initialState,
   reducers: {
-    // Cart slice
     addToCart: (state, action) => {
       const itemIndex = state.products.findIndex(
         (item) => item._id === action.payload._id
       );
 
       if (itemIndex !== -1) {
-        // If the product is already in the cart, increase the quantity
+       
         state.products[itemIndex].quantity += action.payload.quantity;
       } else {
-        // If the product is not in the cart, add it
         state.products.push(action.payload);
       }
     },
@@ -60,7 +58,7 @@ export const orebiSlice = createSlice({
       );
 
       if (itemIndex === -1) {
-        // If the product is not in the watchlist, add it
+      
         state.watchlist.push(action.payload);
       }
     },
