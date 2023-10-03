@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import UserProfile from "./UserProfile";
+import UserProfile from "./components/UserProfile";
 
 
 

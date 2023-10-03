@@ -8,16 +8,16 @@ import { emptyCart } from "../../assets/images/index";
 import Button from "../../components/ui/Button";
 import { loadStripe } from "@stripe/stripe-js";
 import { useTranslation } from "react-i18next";
-import ItemOrder from "./itemOrder";
-import Receipt from "./Receipt";
-import PaymentMethod from "../Dashboard/PaymentMethod";
+import PaymentMethod from "../Dashboard/components/PaymentMethod";
 import { Elements } from "@stripe/react-stripe-js";
+import ItemOrder from "../../components/slice/itemOrder";
 
 const Order = () => {
   const { t } = useTranslation(["layout"]);
   const dispatch = useDispatch();
+  
   const products = useSelector((state) => state.orebiReducer.orders);
-  const [isReceiptVisible, setIsReceiptVisible] = useState(false);
+
   const stripePromise = loadStripe("your_stripe_publishable_key");
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Order = () => {
     setItemPrice(100);
   };
 
-  const user = { name: "John Doe", email: "john@example.com" };
+
 
   return (
     <div className="max-w-container mx-auto px-4">

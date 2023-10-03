@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import WatchItem from "./ItemWatch";
 import { useTranslation } from "react-i18next";
+import WatchItem from "../../components/slice/ItemWatch";
 
 const Watch = () => {
   const { t } = useTranslation(["layout"])

@@ -1,12 +1,9 @@
 import { Elements } from "@stripe/react-stripe-js";
 import React from "react";
-import { Link } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import Button from "../../components/ui/Button";
-import DownloadButton from "../../components/ui/DownloadButton";
-import { loadStripe } from "@stripe/stripe-js"; // Import 'load
+import { loadStripe } from "@stripe/stripe-js"; 
+import PaymentMethod from "../Dashboard/components/PaymentMethod";
 
-import PaymentMethod from "../Dashboard/PaymentMethod";
 
 const stripePromise = loadStripe("your_stripe_publishable_key");
 

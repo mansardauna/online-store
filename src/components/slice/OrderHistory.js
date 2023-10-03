@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import ItemOrder from "./itemOrder";
 import { useTranslation } from "react-i18next";
-import Button from "../../components/ui/Button";
+import Button from "../ui/Button";
 import ReceiptModal from "./ReceiptModal";
 import Receipt from "./Receipt";
 import HistoryItem from "./HistoryItem";
 
 const OrderHistory = () => {
   const { t } = useTranslation(["layout"]);
-  const dispatch = useDispatch();
   const orderList = useSelector((state) => state.orebiReducer.orderHistory);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
@@ -22,10 +20,10 @@ const OrderHistory = () => {
     // Function to get the current date and time
     const getCurrentDateTime = () => {
       const currentDateTime = new Date();
-      return currentDateTime.toLocaleString(); // You can format the date and time as needed
+      return currentDateTime.toLocaleString(); 
     };
 
-    // Function to get the user's current location using the Geolocation API
+   
     const getCurrentLocation = () => {
       return new Promise((resolve, reject) => {
         if ("geolocation" in navigator) {
@@ -83,14 +81,14 @@ const OrderHistory = () => {
             <h2>{t("quantity")}</h2>
             <h2>{t("Grand")}</h2>
           </div>
-          <div className="mt-5">
+          <div className="mt-2">
             {orderList.map((item, index) => (
               <div key={item._id}>
                 <HistoryItem item={item} />
                 <Button
                   variant={"primary"}
-                  className="float-right"
-                  onClick={() => openModal(index)} // Pass the item index
+                  className="float-right mb-2 text-xs"
+                  onClick={() => openModal(index)} 
                 >
                   {t("viewReceipt")}
                 </Button>
@@ -111,7 +109,7 @@ const OrderHistory = () => {
               />
               <Button
                 variant={"secondary"}
-                className="rounded-md capitalize float-right mt-5"
+                className="rounded-md capitalize float-right  mt-5"
                 onClick={closeModal}
               >
                 {t("close")}

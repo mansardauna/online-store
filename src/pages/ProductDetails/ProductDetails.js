@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
 import ProductInfo from '../../components/pageProps/productDetails/ProductInfo';
-import ProductsOnSale from '../../components/pageProps/productDetails/ProductsOnSale';
 import ReactPlayer from 'react-player';
 import Button from '../../components/ui/Button';
 import { useTranslation } from 'react-i18next';
 import JSZip from 'jszip';
-import { useSelector } from 'react-redux';
 import Userfeed from '../../components/ui/Userfeed';
 
 const ProductDetails = () => {

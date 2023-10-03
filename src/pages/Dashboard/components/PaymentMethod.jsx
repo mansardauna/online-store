@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/ui/Button';
+import Button from '../../../components/ui/Button';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { resetCart, resetOrders } from '../../redux/orebiSlice';
+import { resetCart, resetOrders } from '../../../redux/orebiSlice';
 
 const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context }) => {
   const stripe = useStripe();
@@ -21,7 +21,6 @@ const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context 
       return;
     }
 
-    const cardElement = elements.getElement(CardElement);
 
     try {
       await makePayment(); 

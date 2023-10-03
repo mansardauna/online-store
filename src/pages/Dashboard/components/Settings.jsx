@@ -1,5 +1,5 @@
 import React from 'react'
-import SettingItems from '../../components/Settings/SettingItems'
+import SettingItems from '../../../components/Settings/SettingItems'
 
 
 const Settings = () => {

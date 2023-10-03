@@ -3,11 +3,9 @@ import { useTranslation } from "react-i18next";
 import { ImCross } from "react-icons/im";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/ui/Button";
+import Button from "../ui/Button";
 import {
   deleteItem,
-  decreaseQuantity,
-  increaseQuantity,
 } from "../../redux/orebiSlice";
 
 const ItemCard = ({ item }) => {

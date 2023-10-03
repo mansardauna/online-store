@@ -1,7 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import Order from '../Cart/Order'
-import OrderHistory from '../Cart/OrderHistory'
+import OrderHistory from '../../../components/slice/OrderHistory'
 
 const ItemCard =() =>{
   const {t} = useTranslation (["layout"])

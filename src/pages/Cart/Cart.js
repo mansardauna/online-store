@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import { resetCart } from "../../redux/orebiSlice";
+import { addToOrderHistory, resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
-import ItemCard from "./ItemCard";
 import Button from "../../components/ui/Button";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useTranslation } from "react-i18next";
-import PaymentMethod from "../Dashboard/PaymentMethod";
+import PaymentMethod from "../Dashboard/components/PaymentMethod";
+import ItemCard from "../../components/slice/ItemCard";
 
 const stripePromise = loadStripe("your_stripe_publishable_key");
 
@@ -44,19 +44,21 @@ const Cart = () => {
   }, [totalAmt]);
 
   const handleProceed = () => {
-    // Set the itemTitle and itemPrice based on your cart items
-    // You can customize this based on your needs
-    const itemTitle = "Your Cart Items"; // Replace with a meaningful title
+     
+    const itemTitle = "Your Cart Items";
     const itemPrice = totalAmt;
 
     // Show the payment form
     setShowPaymentForm(true);
     setItemTitle(itemTitle);
     setItemPrice(itemPrice);
+
+    dispatch(addToOrderHistory());
+
   };
 
   return (
-    <div className="max-w-container mx-auto px-3 h-full">
+    <div className="max-w-11/12 mx-auto px-3 h-full">
       <Breadcrumbs title="Cart" />
       {products.length > 0 ? (
         <div className="pb-20">

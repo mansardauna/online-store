@@ -26,11 +26,11 @@ import ProductList from "./pages/ProductList/ProductList";
 import Sidebar from "./components/ui/Sidebar";
 import ComingSoon from "./pages/Coming/ComingSoon";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import UserProfile from "./pages/Dashboard/UserProfile";
 import Feed from "./pages/feed/feed";
 import MobileNav from "./components/home/Header/MobileNav";
 import SpecialCase from "./components/SpecialCase/SpecialCase";
 import SideCart from "./components/ui/SideCart";
+import UserProfile from "./pages/Dashboard/components/UserProfile";
 
 
 
