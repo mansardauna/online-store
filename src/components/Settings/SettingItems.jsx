@@ -1,12 +1,13 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { BsHouseFill } from 'react-icons/bs'
 import { MdDarkMode, MdNotifications, MdSettings } from 'react-icons/md'
 
 const SettingItems =() => {
-
+const { t }= useTranslation(["layout"]);
   const list = [
     {
-      title : "Settings",
+      title : "settings",
       icon : <MdSettings />
     },
     {
@@ -18,7 +19,7 @@ const SettingItems =() => {
       icon : <BsHouseFill />
     },
     {
-      title : "Theme",
+      title : "theme",
       icon : <MdDarkMode />
     }
   ]
@@ -27,7 +28,7 @@ const SettingItems =() => {
       {list.map((items) =>(
         <div className="flex gap-3 border-b p-2 hover:text-black ">
         <div className='text-2xl text-gray-500'>{items.icon}</div>
-        <div className=" font-semibold text-gray-500 hover:text-black">{items.title}</div>
+        <div className=" font-semibold text-gray-500 hover:text-black capitalize">{t(`${items.title}`)}</div>
         </div>
       ))}
     </div>

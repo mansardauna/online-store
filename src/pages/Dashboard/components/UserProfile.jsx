@@ -27,7 +27,7 @@ const UserProfile = () => {
         <PaymentHistory />
 
       </div>
-      <div className="flex fixed right-10 flex-col gap-5 bg-[#F5F5F3] border border-gray-200  p-4 rounded-md">
+      <div className="flex right-10 flex-col gap-5 bg-[#F5F5F3] border border-gray-200  p-4 rounded-md">
         <UserCard />
         <Settings />
       </div>

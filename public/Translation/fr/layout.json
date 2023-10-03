@@ -54,5 +54,30 @@
   "ShippingFee": "Frais de livraison",
   "proceed": "Procéder au paiement",
   "emptyCart": "Votre panier est vide",
-  "added": "a été ajouté à votre"
+  "added": "a été ajouté à votre",
+    "productFeed": "Avis sur le Produit",
+    "writeFeed": "Écrivez votre avis ici...",
+    "productDetails": "Détails du Produit",
+    "wishList": "Liste de Souhaits",
+    "new": "Nouveau",
+    "viewReceipt": "Voir le Reçu",
+    "Total": "Total",
+    "buyAll": "Acheter Tout",
+    "cardDetail": "Détails de la Carte",
+    "successful": "Paiement Réussi",
+    "pay": "Payer",
+    "Notification": "Notification",
+    "kyc": "KYC",
+    "theme": "Thème",
+    "RecentOrders": "Commandes Récentes",
+    "noPay": "Aucun historique de paiement disponible.",
+    "Loading": "Chargement...",
+    "PaymentHistory": "Historique des Paiements",
+    "ErrPay": "Erreur lors de la récupération de l'historique des paiements.",
+    "Date": "Date",
+    "Amount": "Montant",
+    "Des": "Description",
+    "Setting" : "Paramètres"
+
+    
 }

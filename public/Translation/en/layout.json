@@ -62,10 +62,22 @@
   "productDetails" : "Product Details",
   "wishList" : "Wish List",
   "new": "New",
-
   "viewReceipt": "View Receipt",
   "Total" : "Total",
   "buyAll" : "Buy All",
-  "cardDetail" : "Card Details"
+  "cardDetail" : "Card Details",
+  "successful":"payment successful!",
+  "pay": "pay",
+  "Notification": "notification",
+  "kyc" : "KYC",
+  "theme" :"theme",
+  "RecentOrders": "recent orders",
+  "noPay": "No payment history available.",
+  "Loading": "Loading...",
+  "PaymentHistory": "Payment History",
+  "ErrPay": "Error fetching payment history.",
+  "Date":"Date",
+  "Amount": "Amount",
+  "Des": "Description"
   
 }

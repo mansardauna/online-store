@@ -73,7 +73,7 @@ const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context,
     <div>
       {paymentComplete ? (
        <div className='w-fit m-auto flex flex-col items-center gap-3'>
-         <p className=' text-green-700'>Payment successful!</p>
+         <p className=' text-green-700'>{t("successful")}</p>
          <Button variant={"primary"} onClick={handlePaymentSuccess}className="rounded-md w-20">{t("Ok")}</Button>
        </div>
       ) : (
@@ -144,7 +144,7 @@ const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context,
               disabled={!stripe}
               className="mt-2 w-40 bg-blue-500 text-white rounded px-4 py-2"
             >
-              Pay ${(parseFloat(totalAmt) + parseFloat(shippingCharge)).toFixed(2)}
+              {t("pay")} ${(parseFloat(totalAmt) + parseFloat(shippingCharge)).toFixed(2)}
             </Button>
           </form>
         </div>
