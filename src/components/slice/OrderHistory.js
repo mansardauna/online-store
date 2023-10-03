@@ -81,7 +81,7 @@ const OrderHistory = () => {
             <h2>{t("quantity")}</h2>
             <h2>{t("Grand")}</h2>
           </div>
-          <div className="mt-2">
+          <div className="mt-2 h-72 overflow-y-scroll">
             {orderList.map((item, index) => (
               <div key={item._id}>
                 <HistoryItem item={item} />

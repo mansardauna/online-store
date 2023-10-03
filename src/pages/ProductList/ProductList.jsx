@@ -47,9 +47,9 @@ const ProductList = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
   return (
-    <div className='md:p-3 relative p-2 mb-4'>
+    <div className='md:p-3 relative p-2 h-fit capitalize'>
+      <div className='flex'>
       <Breadcrumbs title={t("product")} />
-      <div className=' z-10 top-0 px-4 md:p-1 gap-4'>
         <Sort
           filterOption={filterOption}
           selectOption={selectOption}
@@ -57,12 +57,12 @@ const ProductList = () => {
           sortResult={sortResult}
           categoriesData={categoriesData}
         />
-      </div>
+        </div>
       <div className='p-1 relative md:p-5 w-full justify-between'>
-        <div className='md:flex mt-10 block w-full'>
+        <div className='md:flex  block w-full'>
           <div>
             {selectOption === 'All' ? (
-              <div className='md:grid block xl:grid-cols-4 md:grid-cols-2 gap-4 w-fit m-auto'>
+              <div className='md:grid block md:h-[45%] md:overflow-y-scroll xl:grid-cols-4 md:grid-cols-2 gap-4 w-fit m-auto'>
                 {currentItems.map((product) => (
                   <div className='p-2' key={product._id}>
                     <Product
@@ -79,7 +79,7 @@ const ProductList = () => {
                 ))}
               </div>
             ) : (
-              <div className='md:grid block xl:grid-cols-4 md:grid-cols-2 gap-4 w-fit m-auto'>
+              <div className='md:grid block h-96 overflow-y-scroll xl:grid-cols-4 md:grid-cols-2 gap-4 w-fit m-auto'>
                 {filteredData.map((product) => (
                   <div className='p-2' key={product._id}>
                     <Product

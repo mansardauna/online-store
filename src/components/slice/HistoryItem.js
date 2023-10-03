@@ -13,7 +13,7 @@ const HistoryItem = ({ item }) => {
           onClick={() => dispatch(removeOrderHistory(item._id))}
           className="text-primeColor text-xs hover:text-red-500 duration-300 cursor-pointer"
         />
-        <img className="w-20 h-20" src={item.img} alt="productImage" />
+        <img className="w-16 h-16" src={item.img} alt="productImage" />
         <h1 className="font-titleFont font-semibold text-sm">{item.productName}</h1>
       </div>
       <div className="col-span-5 mdl:col-span-3 flex items-center justify-between py-4 mdl:py-0 px-4 mdl:px-0 gap-6 mdl:gap-0">

@@ -19,9 +19,9 @@ const ProductInfo = ({ productInfo }) => {
     dispatch(
       addToCart({
         _id: productInfo.id,
-        name: productInfo.productName,
+        productName: productInfo.productName,
         quantity: 1,
-        image: productInfo.img,
+        img: productInfo.img,
         badge: productInfo.badge,
         price: productInfo.price,
         colors: productInfo.color,
@@ -45,8 +45,7 @@ const ProductInfo = ({ productInfo }) => {
   const handleBuy = () => {
     dispatch(addOrder(productInfo)
     );
-    dispatch(addToOrderHistory(productInfo)
-    );
+    
     setModalOpen(true);
 
     const updatedOrder = [...order, productInfo];

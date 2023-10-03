@@ -6,7 +6,7 @@ const ItemCard =() =>{
   const {t} = useTranslation (["layout"])
   return (
     <div>
-      <div className="uppercase font-semibold m-auto text-xl w-fit"> {t("order", { ns: "layout" })}</div>
+      <div className="uppercase font-semibold m-auto text-xl w-fit "> {t("RecentOrders", { ns: "layout" })}</div>
       <OrderHistory />
     </div>
   )

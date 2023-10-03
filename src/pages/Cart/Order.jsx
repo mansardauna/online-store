@@ -73,12 +73,7 @@ const Order = () => {
               </div>
             ))}
           </div>
-          <button
-            onClick={() => dispatch(resetOrders())}
-            className="py-2 px-10 bg-red-500 text-white font-semibold uppercase mb-4 hover:bg-red-700 duration-300"
-          >
-            {t("DeleteAll")}
-          </button>
+        
           {!showPaymentForm ? (
             <div className="max-w-7xl gap-4 flex justify-end mt-4">
               <div className="w-96 flex flex-col gap-4">
@@ -120,7 +115,7 @@ const Order = () => {
               <PaymentMethod itemTitle={itemTitle} itemPrice={itemPrice} 
               shippingCharge={shippingCharge}
               totalAmt={totalAmt}
-              context='orderItem'/>
+              context='orderItem' products={products}/>
             </Elements>
           )}
         </div>
