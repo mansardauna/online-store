@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
 import { authAction } from "../../../redux/authSlice";
 import { useTranslation } from "react-i18next";
+import { BiNotification } from "react-icons/bi";
+import { MdNotifications } from "react-icons/md";
 
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
@@ -126,10 +128,11 @@ const HeaderBottom = () => {
               </div>
             )}
           </div>
-          <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer relative">
+          <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer text-xl relative">
             <div onClick={() => toggleDropdown("user")} className="flex">
               <FaUser />
               <FaCaretDown />
+              
             </div>
             {showDropdown === "user" && (
               <motion.ul
@@ -210,7 +213,11 @@ const HeaderBottom = () => {
                 </li>
               </motion.ul>
             )}
-          </div>
+          <Link to="/notification">
+                <MdNotifications />
+              </Link>
+              </div>
+
         </Flex>
       </div>
     </div>

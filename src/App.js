@@ -31,6 +31,8 @@ import MobileNav from "./components/home/Header/MobileNav";
 import SpecialCase from "./components/SpecialCase/SpecialCase";
 import SideCart from "./components/ui/SideCart";
 import UserProfile from "./pages/Dashboard/components/UserProfile";
+import Notification from "./components/ui/Notification";
+import Settings from "./Settings/Settings";
 
 
 
@@ -40,7 +42,7 @@ const Layout = () => {
     <>
       {isLoggin && (
         <div className="flex">
-          <div className="xl:w-[17%] md:w-[22%] h-screen fixed overflow-y-auto bg-[#F5F5F3] border border-r-gray-200 md:block hidden ">
+          <div className="xl:w-[17%] md:w-[22%] h-screen fixed overflow-y-auto bg-[#F5F5F3]  border border-r-gray-200 md:block hidden ">
             <Sidebar />
           </div>
 
@@ -74,6 +76,8 @@ const router = createBrowserRouter(
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/feeds" element={<Feed />}></Route>
+        <Route path="/notification" element={<Notification />}></Route>
+        <Route path="/settings" element={<Settings />}></Route>
         <Route path="/coming" element={<ComingSoon />}></Route>
         <Route path="/products" element={<ProductList />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>

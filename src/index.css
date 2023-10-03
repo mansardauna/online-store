@@ -41,3 +41,19 @@ nav .active li {
   text-overflow: ellipsis;
   max-width: 100%; /* Adjust the max-width if needed */
 }
+
+.dark {
+  --bg-color: black;
+  --text-color: white;
+}
+
+.light {
+  --bg-color: white;
+  --text-color: black;
+}
+
+
+.App {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

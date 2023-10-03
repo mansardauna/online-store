@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Header from '../home/Header/Header';
 import SpecialCase from '../SpecialCase/SpecialCase';
+import DarkModeSwitch from './components/DarkModeSwitch';
 import SideCart from './SideCart';
 
 const Sidebar = () => {

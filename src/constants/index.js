@@ -61,7 +61,13 @@ export const navBarList = [
     title: "Feeds",
     link: '/feeds',
     icon: <MdFeed style={{ fontSize: '22px' }} />,
-  } 
+  },
+  {
+    _id: 1003,
+    title : "settings",
+    link: '/settings',
+    icon : <MdSettings style={{ fontSize: '22px' }}  />
+  }
 ];
 
 

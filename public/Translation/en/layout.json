@@ -78,6 +78,7 @@
   "ErrPay": "Error fetching payment history.",
   "Date":"Date",
   "Amount": "Amount",
-  "Des": "Description"
+  "Des": "Description",
+  "Ok": "Ok"
   
 }
