@@ -117,7 +117,7 @@ const Order = () => {
               <PaymentMethod itemTitle={itemTitle} itemPrice={itemPrice} 
               shippingCharge={shippingCharge}
               totalAmt={totalAmt}
-              context='orderItem' products={addToHistory}/>
+              context='orderItem' onSuccess={addToHistory}/>
             </Elements>
           )}
         </div>

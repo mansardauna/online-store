@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addToOrderHistory, resetCart, resetOrders } from '../../../redux/orebiSlice';
 
-const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context,products }) => {
+const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context,onSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
