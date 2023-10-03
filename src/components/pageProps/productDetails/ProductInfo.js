@@ -12,7 +12,7 @@ const ProductInfo = ({ productInfo }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   
-  const [order, setOrder] = useState([]); // Track the user's order
+  const [order, setOrder] = useState([]); 
 
 
  const handleAddToCart = () => {
@@ -31,7 +31,7 @@ const ProductInfo = ({ productInfo }) => {
     setModalOpen(true);
   };
   const closeModal = () => {
-    setModalOpen(false); // Close the modal
+    setModalOpen(false); 
   };
   useEffect(() => {
     if (isModalOpen) {
@@ -45,13 +45,12 @@ const ProductInfo = ({ productInfo }) => {
   const handleBuy = () => {
     dispatch(addOrder(productInfo)
     );
+    dispatch(addToOrderHistory(productInfo));
     
     setModalOpen(true);
 
     const updatedOrder = [...order, productInfo];
    setOrder(updatedOrder);
-
-   
   };
 
   return (

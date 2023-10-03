@@ -90,6 +90,7 @@ const Cart = () => {
                 itemPrice={itemPrice}
                 shippingCharge={shippingCharge}
                 totalAmt={totalAmt} context='cartItem'
+                products={products}
               />
             </Elements>
           ) : (

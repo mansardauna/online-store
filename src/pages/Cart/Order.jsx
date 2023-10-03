@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import { resetOrders } from "../../redux/orebiSlice";
+import { addToOrderHistory, resetOrders } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import Button from "../../components/ui/Button";
 import { loadStripe } from "@stripe/stripe-js";
@@ -53,6 +53,9 @@ const Order = () => {
     setItemPrice(100);
   };
 
+  const addToHistory = () => {
+    // Add the order to orderHistory after payment
+    dispatch(addToOrderHistory(products));  };
 
 
   return (
@@ -73,7 +76,6 @@ const Order = () => {
               </div>
             ))}
           </div>
-        
           {!showPaymentForm ? (
             <div className="max-w-7xl gap-4 flex justify-end mt-4">
               <div className="w-96 flex flex-col gap-4">
@@ -115,7 +117,7 @@ const Order = () => {
               <PaymentMethod itemTitle={itemTitle} itemPrice={itemPrice} 
               shippingCharge={shippingCharge}
               totalAmt={totalAmt}
-              context='orderItem' products={products}/>
+              context='orderItem' products={addToHistory}/>
             </Elements>
           )}
         </div>

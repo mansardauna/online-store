@@ -5,9 +5,8 @@ import Button from '../../../components/ui/Button';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addToOrderHistory, resetCart, resetOrders } from '../../../redux/orebiSlice';
-import OrderHistory from '../../../components/slice/OrderHistory';
 
-const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context, products }) => {
+const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context,products }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
@@ -63,15 +62,11 @@ const PaymentMethod = ({ shippingCharge, itemTitle, itemPrice, totalAmt,context,
   };
 
   const handlePaymentSuccess = () => {
-    dispatch(addToOrderHistory(products));
-    
     if (context === 'cartItem') {
       dispatch(resetCart());
-      
     } else if (context === 'orderItem') {
       dispatch(resetOrders());
     }
-  
   };
 
   return (
