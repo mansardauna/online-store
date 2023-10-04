@@ -7,6 +7,8 @@ import {
   bannerImgThree,
 } from "../../assets/images";
 import Image from "../designLayouts/Image";
+import YearProduct from "../home/YearProduct/YearProduct";
+import DayProduct from "./DayProduct";
 
 const Banner = () => {
   const [dotActive, setDocActive] = useState(0);
@@ -118,25 +120,7 @@ const Banner = () => {
           </div>
         </Link>
       </Slider>
-
-
-      <Slider {...settings} className="hidden xl:block">
-        <Link to="/offer">
-          <div>
-            <Image imgSrc={bannerImgThree} className="w-screen h-60 md:h-80" />
-          </div>
-        </Link>
-        <Link to="/offer">
-          <div>
-            <Image imgSrc={bannerImgTwo} className="w-screen h-60 md:h-80" />
-          </div>
-        </Link>
-        <Link to="/offer">
-          <div>
-            <Image imgSrc={bannerImgOne} className="w-screen h-60 md:h-80" />
-          </div>
-        </Link>
-      </Slider>
+<DayProduct/>
     </div>
   );
 };
