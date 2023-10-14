@@ -7,7 +7,7 @@ import ListWrapper from "./ListWrapper";
 import { categoriesData, filterOption, paginationItems } from "../../constants";
 import Sort from "../ProductList/Sort";
 
-const Shop = () => {
+const Shop:React.FC = () => {
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [viewMode, setViewMode] = useState("grid");
   const [filteredProducts, setFilteredProducts] = useState([]);

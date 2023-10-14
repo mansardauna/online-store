@@ -42,7 +42,7 @@ export const navBarList = [
     _id: 1001,
     title: 'Home',
     link: '/',
-    icon: <AiFillHome style={{ fontSize: '22px' }} />,
+    icon: <AiFillHome style={{ fontSize: '22px' }} />
   },
   {
     _id: 1003,

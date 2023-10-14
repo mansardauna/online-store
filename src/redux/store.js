@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -20,7 +20,7 @@ const persistConfig = {
 };
 
 const persistedOrebiReducer = persistReducer(persistConfig, orebiReducer);
-const persistedAuthReducer = persistReducer(persistConfig, authSlice.reducer);
+const persistedAuthReducer = persistReducer(persistConfig, authSlice);
 
 export const store = configureStore({
   reducer: {

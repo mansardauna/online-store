@@ -11,7 +11,7 @@ import './i18n';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { DarkModeProvider } from './components/ui/components/DarkMode';
-import { AppWrapper } from './AppWrapper.';
+import { AppWrapper } from './AppWrapper';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
