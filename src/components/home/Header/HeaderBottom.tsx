@@ -59,6 +59,7 @@ const HeaderBottom: React.FC = () => {
   const handleLogout = (e: React.MouseEvent) => {
     e.preventDefault();
     dispatch(authAction.logout());
+    navigate("/signIn");
   };
 
   return (
@@ -126,7 +127,7 @@ const HeaderBottom: React.FC = () => {
               </div>
             )}
           </div>
-          <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer text-xl relative">
+          <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer text-lg relative">
             <div onClick={() => toggleDropdown("user")} className="flex">
               <FaUser />
               <FaCaretDown />
@@ -138,7 +139,7 @@ const HeaderBottom: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute top-6 left-0 z-50 bg-primeColor w-32 text-[#767676] h-auto p-4 pb-6"
               >
-                <Link to="" onClick={() => toggleDropdown(null)}>
+                <Link to="/settings" onClick={() => toggleDropdown(null)}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                     {t("profile", { ns: "layout" })}
                   </li>

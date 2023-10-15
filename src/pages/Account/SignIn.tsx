@@ -1,16 +1,24 @@
 import React, { useState, SyntheticEvent } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { authAction } from "../../redux/authSlice";
+
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(authAction.login());
+    
+    const isLoginSuccessful = true;
+
+    if (isLoginSuccessful) {
+      dispatch(authAction.login());
+      navigate("/"); 
   };
+}
 
   // Initial State
   const [email, setEmail] = useState<string>("");
@@ -34,22 +42,9 @@ const SignIn: React.FC = () => {
 
   const handleSignUp = (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(authAction.login());
 
-    // if (!email) {
-    //   setErrEmail("Enter your email");
-    // }
 
-    // if (!password) {
-    //   setErrPassword("Create a password");
-    // }
-    // // ============== Getting the value ==============
-    // if (email && password) {
-    //   setSuccessMsg(
-    //     `Hello dear, Thank you for your attempt. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
-    //   );
-    //   setEmail("");
-    //   setPassword("");
+
 
   };
   return (
@@ -185,7 +180,7 @@ const SignIn: React.FC = () => {
                 </div>
 
                 <button
-                  onClick={handleSignUp}
+                  onClick={handleSubmit}
                   className="bg-primeColor hover:bg-black text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-10 rounded-md  duration-300"
                 >
                   Sign In

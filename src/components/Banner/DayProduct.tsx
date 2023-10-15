@@ -16,7 +16,7 @@ const DayProduct: React.FC =() => {
         />
         <div className="flex p-2 flex-col gap-1 md:gap-7 md:mt-2 mt-0">
           <h1 className=" text-2xl font-semibold text-center">
-          {t("productYear", { ns: "layout" })}
+          {t("productDay", { ns: "layout" })}
           </h1>
           <p className="">
           {t("lorem", { ns: "layout" })}
