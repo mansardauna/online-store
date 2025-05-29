@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "date": "2023-09-01",
+    "amount": 50.0,
+    "description": "Purchase of Product A"
+  },
+  {
+    "id": 2,
+    "date": "2023-09-05",
+    "amount": 30.0,
+    "description": "Purchase of Product B"
+  },
+  {
+    "id": 3,
+    "date": "2023-09-10",
+    "amount": 75.0,
+    "description": "Purchase of Product C"
+  }
+]
