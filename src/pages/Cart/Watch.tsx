@@ -12,7 +12,7 @@ const Watch: React.FC = () => {
   const [totalAmt, setTotalAmt] = useState<number | string>("");
   const [shippingCharge, setShippingCharge] = useState<number | string>("");
 
-  useEffect(() => {d
+  useEffect(() => {
     let price = 0;
     watchlist.map((item: any) => {
       price += item.price * item.quantity;
