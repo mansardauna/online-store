@@ -5,7 +5,7 @@ import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
-import { authAction } from "../../../redux/authSlice";
+import { logout, login } from "../../../redux/authSlice";
 import { useTranslation } from "react-i18next";
 import { BiNotification } from "react-icons/bi";
 import { MdNotifications } from "react-icons/md";
@@ -58,12 +58,12 @@ const HeaderBottom: React.FC = () => {
   const dispatch = useDispatch();
   const handleLogout = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(authAction.logout());
+    dispatch(logout());
     navigate("/signIn");
   };
 
   return (
-    <div className="w-full bg-[#F5F5F3] mb-4 z-50 border-b border-gray-200 sticky top-0 rounded-sm pt-1 xl:pt-0 md:pt-7">
+    <div className="w-full bg-[#e8f0e8f1] mb-4 z-50 border-b border-gray-300 sticky top-0 rounded-sm pt-1 xl:pt-0 md:pt-7">
       <div className="max-w-container mx-auto">
         <div className="md:hidden block">
           <div className="text-black font-bold font-dancing text-2xl w-full text-center bg-hite p-2 m-auto">
@@ -76,9 +76,9 @@ const HeaderBottom: React.FC = () => {
               <p className="mt-4 text-gray-700">{t("shop by", { ns: "layout" })}</p>
             </div>
           </Link>
-          <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
+          <div className="relative bg-transparent border  border-gray-400 w-full lg:w-[600px] h-[50px] text-base text-primeColo flex items-center gap-2 justify-between px-6 rounded-xl">
             <input
-              className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
+              className="flex-1 h-full  outline-none bg-transparent  placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"
               onChange={handleSearch}
               value={searchQuery}

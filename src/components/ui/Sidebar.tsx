@@ -14,7 +14,8 @@ const Sidebar:React.FC = () => {
       <Link
         to="/">
         <div className=" border-b border-gray-200 flex justify-center h-24 items-center">
-          <div className=" text-black font-bold font-dancing text-2xl w-fit m-auto">            {t("digital", { ns: "layout" })}</div>
+          <div className=" text-black font-bold font-dancing text-2xl w-fit m-auto">   
+                   {t("digital", { ns: "layout" })}</div>
         </div>
       </Link>
       <Header />

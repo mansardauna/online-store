@@ -40,36 +40,63 @@ import {
 export const navBarList = [
   {
     _id: 1001,
-    title: 'Home',
-    link: '/',
-    icon: <AiFillHome style={{ fontSize: '22px' }} />
-  },
-  {
-    _id: 1003,
-    title: 'Dashboard',
-    link: '/dashboard',
-    icon: <MdDashboard style={{ fontSize: '22px' }} />,
-  },
-  {
-    _id: 1004,
-    title: 'Products',
-    link: '/products',
-    icon: <BsBagFill style={{ fontSize: '22px' }} />,
+    title: "Home",
+    link: "/",
+    icon: <AiFillHome style={{ fontSize: "22px" }} />,
+    subMenu: [], // No submenu for Home
   },
   {
     _id: 1002,
-    title: "Feeds",
-    link: '/feeds',
-    icon: <MdFeed style={{ fontSize: '22px' }} />,
+    title: "Dashboard",
+    link: "/dashboard",
+    icon: <MdDashboard style={{ fontSize: "22px" }} />,
+    subMenu: [
+      // Admin-specific submenus
+      { title: "Manage Products", link: "/dashboard/products" },
+      { title: "Manage Orders", link: "/dashboard/orders" },
+      { title: "Manage Users", link: "/dashboard/users" },
+      // Client-specific submenus
+      { title: "My Dashboard", link: "/dashboard/client" },
+    ],
   },
   {
     _id: 1003,
-    title : "settings",
-    link: '/settings',
-    icon : <MdSettings style={{ fontSize: '22px' }}  />
-  }
+    title: "Products",
+    link: "/products",
+    icon: <BsBagFill style={{ fontSize: "22px" }} />,
+    subMenu: [
+      // Client-specific submenus
+      { title: "All Products", link: "/products/all" },
+      { title: "Cart", link: "/cart" },
+      // Admin-specific submenu
+      { title: "Add Product", link: "/products/add" },
+    ],
+  },
+  {
+    _id: 1004,
+    title: "Feeds",
+    link: "/feeds",
+    icon: <MdFeed style={{ fontSize: "22px" }} />,
+    subMenu: [
+      // Client-specific submenus
+      { title: "Latest Feeds", link: "/feeds/latest" },
+      { title: "Followed Feeds", link: "/feeds/followed" },
+    ],
+  },
+  {
+    _id: 1005,
+    title: "Settings",
+    link: "/settings",
+    icon: <MdSettings style={{ fontSize: "22px" }} />,
+    subMenu: [
+      // Shared submenus
+      { title: "Profile", link: "/profile" },
+      { title: "Preferences", link: "/settings/preferences" },
+      // Admin-specific submenu
+      { title: "Admin Settings", link: "/settings/admin" },
+    ],
+  },
 ];
-
 
 
 

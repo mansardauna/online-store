@@ -1,56 +1,37 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
+// Sort.tsx
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { FilterOption } from "../../constants/constant";
 
 interface SortProps {
-  filterOption: { title: string }[];
+  filterOption: FilterOption[];
   selectOption: string;
   filterResult: (value: string) => void;
-  sortResult: (item: string) => void;
-  categoriesData: Record<string, { items: string[] }>;
+  sortResult: () => void;
+  categoriesData: string[];
 }
 
-const Sort: React.FC<SortProps> = ({
-  filterOption,
-  selectOption,
-  filterResult,
-  sortResult,
-  categoriesData,
-}) => {
-  const [showSortingOptions, setShowSortingOptions] = useState(false);
-  const { t } = useTranslation(['layout']);
+const Sort: React.FC<SortProps> = ({ filterOption, selectOption, filterResult }) => {
+  const { t } = useTranslation(["layout"]);
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    filterResult(e.target.value);
+  };
 
   return (
-    <div className="md:relative cursor-pointer bg-white p-2">
-      <div className="space-x-3">
-        <select
-          className="p-2 hover:bg-gray-200 text-sm md:text-lg rounded-md"
-          value={selectOption}
-          onChange={(event) => filterResult(event.target.value)}
-        >
-          {filterOption.map(({ title }) => (
-            <option key={title} value={title}>
-              {t(title, { ns: 'layout' })}
-            </option>
-          ))}
-        </select>
-        {showSortingOptions && categoriesData[selectOption] && (
-          <div className="block w-fit h-fit md:w-fit mt-2 cursor-pointer text-gray-500 mr-7">
-            {categoriesData[selectOption].items.map((item) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-                onClick={() => sortResult(item)}
-                className="p-3 text-sm block items-center hover:text-black"
-              >
-                {item}
-              </motion.div>
-            ))}
-          </div>
-        )}
-      </div>
+    <div className="flex items-center gap-2">
+      <label className="text-sm font-medium text-gray-600">{t("Sort by")}:</label>
+      <select
+        value={selectOption}
+        onChange={handleSortChange}
+        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        {filterOption.map((option) => (
+          <option key={option.title} value={option.title.toLowerCase()}>
+            {t(option.title)}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

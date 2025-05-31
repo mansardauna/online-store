@@ -7,6 +7,7 @@ import {
   createRoutesFromElements,
   Route,
   ScrollRestoration,
+  Navigate,
 } from "react-router-dom";
 import BestSellers from "./components/home/BestSellers/BestSellers";
 import FooterBottom from "./components/home/Footer/FooterBottom";
@@ -33,23 +34,50 @@ import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import ProductList from "./pages/ProductList/ProductList";
 import Settings from "./Settings/Settings";
+import AdminDashboard from "./pages/Dashboard/AdminDashbboard";
+import ManageProducts from "./pages/Dashboard/components/ManageProduct";
+import ManageOrders from "./pages/Dashboard/components/ManageOrder";
+import ManageUsers from "./pages/Dashboard/components/ManageUser";
+interface RootState {
+  auth: {
+    isLogging: boolean;
+    userProfile?: {
+      name: string;
+      email: string;
+      password: string;
+      role: "admin" | "buyer";
+    };
+  };
+}
 
+const ProtectedRoute: React.FC<{ children: React.ReactNode; adminOnly?: boolean }> = ({
+  children,
+  adminOnly = false,
+}) => {
+  const { isLogging, userProfile } = useSelector((state: RootState) => state.auth);
+  if (!isLogging) {
+    return <Navigate to="/signin" replace />;
+  }
+  if (adminOnly && userProfile?.role !== "admin") {
+    return <Navigate to="/" replace />;
+  }
+  return <>{children}</>;
+};
 
 const Layout: React.FC = () => {
-  const isLoggin = true;
+  const isLogging = useSelector((state: RootState) => state.auth.isLogging);
 
   return (
     <>
-      {isLoggin && (
+      {isLogging ? (
         <div className="flex">
-          <div className="xl:w-[17%] md:w-[22%] h-screen fixed overflow-y-auto bg-[#F5F5F3]  border border-r-gray-200 md:block hidden ">
+          <div className="xl:w-[15%] md:w-[22%] h-screen fixed overflow-y-auto bg-[#e8f0e8f1] border border-r-gray-300 md:block hidden">
             <Sidebar />
           </div>
-
-          <div className="xl:w-[83%] md:w-[78%] md:ml-[22%] xl:ml-[17%] w-full ml-0">
+          <div className="xl:w-[85%] md:w-[78%] md:ml-[22%] xl:ml-[15%] w-full ml-0">
             <HeaderBottom />
             <ScrollRestoration />
-            <div className=" fixed z-10 md:hidden right-0 bottom-40">
+            <div className="fixed z-10 md:hidden right-0 bottom-40">
               <SpecialCase />
               <SideCart />
             </div>
@@ -58,49 +86,159 @@ const Layout: React.FC = () => {
             <MobileNav />
           </div>
         </div>
+      ) : (
+        <Outlet />
       )}
-      {!isLoggin && <SignIn />}
     </>
   );
 };
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
-      <Route path="/" element={<Layout />}>
-        {/* ==================== Header Navlink Start here =================== */}
-        <Route index element={<Home />} />
-        {/* <Route path="/shop" element={<Sho />} /> */}
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/feeds" element={<Feed />} />
-        <Route path="/notification" element={<Notification />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/coming" element={<ComingSoon />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/watchlist" element={<Watch />} />
-        <Route path="/offer" element={<Offer />} />
-        <Route path="/product/:_id" element={<ProductDetails />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="/paymentgateway" element={<Payment />} />
-      </Route>
+    <Route path="/" element={<Layout />}>
+      {/* Public Routes */}
+      <Route index element={<Home />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/bestsell" element={<BestSellers />} />
       <Route path="/special" element={<SpecialOffers />} />
       <Route path="/new" element={<NewArrivals />} />
+      <Route path="/products" element={<ProductList />} />
+      <Route path="/product/:_id" element={<ProductDetails />} />
+      <Route path="/coming" element={<ComingSoon />} />
+
+      {/* Protected Routes (Buyer or Admin) */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/feeds"
+        element={
+          <ProtectedRoute>
+            <Feed />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/notification"
+        element={
+          <ProtectedRoute>
+            <Notification />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <UserProfile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/watchlist"
+        element={
+          <ProtectedRoute>
+            <Watch />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/offer"
+        element={
+          <ProtectedRoute>
+            <Offer />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/cart"
+        element={
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/order"
+        element={
+          <ProtectedRoute>
+            <Order />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/paymentgateway"
+        element={
+          <ProtectedRoute>
+            <Payment />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Admin-Only Routes */}
+      <Route
+        path="/dashboard/products"
+        element={
+          <ProtectedRoute adminOnly>
+            <ManageProducts/>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/orders"
+        element={
+          <ProtectedRoute adminOnly>
+            <ManageOrders/>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/users"
+        element={
+          <ProtectedRoute adminOnly>
+            <ManageUsers />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/products/add"
+        element={
+          <ProtectedRoute adminOnly>
+            <div>Add Product</div>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings/admin"
+        element={
+          <ProtectedRoute adminOnly>
+            <div>Admin Settings</div>
+          </ProtectedRoute>
+        }
+      />
     </Route>
   )
 );
 
 const App: React.FC = () => {
   return (
-    <>
-      <div className="font-bodyFont">
-        <RouterProvider router={router} />
-      </div>
-    </>
+    <div className="font-bodyFont">
+      <RouterProvider router={router} />
+    </div>
   );
 };
 
