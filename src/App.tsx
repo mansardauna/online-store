@@ -38,6 +38,8 @@ import AdminDashboard from "./pages/Dashboard/AdminDashbboard";
 import ManageProducts from "./pages/Dashboard/components/ManageProduct";
 import ManageOrders from "./pages/Dashboard/components/ManageOrder";
 import ManageUsers from "./pages/Dashboard/components/ManageUser";
+import Profile from "./pages/Account/profile";
+
 interface RootState {
   auth: {
     isLogging: boolean;
@@ -93,11 +95,17 @@ const Layout: React.FC = () => {
   );
 };
 
+// Component to handle index route logic
+const IndexRoute: React.FC = () => {
+  const isLogging = useSelector((state: RootState) => state.auth.isLogging);
+  return isLogging ? <Home /> : <Navigate to="/signin" replace />;
+};
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       {/* Public Routes */}
-      <Route index element={<Home />} />
+      <Route index element={<IndexRoute />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/bestsell" element={<BestSellers />} />
@@ -111,7 +119,7 @@ const router = createBrowserRouter(
       <Route
         path="/dashboard"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute adminOnly>
             <AdminDashboard />
           </ProtectedRoute>
         }
@@ -144,7 +152,7 @@ const router = createBrowserRouter(
         path="/profile"
         element={
           <ProtectedRoute>
-            <UserProfile />
+            <Profile />
           </ProtectedRoute>
         }
       />
@@ -194,7 +202,7 @@ const router = createBrowserRouter(
         path="/dashboard/products"
         element={
           <ProtectedRoute adminOnly>
-            <ManageProducts/>
+            <ManageProducts />
           </ProtectedRoute>
         }
       />
@@ -202,7 +210,15 @@ const router = createBrowserRouter(
         path="/dashboard/orders"
         element={
           <ProtectedRoute adminOnly>
-            <ManageOrders/>
+            <ManageOrders />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/client"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
           </ProtectedRoute>
         }
       />
