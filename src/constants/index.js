@@ -66,10 +66,10 @@ export const navBarList = [
     icon: <BsBagFill style={{ fontSize: "22px" }} />,
     subMenu: [
       // Client-specific submenus
-      { title: "All Products", link: "/products/all" },
+      { title: "All Products", link: "/products" },
       { title: "Cart", link: "/cart" },
       // Admin-specific submenu
-      { title: "Add Product", link: "/products/add" },
+      { title: "Add Product", link: "coming" },
     ],
   },
   {
@@ -79,8 +79,8 @@ export const navBarList = [
     icon: <MdFeed style={{ fontSize: "22px" }} />,
     subMenu: [
       // Client-specific submenus
-      { title: "Latest Feeds", link: "/feeds/latest" },
-      { title: "Followed Feeds", link: "/feeds/followed" },
+      { title: "Latest Feeds", link: "coming" },
+      { title: "Followed Feeds", link: "coming" },
     ],
   },
   {
@@ -91,9 +91,9 @@ export const navBarList = [
     subMenu: [
       // Shared submenus
       { title: "Profile", link: "/profile" },
-      { title: "Preferences", link: "/settings/preferences" },
+      { title: "Preferences", link: "coming" },
       // Admin-specific submenu
-      { title: "Admin Settings", link: "/settings/admin" },
+      { title: "Admin Settings", link: "/coming" },
     ],
   },
 ];
