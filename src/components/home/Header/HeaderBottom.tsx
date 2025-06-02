@@ -4,11 +4,13 @@ import { FaSearch, FaUser, FaCaretDown, FaLanguage } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { paginationItems } from "../../../constants";
+import { paginationItems } from "../../../constants/constant";
 import { logout, login } from "../../../redux/authSlice";
 import { useTranslation } from "react-i18next";
 import { BiNotification } from "react-icons/bi";
 import { MdNotifications } from "react-icons/md";
+import SideCart from "../../ui/SideCart";
+import SpecialCase from "../../SpecialCase/SpecialCase";
 
 const HeaderBottom: React.FC = () => {
   const products = useSelector((state) => state.orebiReducer.products);
@@ -63,7 +65,7 @@ const HeaderBottom: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#e8f0e8f1] mb-4 z-50 border-b border-gray-300 sticky top-0 rounded-sm pt-1 xl:pt-0 md:pt-7">
+    <div className="w-full mb-4 z-50 border-b shadow-sm bg-white border-gray-100 sticky top-0 rounded-sm pt-1 xl:pt-0 md:pt-7">
       <div className="max-w-container mx-auto">
         <div className="md:hidden block">
           <div className="text-black font-bold font-dancing text-2xl w-full text-center bg-hite p-2 m-auto">
@@ -71,6 +73,7 @@ const HeaderBottom: React.FC = () => {
           </div>
         </div>
         <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between m-auto w-11/12 px-4 pb-4 lg:pb-0 h-full lg:h-24">
+        
           <Link to='./products'>
             <div className=" h-14  cursor-pointer xl:block hidden items-center text-primeColor">
               <p className="mt-4 text-gray-700">{t("shop by", { ns: "layout" })}</p>
@@ -127,7 +130,9 @@ const HeaderBottom: React.FC = () => {
               </div>
             )}
           </div>
-          <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer text-lg relative">
+          <div className="flex gap-4 mt-2 lg:mt-0 items-center cursor-pointer text-lg relative">
+          <SideCart />
+        <SpecialCase />
             <div onClick={() => toggleDropdown("user")} className="flex">
               <FaUser />
               <FaCaretDown />
@@ -214,6 +219,7 @@ const HeaderBottom: React.FC = () => {
             <Link to="/notification">
               <MdNotifications />
             </Link>
+            
           </div>
         </Flex>
       </div>

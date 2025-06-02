@@ -65,7 +65,7 @@ export interface CategoryData {
 
 export interface Product {
   id: string;
-  img: string;
+  img: string[]; // Changed from string to string[]
   productName: string;
   price: string;
   category: string;

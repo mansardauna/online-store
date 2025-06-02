@@ -7,7 +7,6 @@ import Badge from "./Badge";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart, addToWatchlist } from "../../../redux/orebiSlice";
-import Button from "../../ui/Button";
 import CartModal from "../../ui/CartModal";
 import { BiPlay } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
@@ -15,11 +14,11 @@ import { useTranslation } from "react-i18next";
 interface ProductProps {
   _id: string;
   productName: string;
-  img: string;
+  img: string | string[]; // Updated to handle string or array
   badge: string;
   category: string;
   price: number;
-  color: string[];
+  color: string | string[];
   videoUrl: string;
   videoThumbnail: string;
   des: string;
@@ -28,31 +27,20 @@ interface ProductProps {
 const Product: React.FC<ProductProps> = (props) => {
   const { t } = useTranslation(["layout"]);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [iswhatchOpen, setIsWatchOpen] = useState(false);
+  const [isWatchOpen, setIsWatchOpen] = useState(false);
   const [isVideoPlaying, setVideoPlaying] = useState(false);
 
-  const handlePlayVideo = () => {
-    setVideoPlaying(true);
-  };
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const _id = props.productName;
-  const idString = (_id: string) => {
-    return String(_id).toLowerCase().split(" ").join("");
-  };
+  const idString = (_id: string) => String(_id).toLowerCase().split(" ").join("");
   const rootId = idString(_id);
 
-  const navigate = useNavigate();
-  const productItem = props;
   const handleProductDetails = () => {
     navigate(`/product/${rootId}`, {
-      state: {
-        item: productItem,
-      },
-    }); 
+      state: { item: props },
+    });
   };
-
-  const { videoUrl, videoThumbnail } = props;
 
   const handleAddToCart = () => {
     dispatch(
@@ -60,34 +48,15 @@ const Product: React.FC<ProductProps> = (props) => {
         _id: props._id,
         productName: props.productName,
         quantity: 1,
-        img: props.img,
+        img: Array.isArray(props.img) ? props.img[0] : props.img,
         badge: props.badge,
         category: props.category,
         price: props.price,
-        colors: props.color,
+        colors: Array.isArray(props.color) ? props.color : [props.color],
       })
     );
     setModalOpen(true);
   };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      const timeoutId = setTimeout(() => {
-        setModalOpen(false);
-      }, 2000);
-      return () => clearTimeout(timeoutId);
-    }
-    if (iswhatchOpen) {
-      const timeoutwatch = setTimeout(() => {
-        setIsWatchOpen(false);
-      }, 2000);
-      return () => clearTimeout(timeoutwatch);
-    }
-  }, [isModalOpen, iswhatchOpen]);
 
   const handleAddToWatch = () => {
     dispatch(
@@ -95,110 +64,138 @@ const Product: React.FC<ProductProps> = (props) => {
         _id: props._id,
         productName: props.productName,
         quantity: 1,
-        img: props.img,
+        img: Array.isArray(props.img) ? props.img[0] : props.img,
         badge: props.badge,
         category: props.category,
         price: props.price,
         des: props.des,
-        colors: props.color,
+        colors: Array.isArray(props.color) ? props.color : [props.color],
       })
     );
     setIsWatchOpen(true);
   };
 
+  const handlePlayVideo = () => {
+    setVideoPlaying(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setIsWatchOpen(false);
+  };
+
+  useEffect(() => {
+    if (isModalOpen || isWatchOpen) {
+      const timeoutId = setTimeout(() => {
+        setModalOpen(false);
+        setIsWatchOpen(false);
+      }, 2000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isModalOpen, isWatchOpen]);
+
+  // Ensure img is a string for display
+  const displayImage = Array.isArray(props.img) ? props.img[0] : props.img || "/img/placeholder.jpg";
+
   return (
-    <div className="md:w-full m-auto w-64 relative group">
-      <div className="max-w-80  max-h-80 relative overflow-y-hidden">
-        <div>
-          {videoUrl ? (
-            <div>
-              {isVideoPlaying ? (
-                <video
-                  width="100%"
-                  height="80%"
-                  controls
-                  autoPlay
-                  onClick={() => setVideoPlaying(false)}
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <div onClick={handlePlayVideo} className="relative cursor-pointer">
-                  <img
-                    src={videoThumbnail || props.img}
-                    alt={props.productName}
-                    className="w-full h-52 md:h-52"
-                  />
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <button className="bg-opacity-80 bg-black text-white rounded-full p-2">
-                      <BiPlay />
-                    </button>
-                  </div>
-                </div>
-              )}
+    <>
+    <div className="w-full relative group shadow-lg rounded-lg overflow-hidden transition-shadow">
+      <div className="relative rounded-lg  border hover:shadow-md">
+        {/* Image or Video */}
+        {props.videoUrl && !isVideoPlaying ? (
+          <div onClick={handlePlayVideo} className="relative rounded-lg cursor-pointer">
+            <img
+              src={props.videoThumbnail || displayImage}
+              alt={props.productName}
+              className="w-full rounded-lg h-auto object-cover"
+              onError={(e) => {
+                e.currentTarget.src = "/img/placeholder.jpg";
+              }}
+            />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <button className="bg-opacity-80 bg-black text-white rounded-full p-3">
+                <BiPlay size={24} />
+              </button>
             </div>
-          ) : (
-            <Image className="w-full h-52 md:h-52" imgSrc={props.img} />
-          )}
-        </div>
-        <div className="absolute top-6 left-8">
-          {props.badge && <Badge text={t("new")} />}
-        </div>
-        <div className="w-full h-32 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
-          <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
-            <li
+          </div>
+        ) : props.videoUrl && isVideoPlaying ? (
+          <video
+            width="100%"
+            height="auto"
+            controls
+            autoPlay
+            onClick={() => setVideoPlaying(false)}
+            className="w-full h-auto object-cover"
+          >
+            <source src={props.videoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <Image
+            className="w-full h-auto object-cover"
+            imgSrc={displayImage}
+          />
+        )}
+
+        {/* Badge */}
+        {props.badge && (
+          <div className="absolute top-4 left-4">
+            <Badge text={t(props.badge)} />
+          </div>
+        )}
+
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <div className="flex gap-3">
+            <button
               onClick={handleAddToCart}
-              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="p-3 bg-white text-gray-800 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+              aria-label={t("addCart")}
             >
-              {t("addCart")}
-              <span>
-                <FaShoppingCart />
-              </span>
-            </li>
-            <li
+              <FaShoppingCart size={20} />
+            </button>
+            <button
               onClick={handleProductDetails}
-              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="p-3 bg-white text-gray-800 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+              aria-label={t("view")}
             >
-              {t("view")}
-              <span className="text-lg">
-                <MdOutlineLabelImportant />
-                <CartModal isOpen={isModalOpen} onClose={closeModal} item={props.productName} type="cart" />
-              </span>
-            </li>
-            <li
+              <MdOutlineLabelImportant size={20} />
+            </button>
+            <button
               onClick={handleAddToWatch}
-              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="p-3 bg-white text-gray-800 rounded-full hover:bg-red-500 hover:text-white transition-colors"
+              aria-label={t("addWish")}
             >
-              {t("addWish")}
-              <span>
-                <BsSuitHeartFill />
-              </span>
-              <CartModal isOpen={iswhatchOpen} onClose={closeModal} item={props.productName} type="Watch List" />
-            </li>
-          </ul>
+              <BsSuitHeartFill size={20} />
+            </button>
+          </div>
         </div>
       </div>
-      <div className="max-w-80 py-6 flex flex-col gap-1 border-[1px] border-t-0 px-4">
-        <div className="flex items-center justify-between uppercase font-titleFont">
-          <h2 className="text-sm text-primeColor product-name font-bold">
-            {t(`${props.productName}`)}
+      
+
+      {/* Modals */}
+      <CartModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        item={props.productName}
+        type="cart"
+      />
+      <CartModal
+        isOpen={isWatchOpen}
+        onClose={closeModal}
+        item={props.productName}
+        type="Watch List"
+      />
+    </div>
+    <div className="flex p-2 items-center justify-between">
+          <h2 className="text-base font-semibold text-gray-800 truncate">
+            {t(props.productName)}
           </h2>
-          <p className="text-[#767676] text-[14px]">
-            ${t(`${props.price}`)}
+          <p className="text-sm text-gray-600 capitalize">
+          ${props.price}
           </p>
         </div>
-        
-        <div className=" justify-between items-center mt-2 flex">
-          <p className="text-[#767676] text-xs capitalize">{t("category")}:{t(`${props.category}`)}
-</p>
-          <Button variant="primary"
-          className="text-sm rounded font-semibold border-none" 
-          onClick={handleProductDetails}>{t("buy")}
-          </Button>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

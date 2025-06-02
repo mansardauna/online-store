@@ -13,7 +13,7 @@ const SpecialCase:React.FC = () => {
   return (
     <div className= " flex flex-col gap-2">
       <Link to="/watchlist">
-        <div className="bg-white w-12 h-[50px] rounded-md flex flex-col gap-1 text-[#33475b] justify-center items-center shadow-testShadow overflow-x-hidden group cursor-pointer relative">
+        <div className="h-[50px] rounded-md flex flex-col gap-1 text-[#33475b] justify-center items-center overflow-x-hidden group cursor-pointer relative">
           <div className="flex justify-center items-center">
             <AiFillEye className="text-2xl -translate-x-12 group-hover:translate-x-3 transition-transform duration-200" />
 

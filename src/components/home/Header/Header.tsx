@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { navBarList, NavItem } from "../../../constants";
+import { navBarList, NavItem } from "../../../constants/";
 import { useTranslation } from "react-i18next";
 
 interface RootState {
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
             {navBarList.map((item: NavItem) => (
               <div key={item._id} className="relative">
                 <NavLink
-                  className="font-normal hover:font-bold w-full justify-center text-xl items-center text-[#767676] hover:text-[#262626] hoverEffect cursor-pointer md:text-lg rounded-lg"
+                  className="font-normal hover:font-bold w-full justify-center text-xl items-center text-[#303f8c] hover:text-[#262626] hoverEffect cursor-pointer md:text-lg rounded-lg"
                   to={item.link}
                   state={{ data: location.pathname.split("/")[1] }}
                 >

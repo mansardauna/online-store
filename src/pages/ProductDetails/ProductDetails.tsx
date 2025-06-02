@@ -1,4 +1,3 @@
-// ProductDetails.tsx
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../../components/pageProps/Breadcrumbs';
@@ -7,9 +6,6 @@ import ReactPlayer from 'react-player';
 import Button from '../../components/ui/Button';
 import { useTranslation } from 'react-i18next';
 import JSZip from 'jszip';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { paginationItems, Product as ProductType } from '../../constants/constant';
 import { FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
 import Product from '../../components/home/Products/Product';
@@ -28,16 +24,39 @@ const ProductDetails: React.FC = () => {
     { text: string; rating: number; image?: string }[]
   >([]);
   const [modalImage, setModalImage] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'description' | 'reviews'>('description');
+  const [currentImage, setCurrentImage] = useState<string>('');
+
+  // Define openImageModal
+  const openImageModal = (img: string) => setModalImage(img);
+
+  // Define handleImageUpload
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
 
   useEffect(() => {
     if (location.state?.item) {
-      setProductInfo(location.state.item);
+      const item = location.state.item;
+      setProductInfo(item);
       setPrevLocation(location.pathname);
-      setVideoUrl(location.state.item.videoUrl);
+      setVideoUrl(item.videoUrl || '');
+      // Ensure img is an array; convert to array if it's a string
+      setCurrentImage(
+        Array.isArray(item.img) && item.img.length > 0
+          ? item.img[0]
+          : typeof item.img === 'string'
+          ? item.img
+          : '/img/placeholder.jpg'
+      );
+    } else {
+      // Handle direct navigation
+      navigate('/products');
     }
-  }, [location]);
+  }, [location, navigate]);
 
-  // Get similar products (same category, exclude current product)
   const similarProducts = paginationItems
     .filter(
       (item) =>
@@ -45,31 +64,28 @@ const ProductDetails: React.FC = () => {
     )
     .slice(0, 4);
 
-  // Carousel settings
-  const carouselSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
-
   const handleDownload = async () => {
     const zip = new JSZip();
     if (productInfo?.img) {
-      for (let i = 0; i < productInfo.img.length; i++) {
-        const response = await fetch(productInfo.img[i]);
-        const imageBlob = await response.blob();
-        zip.file(`product_image_${i + 1}.png`, imageBlob);
+      const images = Array.isArray(productInfo.img)
+        ? productInfo.img
+        : [productInfo.img].filter(Boolean);
+      for (let i = 0; i < images.length; i++) {
+        try {
+          const response = await fetch(images[i]);
+          if (response.ok) {
+            const imageBlob = await response.blob();
+            zip.file(`product_image_${i + 1}.png`, imageBlob);
+          }
+        } catch (error) {
+          console.error(`Failed to fetch image ${images[i]}:`, error);
+        }
       }
     }
     const content = await zip.generateAsync({ type: 'blob' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(content);
-    a.download = 'product_img.zip';
+    a.download = 'product_images.zip';
     a.click();
   };
 
@@ -87,26 +103,19 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
-
-  const openImageModal = (img: string) => setModalImage(img);
   const closeImageModal = () => setModalImage(null);
 
   return (
-    <div className="w-full mx-auto bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-11/12 mx-auto bg-white min-h-screen">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Breadcrumbs */}
         <Breadcrumbs title={t('productDetails')} prevLocation={prevLocation} />
 
         {/* Product Details */}
-        {productInfo && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6 bg-white rounded-lg shadow-md p-6">
+        {productInfo ? (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
             {/* Image/Video Section */}
-            <div className="relative">
+            <div className="flex flex-col gap-4">
               {videoUrl ? (
                 <ReactPlayer
                   url={videoUrl}
@@ -115,65 +124,167 @@ const ProductDetails: React.FC = () => {
                   height="400px"
                   className="rounded-lg"
                 />
-              ) : productInfo.img.length > 1 ? (
-                <Slider {...carouselSettings} className="rounded-lg">
-                  {productInfo.img.map((img, index) => (
-                    <div
-                      key={index}
-                      className="cursor-pointer"
-                      onClick={() => openImageModal(img)}
-                    >
-                      <img
-                        src={img}
-                        alt={`${productInfo.productName} ${index + 1}`}
-                        className="w-full h-96 object-cover rounded-lg"
-                        onError={(e) => {
-                          e.currentTarget.src = '/img/placeholder.jpg';
-                        }}
-                      />
-                    </div>
-                  ))}
-                </Slider>
               ) : (
-                <img
-                  src={productInfo.img[0]}
-                  alt={productInfo.productName}
-                  className="w-full h-96 object-cover rounded-lg cursor-pointer"
-                  onClick={() => openImageModal(productInfo.img[0])}
-                  onError={(e) => {
-                    e.currentTarget.src = '/img/placeholder.jpg';
-                  }}
-                />
+                <>
+                  <img
+                    src={currentImage}
+                    alt={productInfo.productName || 'Product'}
+                    className="w-full h-[400px] object-contain rounded-lg cursor-pointer"
+                    onClick={() => openImageModal(currentImage)}
+                    onError={(e) => {
+                      e.currentTarget.src = '/img/placeholder.jpg';
+                    }}
+                  />
+                  <div className="flex gap-2 overflow-x-auto">
+                    {(Array.isArray(productInfo.img)
+                      ? productInfo.img
+                      : [productInfo.img].filter(Boolean)
+                    ).map(
+                      (img, index) =>
+                        img && (
+                          <img
+                            key={index}
+                            src={img}
+                            alt={`${productInfo.productName} ${index + 1}`}
+                            className={`w-20 h-20 object-cover rounded cursor-pointer ${
+                              currentImage === img ? 'border-2 border-blue-500' : ''
+                            }`}
+                            onClick={() => setCurrentImage(img)}
+                            onError={(e) => {
+                              e.currentTarget.src = '/img/placeholder.jpg';
+                            }}
+                          />
+                        )
+                    )}
+                  </div>
+                </>
               )}
               <Button
                 variant="secondary"
                 onClick={handleDownload}
-                className="mt-4 w-full bg-gray-700 text-white hover:bg-gray-800"
+                className="mt-4 w-full bg-gray-200 text-gray-800 hover:bg-gray-300 rounded-lg py-3"
               >
                 {videoUrl ? t('downloadVideo') : t('downloadImages')}
               </Button>
             </div>
 
             {/* Product Info */}
-            <div className="flex flex-col gap-4">
-              <ProductInfo productInfo={productInfo} />
-              <div className="flex gap-4">
-                <Button
-                  variant="primary"
-                  className="bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  {t('addToCart')}
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-blue-600 text-blue-600 hover:bg-blue-50"
-                >
-                  {t('buyNow')}
-                </Button>
-              </div>
-            </div>
+            <ProductInfo productInfo={productInfo} />
           </div>
+        ) : (
+          <div className="text-center text-gray-600">Loading product details...</div>
         )}
+
+        {/* Tabs: Description and Reviews */}
+        <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+          <div className="flex border-b">
+            <button
+              className={`px-4 py-2 font-semibold ${
+                activeTab === 'description'
+                  ? 'border-b-2 border-blue-500 text-blue-500'
+                  : 'text-gray-600'
+              }`}
+              onClick={() => setActiveTab('description')}
+            >
+              {t('description')}
+            </button>
+            <button
+              className={`px-4 py-2 font-semibold ${
+                activeTab === 'reviews'
+                  ? 'border-b-2 border-blue-500 text-blue-500'
+                  : 'text-gray-600'
+              }`}
+              onClick={() => setActiveTab('reviews')}
+            >
+              {t('reviews')}
+            </button>
+          </div>
+          <div className="mt-4">
+            {activeTab === 'description' ? (
+              <p className="text-gray-600">{productInfo?.des || 'No description available'}</p>
+            ) : (
+              <div>
+                {/* Submit Review */}
+                <div className="mb-6">
+                  <div className="flex items-center mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        onClick={() => setRating(star)}
+                        className="focus:outline-none"
+                      >
+                        {star <= rating ? (
+                          <FaStar className="text-yellow-400 w-5 h-5" />
+                        ) : (
+                          <FaRegStar className="text-gray-300 w-5 h-5" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                  <textarea
+                    value={feedback}
+                    onChange={(e) => setFeedback(e.target.value)}
+                    placeholder={t('writeFeed')}
+                    rows={4}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="text-sm text-gray-600"
+                    />
+                    <Button
+                      variant="primary"
+                      onClick={handleFeedbackSubmit}
+                      disabled={!feedback.trim() || rating === 0}
+                      className="bg-blue-600 text-white hover:bg-blue-700 disabled:bg-gray-400 rounded-lg py-3"
+                    >
+                      {t('submit')}
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Display Reviews */}
+                {submittedFeedbacks.length > 0 ? (
+                  <div className="space-y-4">
+                    {submittedFeedbacks.map((fb, index) => (
+                      <div
+                        key={index}
+                        className="border-t pt-4 flex flex-col sm:flex-row gap-4"
+                      >
+                        <div className="flex-1">
+                          <div className="flex items-center mb-2">
+                            {[...Array(5)].map((_, i) => (
+                              <FaStar
+                                key={i}
+                                className={
+                                  i < fb.rating ? 'text-yellow-400' : 'text-gray-300'
+                                }
+                              />
+                            ))}
+                          </div>
+                          <p className="text-gray-700">{fb.text}</p>
+                        </div>
+                        {fb.image && (
+                          <img
+                            src={fb.image}
+                            alt="Feedback"
+                            className="w-16 h-16 object-cover rounded cursor-pointer"
+                            onClick={() => openImageModal(fb.image)}
+                          />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-gray-600">No reviews yet.</p>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Similar Products */}
         {similarProducts.length > 0 && (
@@ -192,13 +303,13 @@ const ProductDetails: React.FC = () => {
                 >
                   <Product
                     _id={product.id}
-                    img={product.img[0]} // Use first image
+                    img={Array.isArray(product.img) ? product.img : [product.img].filter(Boolean)}
                     productName={product.productName}
                     price={product.price}
                     category={product.category}
                     color={product.color || 'N/A'}
                     des={product.des}
-                    videoUrl={product.videoUrl || ''}
+                    videoUrl={''}
                   />
                 </div>
               ))}
@@ -206,108 +317,25 @@ const ProductDetails: React.FC = () => {
           </div>
         )}
 
-        {/* Reviews Section */}
-        <div className="mt-12 bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            {t('productFeed')}
-          </h2>
-
-          {/* Submit Review */}
-          <div className="mb-6">
-            <div className="flex items-center mb-2">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <button
-                  key={star}
-                  onClick={() => setRating(star)}
-                  className="focus:outline-none"
-                >
-                  {star <= rating ? (
-                    <FaStar className="text-yellow-400 w-6 h-6" />
-                  ) : (
-                    <FaRegStar className="text-gray-300 w-6 h-6" />
-                  )}
-                </button>
-              ))}
-            </div>
-            <textarea
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              placeholder={t('writeFeed')}
-              rows={4}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="text-sm text-gray-600"
+        {/* Image Modal */}
+        {modalImage && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div className="relative max-w-4xl w-full">
+              <img
+                src={modalImage}
+                alt="Full view"
+                className="w-full h-auto rounded-lg"
               />
-              <Button
-                variant="primary"
-                onClick={handleFeedbackSubmit}
-                disabled={!feedback.trim() || rating === 0}
-                className="bg-blue-600 text-white hover:bg-blue-700 disabled:bg-gray-400"
+              <button
+                onClick={closeImageModal}
+                className="absolute top-4 right-4 text-white bg-gray-800 p-2 rounded-full hover:bg-gray-900"
               >
-                {t('submit')}
-              </Button>
+                <FaTimes size={24} />
+              </button>
             </div>
           </div>
-
-          {/* Display Reviews */}
-          {submittedFeedbacks.length > 0 && (
-            <div className="space-y-4">
-              {submittedFeedbacks.map((fb, index) => (
-                <div
-                  key={index}
-                  className="border-t pt-4 flex flex-col sm:flex-row gap-4"
-                >
-                  <div className="flex-1">
-                    <div className="flex items-center mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar
-                          key={i}
-                          className={
-                            i < fb.rating ? 'text-yellow-400' : 'text-gray-300'
-                          }
-                        />
-                      ))}
-                    </div>
-                    <p className="text-gray-700">{fb.text}</p>
-                  </div>
-                  {fb.image && (
-                    <img
-                      src={fb.image}
-                      alt="Feedback"
-                      className="w-20 h-20 object-cover rounded cursor-pointer"
-                      onClick={() => openImageModal(fb.image)}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        )}
       </div>
-
-      {/* Image Modal */}
-      {modalImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="relative max-w-3xl w-full">
-            <img
-              src={modalImage}
-              alt="Full view"
-              className="w-full h-auto rounded-lg"
-            />
-            <button
-              onClick={closeImageModal}
-              className="absolute top-4 right-4 text-white bg-gray-800 p-2 rounded-full hover:bg-gray-700"
-            >
-              <FaTimes size={20} />
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

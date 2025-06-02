@@ -57,3 +57,60 @@ nav .active li {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
+.my-masonry-grid {
+  display: flex;
+  margin-left: -16px; /* Adjust for gutter */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 16px; /* Gutter size */
+  background-clip: padding-box;
+}
+.my-masonry-grid_column > div {
+  margin-bottom: 16px;
+}
+
+.product-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+.product-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+.product-card:hover .hover-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+}
+.hover-button {
+  padding: 12px;
+  background: white;
+  color: #333;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+.hover-button:hover {
+  background: #3b82f6; /* Blue for Add/View */
+  color: white;
+}
+.hover-button.watchlist:hover {
+  background: #ef4444; /* Red for Watchlist */
+  color: white;
+}
+
+ 

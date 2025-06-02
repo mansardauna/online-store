@@ -21,8 +21,8 @@ module.exports = {
         dancing: ['"Dancing Script"', 'cursive'],
       },
       colors: {
-        primeColor: "#166534",
-        lightText: "#6D6D6D",
+        primeColor: "#161559",
+        lightText: "#9898C4",
       },
       boxShadow: {
         testShadow: "0px 0px 54px -13px rgba(0,0,0,0.7)",

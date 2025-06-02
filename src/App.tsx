@@ -71,10 +71,10 @@ const Layout: React.FC = () => {
     <>
       {isLogging ? (
         <div className="flex">
-          <div className="xl:w-[15%] md:w-[22%] h-screen fixed overflow-y-auto bg-[#e8f0e8f1] border border-r-gray-300 md:block hidden">
+          <div className="xl:w-[15%] md:w-[22%] h-screen fixed overflow-y-auto border border-gray-100 shadow-lg md:block hidden">
             <Sidebar />
           </div>
-          <div className="xl:w-[85%] md:w-[78%] md:ml-[22%] xl:ml-[15%] w-full ml-0">
+          <div className="xl:w-[85%] bg-slate-50 md:w-[78%] md:ml-[22%] xl:ml-[15%] w-full ml-0">
             <HeaderBottom />
             <ScrollRestoration />
             <div className="fixed z-10 md:hidden right-0 bottom-40">
